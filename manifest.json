@@ -5,7 +5,6 @@
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "orientation": "portrait-or-landscape",
   "theme_color": "#16220F",
   "background_color": "#F6F1E7",
   "icons": [
@@ -22,13 +21,5 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["shopping", "lifestyle"],
-  "screenshots": [
-    {
-      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'%3E%3Crect width='540' height='720' fill='%2316220F'/%3E%3C/svg%3E",
-      "sizes": "540x720",
-      "type": "image/svg+xml",
-      "form_factor": "narrow"
-    }
-  ]
+  "categories": ["shopping", "lifestyle"]
 }
