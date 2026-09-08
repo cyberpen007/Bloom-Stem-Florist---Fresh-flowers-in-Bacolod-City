@@ -1,0 +1,3199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloom & Stem Florist — Handcrafted Bouquets in Bacolod City</title>
+<meta name="description" content="Small-batch bouquets, potted greens, and seasonal arrangements — grown local, gathered by hand, and ready for pickup or delivery same day in Bacolod City.">
+<meta property="og:title" content="Bloom & Stem Florist">
+<meta property="og:description" content="Handcrafted bouquets for life's most meaningful moments. Fresh flowers, safe delivery, made with love.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='12' r='6' fill='%23C97B84'/%3E%3Ccircle cx='12' cy='20' r='6' fill='%23C9A24B'/%3E%3Ccircle cx='28' cy='20' r='6' fill='%236E8F52'/%3E%3Ccircle cx='20' cy='24' r='5' fill='%2322331B'/%3E%3C/svg%3E">
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#16220F">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Bloom & Stem">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Great+Vibes&family=Parisienne&family=Alex+Brush&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#F6F1E7;
+    --forest:#22331B;
+    --forest-deep:#16220F;
+    --rose:#C97B84;
+    --gold:#C9A24B;
+    --ink:#26241D;
+    --leaf:#6E8F52;
+    --lavender:#9B8AC4;
+    --blush:#E8A6B0;
+    --marigold:#E3A857;
+    --plum:#5B4467;
+    --rose-red:#B23E33;
+    --rose-red-deep:#8C2E26;
+    --rose-yellow:#E3B23C;
+    --rose-yellow-deep:#C6902A;
+    --leaf-bright:#9BC97A;
+    --text-soft: rgba(246,241,231,0.72);
+    --text-faint: rgba(246,241,231,0.5);
+    --line: rgba(38,36,29,0.12);
+    --line-soft: rgba(246,241,231,0.16);
+    --radius: 3px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(circle at 12% 15%, rgba(201,123,132,0.34), transparent 45%),
+      radial-gradient(circle at 88% 8%, rgba(227,178,60,0.32), transparent 42%),
+      radial-gradient(circle at 82% 62%, rgba(155,138,196,0.30), transparent 46%),
+      radial-gradient(circle at 15% 72%, rgba(110,143,82,0.34), transparent 46%),
+      radial-gradient(circle at 55% 92%, rgba(178,62,51,0.28), transparent 44%),
+      radial-gradient(circle at 40% 40%, rgba(22,34,15,0.4), transparent 65%),
+      var(--forest-deep);
+    color:var(--text-soft);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+    position:relative;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+    color:var(--ivory);
+  }
+  .mono{
+    font-family:'JetBrains Mono',monospace;
+    letter-spacing:0.02em;
+  }
+  [contenteditable="true"]{
+    outline:none;
+    border-radius:2px;
+    transition:background .15s ease;
+  }
+  [contenteditable="true"]:hover{
+    background:rgba(201,162,75,0.12);
+    cursor:text;
+  }
+  [contenteditable="true"]:focus{
+    background:rgba(201,162,75,0.2);
+    box-shadow:0 0 0 1px var(--gold);
+  }
+  ::selection{ background: var(--gold); color:var(--forest-deep); }
+
+  /* ===== Layout shell ===== */
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 32px; }
+
+  /* ===== Top bar ===== */
+  header.top{
+    position:sticky; top:0; z-index:50;
+    background:rgba(22,34,15,0.86);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .top-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 0;
+  }
+  .brand{ display:flex; align-items:center; gap:12px; }
+  .brand svg{ width:34px; height:34px; flex-shrink:0; }
+  .brand-name{ font-family:'Great Vibes', cursive; font-size:48px; font-weight:400; color:var(--gold); line-height:1; }
+  .brand-tag{ font-family:'JetBrains Mono',monospace; font-size:15px; color:var(--leaf-bright); text-transform:uppercase; letter-spacing:0.12em; margin-top:2px;}
+  .brand-badge{ font-family:'JetBrains Mono',monospace; font-size:14px; color:#FFFFFF; text-transform:uppercase; letter-spacing:0.1em; margin-top:2px; opacity:0.9; }
+
+  nav.tabs{ display:flex; gap:4px; background:rgba(246,241,231,0.07); padding:4px; border-radius:999px; }
+  nav.tabs button{
+    border:none; background:transparent; padding:9px 18px; border-radius:999px;
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:500; color:var(--text-soft);
+    cursor:pointer; transition:all .2s ease; letter-spacing:0.01em;
+  }
+  nav.tabs button.active{ background:var(--gold); color:var(--forest-deep); }
+  nav.tabs button:not(.active):hover{ background:rgba(246,241,231,0.12); color:var(--ivory); }
+  .blink-red{ animation:blinkRed 1.8s steps(1,end) infinite; }
+  @keyframes blinkRed{
+    0%, 49%{ background:var(--rose-red); color:#fff; border-color:var(--rose-red); }
+    50%, 100%{ background:transparent; color:var(--rose-red); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .blink-red{ animation:none; background:var(--rose-red); color:#fff; }
+  }
+  .howto-ref{
+    font-weight:900; text-decoration:underline; text-decoration-color:var(--gold); text-underline-offset:2px;
+    text-decoration-thickness:2px; color:var(--rose-red); letter-spacing:0.2px;
+  }
+  .howto-ref-yellow{
+    font-weight:900; text-decoration:underline; text-decoration-color:#8A6200; text-underline-offset:2px;
+    text-decoration-thickness:2px; color:#8A6200; letter-spacing:0.2px;
+  }
+  .howto-note{
+    background:#FFF8E6; border:1px solid #E8D9A6; border-radius:14px;
+    padding:14px 16px; margin:0 0 20px 0;
+  }
+  .howto-note-label{
+    display:block; font-size:11px; font-weight:700; letter-spacing:0.6px; text-transform:uppercase;
+    color:#8A6200; margin-bottom:6px;
+  }
+  .howto-note-text{
+    font-size:14px; font-weight:500; line-height:1.6; color:#3a3628; outline:none;
+  }
+  .howto-note-text:focus{ background:#fffef9; border-radius:6px; }
+  @media (max-width:640px){
+    .howto-note{ padding:12px 14px; }
+    .howto-note-text{ font-size:14.5px; }
+  }
+
+  /* ===== Admin dropdown ===== */
+  .admin-menu{ position:relative; }
+  #adminToggleBtn{
+    border:none; background:transparent; padding:9px 18px; border-radius:999px;
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:500; color:var(--text-soft);
+    cursor:pointer; transition:all .2s ease; letter-spacing:0.01em; display:flex; align-items:center; gap:5px;
+  }
+  #adminToggleBtn:hover{ background:rgba(246,241,231,0.12); color:var(--ivory); }
+  #adminToggleBtn.active{ background:var(--gold); color:var(--forest-deep); }
+  #adminToggleBtn .caret{ font-size:10px; transition:transform .2s ease; }
+  .admin-menu.open #adminToggleBtn .caret{ transform:rotate(180deg); }
+  .admin-dropdown{
+    position:absolute; top:calc(100% + 8px); right:0; min-width:180px; background:var(--forest-deep);
+    border:1px solid var(--line-soft); border-radius:12px; padding:6px; display:none; flex-direction:column; gap:2px;
+    box-shadow:0 18px 40px -14px rgba(0,0,0,0.5); z-index:60;
+  }
+  .admin-menu.open .admin-dropdown{ display:flex; }
+  .admin-dropdown button{
+    border:none; background:transparent; text-align:left; padding:9px 12px; border-radius:8px;
+    font-family:'Inter',sans-serif; font-size:13.5px; font-weight:500; color:var(--text-soft); cursor:pointer;
+  }
+  .admin-dropdown button:hover{ background:rgba(246,241,231,0.1); color:var(--ivory); }
+  .admin-dropdown button.active{ background:var(--gold); color:var(--forest-deep); }
+  .admin-dropdown .admin-change-pass{
+    border-top:1px solid var(--line-soft); margin-top:4px; padding-top:10px; font-size:12px;
+    color:var(--leaf-bright); font-family:'JetBrains Mono',monospace; text-transform:uppercase; letter-spacing:0.06em;
+  }
+
+  /* ===== Admin passcode modal ===== */
+  .admin-modal-overlay{
+    position:fixed; inset:0; z-index:200; background:rgba(22,34,15,0.75); backdrop-filter:blur(4px);
+    display:flex; align-items:center; justify-content:center; padding:20px;
+  }
+  .admin-modal{
+    background:var(--ivory); border-radius:var(--radius); padding:28px; width:100%; max-width:340px;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,0.5);
+  }
+  .admin-modal h3{ margin:0 0 8px; font-family:'Fraunces',serif; font-size:20px; color:var(--forest-deep); }
+  .admin-modal p{ margin:0 0 16px; font-size:13px; color:#67624e; font-family:'Inter',sans-serif; line-height:1.5; }
+  .admin-modal input[type=password],
+  .admin-modal input[type=text]{
+    width:100%; padding:11px 13px; border:1px solid var(--line); border-radius:8px; background:#fdfcf9;
+    font-family:'Inter',sans-serif; font-size:14px; color:var(--ink); box-sizing:border-box;
+  }
+  .admin-modal input[type=password]:focus,
+  .admin-modal input[type=text]:focus{ outline:none; border-color:var(--leaf); box-shadow:0 0 0 3px rgba(110,143,82,0.15); }
+  .passcode-field-wrap{ position:relative; }
+  .passcode-field-wrap input{ padding-right:40px !important; }
+  #adminPasscodeToggle{
+    position:absolute; right:4px; top:50%; transform:translateY(-50%); border:none; background:transparent;
+    cursor:pointer; font-size:15px; padding:6px 8px; border-radius:6px; opacity:0.55; line-height:1;
+  }
+  #adminPasscodeToggle:hover{ opacity:1; background:rgba(38,36,29,0.06); }
+  .admin-modal-err{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--rose-red-deep); margin-top:10px; }
+  .admin-modal-actions{ display:flex; justify-content:flex-end; gap:8px; margin-top:18px; }
+
+  /* ===== Editing locked unless admin-mode is active ===== */
+  body:not(.admin-mode) [contenteditable="true"]{ pointer-events:none; cursor:default; }
+  body:not(.admin-mode) [contenteditable="true"]:hover{ background:transparent !important; }
+  body:not(.admin-mode) .card-img{ pointer-events:none; }
+  body:not(.admin-mode) .card-del{ display:none !important; }
+  body:not(.admin-mode) .add-card{ display:none; }
+  body:not(.admin-mode) #addCatBtn{ display:none; }
+  body:not(.admin-mode) .cat-del{ display:none !important; }
+  body:not(.admin-mode) .partner-del{ display:none !important; }
+  body:not(.admin-mode) #addPartnerBtn{ display:none; }
+  body:not(.admin-mode) #addOrderBtn{ display:none; }
+  body:not(.admin-mode) #addSchedBtn{ display:none; }
+  body:not(.admin-mode) .row-del{ display:none !important; }
+  body:not(.admin-mode) #addTestimonialBtn{ display:none; }
+  body:not(.admin-mode) .testimonial-del{ display:none !important; }
+  /* Reviews are the one exception: anyone (not just admin) can edit the stars,
+     quote, name, and role on an existing review card. Adding a new card or
+     deleting one stays admin-only (rules above still apply to those). */
+  body:not(.admin-mode) #view-reviews .testimonial-quote,
+  body:not(.admin-mode) #view-reviews .testimonial-name,
+  body:not(.admin-mode) #view-reviews .testimonial-role{
+    pointer-events:auto !important; cursor:text !important;
+  }
+  body:not(.admin-mode) #view-reviews .testimonial-quote:hover,
+  body:not(.admin-mode) #view-reviews .testimonial-name:hover,
+  body:not(.admin-mode) #view-reviews .testimonial-role:hover{
+    background:rgba(201,162,75,0.12) !important;
+  }
+  #view-reviews .stars .star{ cursor:pointer !important; }
+  body:not(.admin-mode) #addCareTipBtn{ display:none; }
+  body:not(.admin-mode) #addHowToBtn{ display:none; }
+  body:not(.admin-mode) .care-tip-del{ display:none !important; }
+  body:not(.admin-mode) #addFaqBtn{ display:none; }
+  body:not(.admin-mode) .faq-del{ display:none !important; }
+
+  /* ===== Scroll reveal ===== */
+  .reveal{ opacity:0; transform:translateY(24px); }
+  .reveal.in-view{ opacity:1; transform:translateY(0); }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; }
+  }
+
+  /* ===== Toast ===== */
+  .toast{
+    position:fixed; left:50%; bottom:26px; transform:translateX(-50%) translateY(16px);
+    background:var(--forest-deep); color:var(--ivory); padding:12px 24px; border-radius:999px;
+    font-family:'Inter',sans-serif; font-size:13px; font-weight:500; letter-spacing:0.01em;
+    box-shadow:0 14px 34px rgba(0,0,0,0.28); opacity:0; pointer-events:none;
+    transition:opacity .3s ease, transform .3s ease; z-index:300; display:flex; align-items:center; gap:8px;
+  }
+  .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+  /* ===== Nav order badge ===== */
+  .nav-badge{
+    background:var(--rose-red); color:#fff; font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700;
+    border-radius:999px; padding:1px 6px; margin-left:7px; min-width:16px; text-align:center; display:inline-block;
+  }
+
+  /* ===== Hero ===== */
+  .hero{ position:relative; padding:72px 0 56px; overflow:hidden; }
+  .hero-rose{ position:fixed; top:58px; right:8px; width:440px; height:auto; opacity:0.9; pointer-events:none; z-index:-1; }
+  @media (max-width:1300px){ .hero-rose{ width:340px; right:0px; top:70px; } }
+
+  .eyebrow{ font-family:'JetBrains Mono',monospace; font-size:12px; text-transform:uppercase; letter-spacing:0.16em; color:#000000; margin-bottom:16px; }
+  .hero h1{ font-size:56px; line-height:1.03; max-width:640px; margin:0 0 20px; color:#59C7C0; }
+  .hero h1 em{ font-style:italic; color:var(--rose-red); }
+  .hero p.sub{ font-size:17px; line-height:1.6; max-width:520px; color:var(--text-soft); margin:0 0 28px; }
+  .hero-meta{ display:flex; gap:32px; margin-top:8px; flex-wrap:wrap; }
+  .hero-meta .item .label{ font-family:'JetBrains Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:0.1em; color:var(--leaf-bright); display:block; margin-bottom:4px; }
+  .hero-meta .item .val{ font-size:14.5px; font-weight:500; color:var(--ivory); }
+  .hero-meta .item .val:empty:before{ content:attr(data-placeholder); color:rgba(246,241,231,0.45); }
+
+  /* ===== Section shell ===== */
+  section.panel{ padding:12px 0 90px; }
+  .panel-head{ display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:30px; flex-wrap:wrap; gap:16px; }
+  .panel-head h2{ font-size:30px; margin:0; }
+  .catalog-highlight{ 
+    color:#E8A6B0;
+    font-family:'Fraunces', serif;
+    font-size:180px;
+    font-weight: 500;
+    font-style: italic;
+    letter-spacing: 3px;
+    text-shadow: 
+      0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  .panel-head .desc{ font-size:14px; color:var(--text-soft); max-width:460px; margin-top:6px; }
+
+  .btn{
+    font-family:'Inter',sans-serif; font-size:13px; font-weight:600; letter-spacing:0.01em;
+    padding:10px 18px; border-radius:999px; border:1px solid var(--gold); background:var(--gold);
+    color:var(--forest-deep); cursor:pointer; transition:transform .15s ease, opacity .15s ease; white-space:nowrap;
+  }
+  .btn:hover{ transform:translateY(-1px); opacity:0.92; }
+  .btn.ghost{ background:transparent; color:var(--ivory); border-color:var(--line-soft); }
+  .btn.ghost:hover{ background:rgba(246,241,231,0.1); }
+  .btn.small{ padding:6px 12px; font-size:12px; border-radius:8px; }
+  .btn.danger{ border-color:var(--rose-red); background:transparent; color:var(--rose-red); }
+  .btn.danger:hover{ background:rgba(178,62,51,0.15); }
+
+  /* ===== Flower categories ===== */
+  .cat-row{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:32px; }
+  .cat-pill{
+    padding:8px 16px; border-radius:999px; border:1px solid var(--line-soft); background:transparent;
+    font-size:13px; font-weight:500; cursor:pointer; color:var(--text-soft); transition:all .2s ease; display:flex; align-items:center; gap:8px;
+  }
+  .cat-pill.active{ background:var(--leaf); border-color:var(--leaf); color:#fff; }
+  .cat-pill:not(.active):hover{ border-color:var(--leaf); }
+  .cat-pill .count{ font-family:'JetBrains Mono',monospace; font-size:10.5px; opacity:0.75; }
+  .cat-del{
+    width:18px; height:18px; border-radius:50%; border:none; background:rgba(178,62,51,0.85);
+    color:#fff; font-size:11px; line-height:1; cursor:pointer; display:flex; align-items:center;
+    justify-content:center; padding:0; opacity:1; transition:opacity .2s ease, background .2s ease;
+  }
+  .cat-del:hover{ opacity:1; background:var(--rose-red-deep); color:#fff; }
+
+  .grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(240px,1fr)); gap:22px; }
+  .card{
+    background:#fff; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;
+    display:flex; flex-direction:column; position:relative;
+    transition:box-shadow .3s ease, transform .3s ease, opacity .6s cubic-bezier(.22,1,.36,1);
+  }
+  .card:hover{ box-shadow:0 20px 38px -16px rgba(201,123,132,0.4), 0 14px 30px -18px rgba(22,34,15,0.35); transform:translateY(-5px); }
+  .card-img{
+    aspect-ratio:4/3; width:100%; background:linear-gradient(135deg,#e7e0cd,#d8dcc4); position:relative;
+    display:flex; align-items:center; justify-content:center; overflow:hidden; cursor:pointer;
+  }
+  .card-img img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s cubic-bezier(.22,1,.36,1); }
+  .card:hover .card-img img{ transform:scale(1.09); }
+  .card-img .upload-hint{
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--forest); text-align:center; padding:8px;
+    background:rgba(255,255,255,0.75); border-radius:6px; opacity:0; transition:opacity .2s ease;
+  }
+  .card-img:hover .upload-hint{ opacity:1; }
+  .card-img input[type=file]{ display:none; }
+  .img-del{
+    position:absolute; top:8px; right:8px; width:22px; height:22px; border-radius:50%; border:none;
+    background:var(--rose-red); color:#fff; font-size:12px; line-height:1; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; z-index:2;
+  }
+  .img-del:hover{ background:var(--rose-red-deep); }
+  body:not(.admin-mode) .img-del{ display:none !important; }
+  .card-body{ padding:10px 14px 12px; display:flex; flex-direction:column; gap:2px; flex:1; }
+  .card-body .name{ font-family:'Fraunces', serif; font-size:16px; font-weight:600; line-height:1.3; color:var(--forest-deep); }
+  .card-body .desc{ font-size:11px; color:#67624e; line-height:1.35; min-height:16px; }
+  .card-foot{ display:flex; align-items:center; justify-content:space-between; margin-top:auto; padding-top:10px; position:relative; }
+  .price{ font-family:'JetBrains Mono',monospace; font-size:15px; font-weight:500; color:var(--rose); }
+  .order-number{ font-family:'JetBrains Mono',monospace; font-size:15px; font-weight:700; font-variant-numeric:slashed-zero; color:var(--forest-deep); letter-spacing:0.05em; padding-top:8px; border-top:1px dashed var(--line); margin-top:2px; }
+  .stem{ position:absolute; top:10px; left:10px; width:20px; height:20px; opacity:0.85; }
+  .card-del{
+    position:absolute; top:10px; right:44px; width:24px; height:24px; border-radius:50%; border:none;
+    background:var(--rose-red); color:#fff; font-size:14px; line-height:1; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; opacity:1; transition:opacity .2s ease, background .2s ease;
+    z-index:3;
+  }
+  .card-del:hover{ background:var(--rose-red-deep); }
+  .add-order-btn{
+    border:1px solid var(--leaf); background:transparent; color:var(--leaf); font-family:'Inter',sans-serif;
+    font-size:11.5px; font-weight:600; padding:6px 13px; border-radius:999px; cursor:pointer;
+    transition:background .2s ease, color .2s ease, transform .15s ease;
+  }
+  .add-order-btn:hover{ background:var(--leaf); color:#fff; }
+  .add-order-btn.pulse{ animation:addPulse .45s ease; }
+  @keyframes addPulse{
+    0%{ transform:scale(1); }
+    45%{ transform:scale(1.16); background:var(--leaf); color:#fff; }
+    100%{ transform:scale(1); }
+  }
+  .float-add{
+    position:absolute; right:14px; bottom:26px; font-family:'Fraunces',serif; font-size:14px; font-weight:600;
+    color:var(--rose); pointer-events:none; z-index:4; animation:floatUp .9s ease forwards;
+  }
+  @keyframes floatUp{
+    0%{ opacity:0; transform:translateY(0) scale(0.7); }
+    18%{ opacity:1; transform:translateY(-6px) scale(1.05); }
+    100%{ opacity:0; transform:translateY(-46px) scale(1); }
+  }
+  .add-card{
+    border:1.5px dashed var(--line-soft); border-radius:var(--radius); display:flex; align-items:center; justify-content:center;
+    flex-direction:column; gap:8px; min-height:220px; cursor:pointer; color:var(--leaf-bright); background:transparent;
+    font-family:'Inter',sans-serif; font-size:13px; font-weight:500; transition:border-color .2s ease, background .2s ease, opacity .6s cubic-bezier(.22,1,.36,1);
+  }
+  .add-card:hover{ border-color:var(--leaf-bright); background:rgba(110,143,82,0.1); }
+  .add-card .plus{ font-size:26px; font-family:'Fraunces',serif; line-height:1; }
+
+  /* ===== Partners ===== */
+  .partners-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(230px,1fr)); gap:22px; }
+  .partner-card{
+    background: var(--forest-deep); border:1px solid var(--line-soft); border-radius:var(--radius); padding:20px;
+    display:flex; flex-direction:column; gap:16px; position:relative;
+  }
+  .partner-del{
+    position:absolute; top:14px; right:14px; width:24px; height:24px; border-radius:50%; border:none;
+    background:rgba(178,62,51,0.08); color:var(--rose-red); font-size:14px; line-height:1; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .partner-del:hover{ background:rgba(178,62,51,0.18); }
+  .partner-num{
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:0.1em;
+    color:var(--leaf-bright); background:rgba(246,241,231,0.12); align-self:flex-start; padding:3px 9px; border-radius:999px;
+  }
+  .partner-field-wrap .partner-label{
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:0.08em;
+    color:var(--leaf-bright); display:block; margin-bottom:6px;
+  }
+  .partner-field{
+    font-family:'Inter',sans-serif; font-size:14.5px; color:var(--ivory); border-bottom:1.5px solid var(--line-soft);
+    padding:4px 2px 9px; min-height:20px; line-height:1.4;
+  }
+  .partner-field:empty:before{ content:attr(data-placeholder); color:var(--text-faint); }
+  body.admin-mode .partner-field:hover{ border-color:var(--gold); }
+  body.admin-mode .partner-field:focus{ border-color:var(--gold); }
+
+  /* ===== Orders ===== */
+  .table{ width:100%; border-collapse:collapse; }
+  .table thead th{
+    text-align:left; font-family:'JetBrains Mono',monospace; font-size:10.5px; text-transform:uppercase;
+    letter-spacing:0.08em; color:#a8d5a8; padding:0 14px 12px; border-bottom:1px solid var(--line); font-weight:500;
+  }
+  .table tbody td{ padding:14px; border-bottom:1px solid var(--line); font-size:13.5px; vertical-align:middle; color:#fff; }
+  .table tbody td.address-col{ max-width:120px; font-size:12px; padding:10px 14px; }
+  .table tbody td input[type=date]{ background:#2a2a2a; color:#fff; }
+  .table tbody tr:hover{ background:rgba(201,162,75,0.06); }
+  .status-select{
+    font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.05em;
+    padding:6px 10px; border-radius:999px; border:1px solid var(--line); background:#1a1a1a; color:#fff; cursor:pointer; font-weight:500;
+  }
+  .status-select.st-new{ color:var(--rose); border-color:var(--rose); }
+  .status-select.st-progress{ color:var(--gold); border-color:var(--gold); }
+  .status-select.st-ready{ color:var(--leaf); border-color:var(--leaf); }
+  .status-select.st-done{ color:#8a8672; border-color:var(--line); }
+  .status-select.st-cancelled{ color:#d4514f; border-color:#d4514f; }
+  .row-del{ border:none; background:transparent; color:var(--rose); cursor:pointer; font-size:13px; opacity:0.55; }
+  .row-del:hover{ opacity:1; }
+  .table-wrap{ background:#1a1a1a; border:1px solid var(--line); border-radius:var(--radius); padding:8px 6px; overflow-x:auto; }
+
+  /* ===== Testimonials ===== */
+  .testimonials-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(260px,1fr)); gap:22px; }
+  .testimonial-card{
+    background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:22px 22px 20px;
+    display:flex; flex-direction:column; gap:12px; position:relative;
+    transition:box-shadow .3s ease, transform .3s ease, opacity .6s cubic-bezier(.22,1,.36,1);
+  }
+  .testimonial-card:hover{ box-shadow:0 18px 34px -18px rgba(22,34,15,0.3); transform:translateY(-3px); }
+  .testimonial-del{
+    position:absolute; top:12px; right:12px; width:22px; height:22px; border-radius:50%; border:none;
+    background:rgba(178,62,51,0.08); color:var(--rose); font-size:12px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .2s ease;
+  }
+  .testimonial-card:hover .testimonial-del{ opacity:1; }
+  .stars{ display:flex; gap:3px; }
+  .stars .star{ font-size:15px; color:var(--line-soft); cursor:default; transition:color .15s ease; }
+  .stars .star.filled{ color:var(--gold); }
+  body.admin-mode .stars .star{ cursor:pointer; }
+  .testimonial-quote{ font-family:'Fraunces',serif; font-size:15px; font-style:italic; line-height:1.55; color:var(--forest-deep); }
+  .testimonial-name{ font-size:13px; font-weight:600; color:var(--leaf); }
+  .testimonial-role{ font-family:'JetBrains Mono',monospace; font-size:10.5px; color:rgba(38,36,29,0.55); text-transform:uppercase; letter-spacing:0.06em; }
+
+  /* ===== Care Tips ===== */
+  .care-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(240px,1fr)); gap:20px; }
+  .care-card{
+    background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:20px; position:relative;
+    display:flex; gap:14px; align-items:flex-start;
+    transition:box-shadow .3s ease, transform .3s ease, opacity .6s cubic-bezier(.22,1,.36,1);
+  }
+  .care-card:hover{ box-shadow:0 18px 34px -18px rgba(22,34,15,0.3); transform:translateY(-3px); }
+  .care-num{
+    font-family:'Fraunces',serif; font-size:22px; font-weight:600; color:var(--gold); flex-shrink:0; line-height:1;
+    width:32px; height:32px; border-radius:50%; background:rgba(201,162,75,0.12); display:flex; align-items:center; justify-content:center;
+  }
+  .care-body{ flex:1; }
+  .care-title{ font-size:14.5px; font-weight:600; color:var(--forest-deep); margin-bottom:4px; }
+  .care-desc{ font-size:13.5px; font-weight:500; color:#3a3628; line-height:1.6; }
+  .care-tip-del{
+    position:absolute; top:10px; right:10px; width:22px; height:22px; border-radius:50%; border:none;
+    background:rgba(178,62,51,0.08); color:var(--rose); font-size:12px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .2s ease;
+  }
+  .care-card:hover .care-tip-del{ opacity:1; }
+
+  /* ===== FAQ ===== */
+  .faq-list{ display:flex; flex-direction:column; gap:12px; max-width:760px; }
+  .faq-item{
+    background:#fff; border:1px solid var(--line); border-radius:14px; overflow:hidden; position:relative;
+    transition:box-shadow .25s ease, opacity .6s cubic-bezier(.22,1,.36,1);
+  }
+  .faq-item:hover{ box-shadow:0 14px 28px -18px rgba(22,34,15,0.3); }
+  .faq-q{
+    display:flex; align-items:center; justify-content:space-between; gap:12px; padding:16px 48px 16px 20px;
+    cursor:pointer; font-size:14.5px; font-weight:600; color:var(--forest-deep);
+  }
+  .faq-caret{ font-size:12px; color:var(--leaf); transition:transform .3s ease; flex-shrink:0; }
+  .faq-item.open .faq-caret{ transform:rotate(180deg); }
+  .faq-a-wrap{ max-height:0; overflow:hidden; transition:max-height .35s ease; }
+  .faq-item.open .faq-a-wrap{ max-height:240px; }
+  .faq-a{ padding:0 20px 18px; font-size:13px; line-height:1.6; color:#67624e; }
+  .faq-del{
+    position:absolute; top:14px; right:14px; width:22px; height:22px; border-radius:50%; border:none;
+    background:rgba(178,62,51,0.08); color:var(--rose); font-size:12px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .2s ease; z-index:2;
+  }
+  .faq-item:hover .faq-del{ opacity:1; }
+
+  /* ===== Schedule ===== */
+  .sched-list{ display:flex; flex-direction:column; gap:0; }
+  .sched-row{
+    display:grid; grid-template-columns:120px 90px 1fr auto auto; gap:18px; align-items:center;
+    padding:16px 6px; border-bottom:1px solid var(--line);
+  }
+  .sched-row:hover{ background:rgba(110,143,82,0.05); }
+  .sched-date{ font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--forest-deep); font-weight:500; }
+  .sched-time{ font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--leaf); }
+  .sched-task{ font-size:14px; color:var(--ink); }
+  .tag-select{
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; text-transform:uppercase; padding:5px 10px;
+    border-radius:6px; border:1px solid var(--line); background:#fff; cursor:pointer;
+  }
+
+  /* ===== Add bar ===== */
+  .add-bar{ display:flex; gap:10px; margin-top:20px; }
+
+  footer{ padding:40px 0 60px; border-top:1px solid var(--line-soft); margin-top:20px; }
+  .footer-inner{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+  .footer-inner .mono{ font-size:14px; color:var(--text-soft); }
+
+  /* ===== Garden ambiance ===== */
+  .garden-glow{ position:fixed; inset:0; z-index:-3; pointer-events:none; overflow:hidden; }
+  .garden-glow span{ position:absolute; border-radius:50%; filter:blur(70px); }
+  .garden-field{ position:fixed; left:0; right:0; bottom:0; width:100%; height:200px; z-index:-2; pointer-events:none; }
+  .blossom-center{ fill:var(--plum); }
+
+  .bg-roses{ position:fixed; inset:0; z-index:-2; pointer-events:none; overflow:hidden; }
+  .bg-roses svg{ position:absolute; }
+  .bg-rose-1{ top:-6%; right:-8%; width:560px; height:560px; opacity:0.20; transform:rotate(-8deg); }
+  .bg-rose-2{ bottom:-10%; left:-9%; width:460px; height:460px; opacity:0.18; transform:rotate(14deg); }
+  .bg-rose-3{ top:38%; left:58%; width:260px; height:260px; opacity:0.14; transform:rotate(-20deg); }
+  @media (max-width:720px){
+    .bg-rose-1{ width:340px; height:340px; }
+    .bg-rose-2{ width:280px; height:280px; }
+    .bg-rose-3{ display:none; }
+  }
+  @media (max-width:640px){
+    .order-number{ font-size:16.5px; letter-spacing:0.06em; }
+  }
+
+  .petals-layer{ position:fixed; inset:0; z-index:6; pointer-events:none; overflow:hidden; }
+  .petal{
+    position:absolute; top:-5%; overflow:visible;
+    opacity:0; animation-name:fall; animation-timing-function:linear; animation-iteration-count:infinite;
+  }
+  @keyframes fall{
+    0%{ transform:translateY(-8vh) translateX(0) rotate(0deg); opacity:0; }
+    8%{ opacity:0.75; }
+    92%{ opacity:0.7; }
+    100%{ transform:translateY(108vh) translateX(var(--drift,60px)) rotate(340deg); opacity:0; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .petal{ animation:none; display:none; }
+  }
+
+  .butterflies-layer{ position:fixed; inset:0; z-index:6; pointer-events:none; overflow:hidden; }
+  .butterfly{
+    position:absolute; top:0; left:-8%; overflow:visible; opacity:0;
+    animation-name:fly-across, bob;
+    animation-timing-function:linear, ease-in-out;
+    animation-iteration-count:infinite, infinite;
+  }
+  .butterfly .wing{ animation:flap 0.32s ease-in-out infinite alternate; transform-origin:0px 0px; }
+  .butterfly .wing.left{ animation-delay:0s; }
+  .butterfly .wing.right{ animation-delay:0s; }
+  @keyframes fly-across{
+    0%{ transform:translateX(0) translateY(0); opacity:0; }
+    6%{ opacity:0.9; }
+    94%{ opacity:0.85; }
+    100%{ transform:translateX(116vw) translateY(var(--rise,-40px)); opacity:0; }
+  }
+  @keyframes bob{
+    0%,100%{ margin-top:0px; }
+    50%{ margin-top:var(--bob,-18px); }
+  }
+  @keyframes flap{
+    from{ transform:scaleX(1) rotateY(0deg); }
+    to{ transform:scaleX(0.35); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .butterfly{ animation:none; display:none; }
+  }
+
+  .bee{
+    position:absolute; top:0; left:-8%; overflow:visible; opacity:0;
+    animation-name:fly-across, bee-bob;
+    animation-timing-function:linear, ease-in-out;
+    animation-iteration-count:infinite, infinite;
+  }
+  .bee .wing{ animation:bee-flap 0.14s ease-in-out infinite alternate; transform-origin:0px 0px; }
+  @keyframes bee-bob{
+    0%{ margin-top:0px; }
+    25%{ margin-top:var(--bob,-10px); }
+    50%{ margin-top:2px; }
+    75%{ margin-top:calc(var(--bob,-10px) * 0.6); }
+    100%{ margin-top:0px; }
+  }
+  @keyframes bee-flap{
+    from{ transform:scaleY(1) rotate(0deg); }
+    to{ transform:scaleY(0.55) rotate(6deg); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .bee{ animation:none; display:none; }
+  }
+
+  @media (max-width:720px){
+    .top-inner{ flex-direction:column; align-items:flex-start; gap:14px; }
+    nav.tabs{ width:100%; overflow-x:auto; }
+    .hero h1{ font-size:38px; }
+    .hero-rose{ display:none; }
+    .sched-row{ grid-template-columns:1fr; gap:6px; }
+  }
+
+  /* ===== Floating Order Now button ===== */
+  .float-order-btn{
+    position:fixed; left:22px; bottom:22px; z-index:200;
+    display:inline-flex; align-items:center; gap:8px; text-decoration:none;
+    font-family:'Inter',sans-serif; font-size:14px; font-weight:600; letter-spacing:0.01em;
+    padding:13px 22px; border-radius:999px; border:1px solid var(--gold);
+    background:var(--gold); color:var(--forest-deep);
+    box-shadow:0 10px 28px rgba(0,0,0,0.32);
+    opacity:0; transform:translateY(14px) scale(0.96); pointer-events:none;
+    transition:opacity .25s ease, transform .25s ease;
+  }
+  .float-order-btn.show{ opacity:1; transform:translateY(0) scale(1); pointer-events:auto; }
+  .float-order-btn:hover{ transform:translateY(-1px) scale(1.02); opacity:0.95; }
+  @media (max-width:720px){
+    .float-order-btn{ left:16px; right:16px; bottom:16px; justify-content:center; }
+  }
+
+  /* =========================================================
+     MOBILE EXPERIENCE PASS
+     Tighter spacing, bigger tap targets, calmer background
+     effects, and a table→card layout for Orders on phones.
+     ========================================================= */
+
+  /* Comfortable side margins instead of the desktop 32px */
+  @media (max-width:600px){
+    .wrap{ padding:0 18px; }
+  }
+
+  /* Header: shrink the wordmark, keep the pill-nav but make it
+     look intentional (edge fade) instead of an abrupt cut-off */
+  @media (max-width:720px){
+    .top-inner{ padding:14px 0; gap:12px; }
+    .brand{ gap:9px; }
+    .brand svg{ width:28px; height:28px; }
+    .brand-name{ font-size:34px; }
+    .brand-tag{ font-size:12.5px; }
+    .brand-badge{ font-size:11.5px; }
+    nav.tabs{
+      -webkit-overflow-scrolling:touch; scrollbar-width:none;
+      mask-image:linear-gradient(to right, transparent 0, #000 14px, #000 calc(100% - 14px), transparent 100%);
+      -webkit-mask-image:linear-gradient(to right, transparent 0, #000 14px, #000 calc(100% - 14px), transparent 100%);
+    }
+    nav.tabs::-webkit-scrollbar{ display:none; }
+    nav.tabs button{ padding:10px 15px; font-size:13px; flex-shrink:0; }
+    #adminToggleBtn{ padding:10px 15px; flex-shrink:0; }
+    .admin-dropdown{ right:auto; left:0; }
+  }
+
+  /* Hero: smaller type, tighter stacking, meta list reads as a
+     simple two-column grid instead of a cramped row */
+  @media (max-width:720px){
+    .hero{ padding:36px 0 40px; }
+    .eyebrow{ font-size:11px; margin-bottom:12px; }
+    .hero h1{ font-size:32px; max-width:100%; margin-bottom:14px; }
+    .hero p.sub{ font-size:15px; max-width:100%; margin-bottom:22px; }
+    .hero-meta{ display:grid; grid-template-columns:1fr 1fr; gap:18px 16px; }
+    .hero .btn{ display:block; width:100%; text-align:center; padding:14px 20px; font-size:14.5px; }
+  }
+  @media (max-width:400px){
+    .hero h1{ font-size:27px; }
+  }
+
+  /* Section headings + spacing */
+  @media (max-width:720px){
+    section.panel{ padding:8px 0 56px; }
+    .panel-head{ margin-bottom:20px; gap:12px; }
+    .panel-head h2{ font-size:23px; }
+    .panel-head .desc{ font-size:13px; max-width:100%; }
+    .panel-head .btn{ width:auto; }
+  }
+
+  /* Cards: single comfortable column, bigger touch targets on
+     delete/upload controls so fingers don't mis-tap */
+  @media (max-width:520px){
+    .grid, .partners-grid, .testimonials-grid, .care-grid{ grid-template-columns:1fr; gap:16px; }
+    .card-del, .img-del{ width:30px; height:30px; font-size:15px; }
+    .cat-pill{ padding:10px 16px; font-size:13.5px; }
+    .cat-del{ width:22px; height:22px; }
+    .care-card{ padding:16px; }
+  }
+
+  /* Orders table → stacked cards on small screens. Each row
+     becomes a mini card with the column label shown next to
+     its value (via data-label), so nothing needs sideways
+     scrolling or squinting. */
+  @media (max-width:640px){
+    .table-wrap{ overflow-x:visible; padding:0; background:transparent; border:none; }
+    #ordersTable thead{
+      position:absolute; width:1px; height:1px; overflow:hidden;
+      clip:rect(0 0 0 0); white-space:nowrap; border:0;
+    }
+    #ordersTable, #ordersTable tbody, #ordersTable tr, #ordersTable td{ display:block; width:100%; }
+    #ordersTable tbody tr{
+      background:#fff; border:1px solid var(--line); border-radius:14px;
+      padding:12px 14px; margin-bottom:12px;
+    }
+    #ordersTable tbody td{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      border-bottom:1px dashed var(--line); padding:9px 2px;
+    }
+    #ordersTable tbody td:last-child{ border-bottom:none; }
+    #ordersTable tbody td::before{
+      content:attr(data-label); font-family:'JetBrains Mono',monospace; font-size:10px;
+      text-transform:uppercase; letter-spacing:0.06em; color:var(--leaf); flex-shrink:0;
+    }
+  }
+
+  /* Schedule rows already collapse to 1 column above 720px;
+     give the delete control a proper tap target and align the
+     tag/time so the stack still reads left-to-right in order */
+  @media (max-width:720px){
+    .sched-row{ padding:14px 8px; gap:4px; }
+    .row-del{ font-size:18px; padding:6px; align-self:flex-end; }
+  }
+
+  /* Forms & inputs: 16px minimum stops iOS Safari from
+     zooming in on focus, and taller fields are easier to tap */
+  @media (max-width:600px){
+    .admin-modal input[type=password],
+    .admin-modal input[type=text],
+    input, textarea, select{ font-size:16px; }
+    .btn.small{ padding:9px 14px; font-size:12.5px; min-height:36px; }
+  }
+
+  /* Footer stacks and centers cleanly */
+  @media (max-width:600px){
+    .footer-inner{ flex-direction:column; text-align:center; gap:10px; }
+  }
+
+  /* Calmer decorative background on phones: smaller blooms,
+     fewer competing gradients so text stays readable */
+  @media (max-width:600px){
+    .bg-rose-1{ width:220px; height:220px; opacity:0.14; top:-4%; right:-14%; }
+    .bg-rose-2{ width:200px; height:200px; opacity:0.13; }
+    .float-order-btn{ padding:12px 18px; font-size:13.5px; }
+  }
+
+  /* Respect safe-area insets on notched phones for the fixed
+     floating "Order Now" button */
+  @media (max-width:720px){
+    .float-order-btn{ bottom:calc(16px + env(safe-area-inset-bottom)); }
+  }
+</style>
+</head>
+<body>
+
+<!-- Background music: hidden YouTube embed, autoplay muted (browser policy), unmute via toggle -->
+<!-- Note: iframe must be >=200x200px or the YouTube player silently fails to init; kept off-screen instead of shrunk -->
+<iframe id="bg-music-frame"
+  src=""
+  width="200" height="200"
+  style="position:fixed; top:-9999px; left:-9999px; border:0; pointer-events:none;"
+  allow="autoplay"
+  title="background music" aria-hidden="true"></iframe>
+
+<div style="position:fixed; bottom:22px; right:22px; z-index:200; display:flex; align-items:center; gap:8px;">
+  <button id="music-toggle" type="button" aria-label="Toggle background music"
+    style="display:flex; align-items:center; gap:8px;
+           background:rgba(22,34,15,0.86); backdrop-filter:blur(8px);
+           border:1px solid var(--line-soft); border-radius:999px;
+           padding:10px 16px; cursor:pointer;
+           font-family:'Inter',sans-serif; font-size:13px; font-weight:500;
+           color:var(--ivory); letter-spacing:0.01em;
+           box-shadow:0 4px 18px rgba(0,0,0,0.28); transition:background .2s ease;">
+    <span id="music-toggle-icon" aria-hidden="true">🎵</span>
+    <span id="music-toggle-label">Play music</span>
+  </button>
+  <button id="music-settings-btn" type="button" aria-label="Change background music"
+    style="display:flex; align-items:center; justify-content:center;
+           width:36px; height:36px;
+           background:rgba(22,34,15,0.86); backdrop-filter:blur(8px);
+           border:1px solid var(--line-soft); border-radius:999px;
+           cursor:pointer; color:var(--ivory); font-size:15px;
+           box-shadow:0 4px 18px rgba(0,0,0,0.28);">⚙</button>
+</div>
+
+<!-- Admin password gate for music settings -->
+<div id="music-admin-gate" style="display:none; position:fixed; inset:0; z-index:310;
+     background:rgba(22,34,15,0.75); backdrop-filter:blur(5px);
+     align-items:center; justify-content:center; padding:20px;">
+  <div style="background:var(--ivory); border-radius:12px; max-width:320px; width:100%;
+       padding:28px; box-shadow:0 30px 60px -20px rgba(0,0,0,0.5);">
+    <h3 style="margin:0 0 6px; font-family:'Fraunces',serif; font-size:20px; color:var(--forest-deep);">🔒 Admin Access</h3>
+    <p style="margin:0 0 16px; font-size:13px; color:#67624e; font-family:'Inter',sans-serif; line-height:1.5;">
+      Enter the admin password to change music settings.
+    </p>
+    <div style="position:relative;">
+      <input id="music-gate-input" type="password" placeholder="Password"
+        style="width:100%; padding:11px 40px 11px 13px; border:1px solid #d0c8b0; border-radius:8px;
+               background:#fdfcf9; font-family:'Inter',sans-serif; font-size:14px;
+               color:var(--ink); box-sizing:border-box; outline:none;">
+      <button id="music-gate-eye" type="button"
+        style="position:absolute; right:4px; top:50%; transform:translateY(-50%);
+               border:none; background:transparent; cursor:pointer; font-size:15px;
+               padding:6px 8px; border-radius:6px; opacity:0.55; line-height:1;">👁</button>
+    </div>
+    <div id="music-gate-err" style="display:none; font-family:'JetBrains Mono',monospace;
+         font-size:12px; color:var(--rose-red-deep); margin-top:8px;">Incorrect password.</div>
+    <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:18px;">
+      <button id="music-gate-cancel" type="button"
+        style="padding:9px 16px; border-radius:999px; border:1px solid #d0c8b0;
+               background:transparent; color:#67624e; cursor:pointer; font-size:13px; font-family:'Inter',sans-serif;">Cancel</button>
+      <button id="music-gate-submit" type="button"
+        style="padding:9px 18px; border-radius:999px; border:none;
+               background:var(--forest); color:var(--ivory); cursor:pointer; font-size:13px;
+               font-weight:600; font-family:'Inter',sans-serif;">Unlock</button>
+    </div>
+  </div>
+</div>
+
+<!-- Settings modal for swapping the music link -->
+<div id="music-settings-modal" style="display:none; position:fixed; inset:0; z-index:300;
+     background:rgba(22,34,15,0.55); backdrop-filter:blur(3px);
+     align-items:center; justify-content:center; padding:20px;">
+  <div style="background:var(--forest-deep); border:1px solid var(--line-soft); border-radius:10px;
+       max-width:420px; width:100%; padding:26px; box-shadow:0 20px 60px rgba(0,0,0,0.45);">
+    <h3 style="margin:0 0 6px; font-size:19px;">Background music</h3>
+    <p style="margin:0 0 16px; font-size:13px; color:var(--text-soft); line-height:1.5;">
+      Paste a YouTube video link. The video must allow embedding.
+    </p>
+    <input id="music-url-input" type="text" placeholder="https://www.youtube.com/watch?v=..."
+      style="width:100%; padding:10px 12px; border-radius:6px; border:1px solid var(--line-soft);
+             background:rgba(246,241,231,0.06); color:var(--ivory); font-size:13px;
+             font-family:'Inter',sans-serif; margin-bottom:8px;">
+    <div id="music-url-error" style="display:none; color:var(--rose); font-size:12px; margin-bottom:10px;">
+      Couldn't find a video ID in that link — try the "Share" URL from YouTube.
+    </div>
+    <button id="music-preview-btn" type="button"
+      style="padding:8px 14px; border-radius:6px; border:1px solid var(--line-soft);
+             background:transparent; color:var(--ivory); cursor:pointer; font-size:12px; margin-bottom:12px;">
+      ▶ Preview this link
+    </button>
+    <div id="music-preview-wrap" style="display:none; margin-bottom:12px;">
+      <iframe id="music-preview-frame" width="100%" height="200" style="border:0; border-radius:6px; display:block;"
+        allow="autoplay; encrypted-media" title="music preview"></iframe>
+      <p style="margin:8px 0 0; font-size:12px; color:var(--text-soft); line-height:1.5;">
+        If this shows the video playing, it'll work on the site. If it says "Video unavailable"
+        or "playback on other websites has been disabled," that video can't be embedded —
+        pick a different one.
+      </p>
+    </div>
+    <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:14px;">
+      <button id="music-settings-cancel" type="button"
+        style="padding:9px 16px; border-radius:999px; border:1px solid var(--line-soft);
+               background:transparent; color:var(--text-soft); cursor:pointer; font-size:13px;">Cancel</button>
+      <button id="music-settings-save" type="button"
+        style="padding:9px 18px; border-radius:999px; border:none;
+               background:var(--gold); color:var(--forest-deep); cursor:pointer; font-size:13px; font-weight:600;">Save</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var frame = document.getElementById('bg-music-frame');
+  var btn = document.getElementById('music-toggle');
+  var icon = document.getElementById('music-toggle-icon');
+  var label = document.getElementById('music-toggle-label');
+  var settingsBtn = document.getElementById('music-settings-btn');
+  var modal = document.getElementById('music-settings-modal');
+  var urlInput = document.getElementById('music-url-input');
+  var urlError = document.getElementById('music-url-error');
+  var cancelBtn = document.getElementById('music-settings-cancel');
+  var saveBtn = document.getElementById('music-settings-save');
+  var previewBtn = document.getElementById('music-preview-btn');
+  var previewWrap = document.getElementById('music-preview-wrap');
+  var previewFrame = document.getElementById('music-preview-frame');
+
+  // --- Admin gate elements ---
+  var gate = document.getElementById('music-admin-gate');
+  var gateInput = document.getElementById('music-gate-input');
+  var gateErr = document.getElementById('music-gate-err');
+  var gateCancel = document.getElementById('music-gate-cancel');
+  var gateSubmit = document.getElementById('music-gate-submit');
+  var gateEye = document.getElementById('music-gate-eye');
+
+  // Change this to your desired admin password
+  var MUSIC_ADMIN_PASS = 'cyberpen007!@#';
+  var musicSettingsUnlocked = false;
+
+  function openGate(){
+    gateInput.value = '';
+    gateErr.style.display = 'none';
+    gate.style.display = 'flex';
+    setTimeout(function(){ gateInput.focus(); }, 80);
+  }
+  function closeGate(){
+    gate.style.display = 'none';
+    gateInput.value = '';
+    gateErr.style.display = 'none';
+  }
+  function submitGate(){
+    if(gateInput.value === MUSIC_ADMIN_PASS){
+      musicSettingsUnlocked = true;
+      closeGate();
+      openModal();
+    } else {
+      gateErr.style.display = 'block';
+      gateInput.value = '';
+      gateInput.focus();
+    }
+  }
+
+  gateCancel.addEventListener('click', closeGate);
+  gate.addEventListener('click', function(e){ if(e.target === gate) closeGate(); });
+  gateSubmit.addEventListener('click', submitGate);
+  gateInput.addEventListener('keydown', function(e){ if(e.key === 'Enter') submitGate(); });
+  gateEye.addEventListener('click', function(){
+    gateInput.type = gateInput.type === 'password' ? 'text' : 'password';
+  });
+
+  var DEFAULT_VIDEO_ID = 'OSFiM2Hxds0';
+  var STORAGE_KEY = 'bloomstem_music_video_id';
+  var playing = false;
+
+  function extractVideoId(url){
+    if(!url) return null;
+    var m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|[?&]v=)([a-zA-Z0-9_-]{11})/);
+    return m ? m[1] : null;
+  }
+
+  function getSavedVideoId(){
+    try { return localStorage.getItem(STORAGE_KEY) || DEFAULT_VIDEO_ID; }
+    catch(e){ return DEFAULT_VIDEO_ID; }
+  }
+
+  function loadPlayer(videoId){
+    var baseSrc = 'https://www.youtube.com/embed/' + videoId +
+      '?autoplay=1&mute=1&loop=1&playlist=' + videoId + '&controls=0&enablejsapi=1&playsinline=1';
+    var pageOrigin = window.location.origin;
+    // file:// testing has origin "null", which breaks YouTube's origin check — only send it for real http(s) origins
+    frame.src = (pageOrigin && pageOrigin.indexOf('http') === 0)
+      ? baseSrc + '&origin=' + encodeURIComponent(pageOrigin)
+      : baseSrc;
+    playing = false;
+    icon.textContent = '🎵';
+    label.textContent = 'Play music';
+  }
+
+  function post(func, args){
+    if(!frame.contentWindow) return;
+    frame.contentWindow.postMessage(JSON.stringify({event:'command', func:func, args:args||[]}), '*');
+  }
+
+  frame.addEventListener('load', function(){
+    post('addEventListener', ['onReady']);
+  });
+
+  btn.addEventListener('click', function(){
+    if(!playing){
+      post('unMute');
+      post('playVideo');
+      playing = true;
+      icon.textContent = '🔈';
+      label.textContent = 'Mute music';
+    } else {
+      post('mute');
+      playing = false;
+      icon.textContent = '🎵';
+      label.textContent = 'Play music';
+    }
+  });
+
+  function openModal(){
+    urlError.style.display = 'none';
+    urlInput.value = '';
+    previewWrap.style.display = 'none';
+    previewFrame.src = '';
+    modal.style.display = 'flex';
+    urlInput.focus();
+  }
+  function closeModal(){
+    modal.style.display = 'none';
+    previewFrame.src = ''; // stop any preview playback
+  }
+
+  settingsBtn.addEventListener('click', function(){
+    musicSettingsUnlocked = false;
+    openGate();
+  });
+  cancelBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
+
+  previewBtn.addEventListener('click', function(){
+    var id = extractVideoId(urlInput.value.trim());
+    if(!id){
+      urlError.style.display = 'block';
+      previewWrap.style.display = 'none';
+      return;
+    }
+    urlError.style.display = 'none';
+    previewFrame.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&controls=1&playsinline=1';
+    previewWrap.style.display = 'block';
+  });
+
+  saveBtn.addEventListener('click', function(){
+    var id = extractVideoId(urlInput.value.trim());
+    if(!id){
+      urlError.style.display = 'block';
+      return;
+    }
+    try { localStorage.setItem(STORAGE_KEY, id); } catch(e){}
+    loadPlayer(id);
+    closeModal();
+  });
+
+  loadPlayer(getSavedVideoId());
+})();
+</script>
+
+<div class="garden-glow" aria-hidden="true">
+  <span style="top:-12%;left:2%;width:380px;height:380px;background:var(--lavender);opacity:0.6;"></span>
+  <span style="top:6%;right:-6%;width:440px;height:440px;background:var(--marigold);opacity:0.6;"></span>
+  <span style="bottom:-14%;left:26%;width:480px;height:480px;background:var(--leaf);opacity:0.5;"></span>
+  <span style="bottom:8%;right:6%;width:320px;height:320px;background:var(--blush);opacity:0.55;"></span>
+  <span style="top:38%;left:45%;width:260px;height:260px;background:var(--rose-red);opacity:0.28;"></span>
+  <span style="top:60%;right:30%;width:300px;height:300px;background:var(--rose-yellow);opacity:0.24;"></span>
+</div>
+
+<svg class="garden-field" viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <symbol id="blossom" viewBox="-11 -11 22 22">
+      <ellipse cx="0" cy="-5.6" rx="3.3" ry="5.4"/>
+      <ellipse cx="0" cy="-5.6" rx="3.3" ry="5.4" transform="rotate(72)"/>
+      <ellipse cx="0" cy="-5.6" rx="3.3" ry="5.4" transform="rotate(144)"/>
+      <ellipse cx="0" cy="-5.6" rx="3.3" ry="5.4" transform="rotate(216)"/>
+      <ellipse cx="0" cy="-5.6" rx="3.3" ry="5.4" transform="rotate(288)"/>
+      <circle r="2.3" class="blossom-center"/>
+    </symbol>
+    <symbol id="rose" viewBox="-12 -12 24 24">
+      <g class="rose-outer">
+        <path d="M0,-10 C5,-8 6,-3 3,1 C1.5,3 1,1 0,0 C-1,1 -1.5,3 -3,1 C-6,-3 -5,-8 0,-10 Z"/>
+        <path d="M0,-10 C5,-8 6,-3 3,1 C1.5,3 1,1 0,0 C-1,1 -1.5,3 -3,1 C-6,-3 -5,-8 0,-10 Z" transform="rotate(72)"/>
+        <path d="M0,-10 C5,-8 6,-3 3,1 C1.5,3 1,1 0,0 C-1,1 -1.5,3 -3,1 C-6,-3 -5,-8 0,-10 Z" transform="rotate(144)"/>
+        <path d="M0,-10 C5,-8 6,-3 3,1 C1.5,3 1,1 0,0 C-1,1 -1.5,3 -3,1 C-6,-3 -5,-8 0,-10 Z" transform="rotate(216)"/>
+        <path d="M0,-10 C5,-8 6,-3 3,1 C1.5,3 1,1 0,0 C-1,1 -1.5,3 -3,1 C-6,-3 -5,-8 0,-10 Z" transform="rotate(288)"/>
+      </g>
+      <g class="rose-mid" transform="rotate(36) scale(0.62)" opacity="0.88">
+        <path d="M0,-10 C5,-8 6,-3 3,1 C1.5,3 1,1 0,0 C-1,1 -1.5,3 -3,1 C-6,-3 -5,-8 0,-10 Z"/>
+        <path d="M0,-10 C5,-8 6,-3 3,1 C1.5,3 1,1 0,0 C-1,1 -1.5,3 -3,1 C-6,-3 -5,-8 0,-10 Z" transform="rotate(72)"/>
+        <path d="M0,-10 C5,-8 6,-3 3,1 C1.5,3 1,1 0,0 C-1,1 -1.5,3 -3,1 C-6,-3 -5,-8 0,-10 Z" transform="rotate(144)"/>
+        <path d="M0,-10 C5,-8 6,-3 3,1 C1.5,3 1,1 0,0 C-1,1 -1.5,3 -3,1 C-6,-3 -5,-8 0,-10 Z" transform="rotate(216)"/>
+        <path d="M0,-10 C5,-8 6,-3 3,1 C1.5,3 1,1 0,0 C-1,1 -1.5,3 -3,1 C-6,-3 -5,-8 0,-10 Z" transform="rotate(288)"/>
+      </g>
+      <g class="rose-inner" transform="rotate(18) scale(0.34)" opacity="0.95">
+        <path d="M0,-10 C5,-8 6,-3 3,1 C1.5,3 1,1 0,0 C-1,1 -1.5,3 -3,1 C-6,-3 -5,-8 0,-10 Z"/>
+        <path d="M0,-10 C5,-8 6,-3 3,1 C1.5,3 1,1 0,0 C-1,1 -1.5,3 -3,1 C-6,-3 -5,-8 0,-10 Z" transform="rotate(120)"/>
+        <path d="M0,-10 C5,-8 6,-3 3,1 C1.5,3 1,1 0,0 C-1,1 -1.5,3 -3,1 C-6,-3 -5,-8 0,-10 Z" transform="rotate(240)"/>
+      </g>
+      <circle r="1.1" fill="rgba(0,0,0,0.22)"/>
+    </symbol>
+  </defs>
+  <path d="M0 200 L0 128 Q120 96 240 122 T480 112 T720 130 T960 104 T1200 124 T1440 112 L1440 200 Z" fill="#6E8F52" opacity="0.16"/>
+  <g opacity="0.6">
+    <g transform="translate(60,128) scale(1.15) rotate(-6)"><line x1="0" y1="10" x2="0" y2="46" stroke="#6E8F52" stroke-width="2"/><use href="#rose" fill="var(--rose-red)"/></g>
+    <g transform="translate(150,148) scale(0.9) rotate(10)"><line x1="0" y1="8" x2="0" y2="34" stroke="#6E8F52" stroke-width="2"/><use href="#blossom" fill="var(--marigold)"/></g>
+    <g transform="translate(260,114) scale(1.3) rotate(4)"><line x1="0" y1="8" x2="0" y2="52" stroke="#6E8F52" stroke-width="2"/><use href="#rose" fill="var(--rose-yellow)"/></g>
+    <g transform="translate(360,142) scale(0.85) rotate(-12)"><line x1="0" y1="8" x2="0" y2="34" stroke="#6E8F52" stroke-width="2"/><use href="#blossom" fill="var(--blush)"/></g>
+    <g transform="translate(470,124) scale(1.1) rotate(8)"><line x1="0" y1="8" x2="0" y2="44" stroke="#6E8F52" stroke-width="2"/><use href="#rose" fill="var(--rose-red-deep)"/></g>
+    <g transform="translate(600,150) scale(0.9) rotate(-8)"><line x1="0" y1="8" x2="0" y2="32" stroke="#6E8F52" stroke-width="2"/><use href="#blossom" fill="var(--marigold)"/></g>
+    <g transform="translate(720,120) scale(1.25) rotate(6)"><line x1="0" y1="8" x2="0" y2="48" stroke="#6E8F52" stroke-width="2"/><use href="#rose" fill="var(--rose-yellow-deep)"/></g>
+    <g transform="translate(840,146) scale(0.9) rotate(-10)"><line x1="0" y1="8" x2="0" y2="34" stroke="#6E8F52" stroke-width="2"/><use href="#blossom" fill="var(--lavender)"/></g>
+    <g transform="translate(960,116) scale(1.15) rotate(5)"><line x1="0" y1="8" x2="0" y2="50" stroke="#6E8F52" stroke-width="2"/><use href="#rose" fill="var(--rose-red)"/></g>
+    <g transform="translate(1080,148) scale(0.85) rotate(-6)"><line x1="0" y1="8" x2="0" y2="32" stroke="#6E8F52" stroke-width="2"/><use href="#blossom" fill="var(--blush)"/></g>
+    <g transform="translate(1200,124) scale(1.2) rotate(9)"><line x1="0" y1="8" x2="0" y2="46" stroke="#6E8F52" stroke-width="2"/><use href="#rose" fill="var(--rose-yellow)"/></g>
+    <g transform="translate(1320,146) scale(0.9) rotate(-9)"><line x1="0" y1="8" x2="0" y2="34" stroke="#6E8F52" stroke-width="2"/><use href="#blossom" fill="var(--marigold)"/></g>
+    <g transform="translate(1400,120) scale(1.1) rotate(6)"><line x1="0" y1="8" x2="0" y2="46" stroke="#6E8F52" stroke-width="2"/><use href="#rose" fill="var(--rose-red-deep)"/></g>
+  </g>
+</svg>
+
+<div class="petals-layer" id="petalsLayer" aria-hidden="true"></div>
+<div class="butterflies-layer" id="butterfliesLayer" aria-hidden="true"></div>
+<div class="butterflies-layer" id="beesLayer" aria-hidden="true"></div>
+
+<div class="bg-roses" aria-hidden="true">
+  <svg class="bg-rose-1" viewBox="-12 -12 24 24" xmlns="http://www.w3.org/2000/svg"><use href="#rose" fill="var(--rose-red)"/></svg>
+  <svg class="bg-rose-2" viewBox="-12 -12 24 24" xmlns="http://www.w3.org/2000/svg"><use href="#rose" fill="var(--rose-yellow)"/></svg>
+  <svg class="bg-rose-3" viewBox="-12 -12 24 24" xmlns="http://www.w3.org/2000/svg"><use href="#rose" fill="var(--rose-red-deep)"/></svg>
+</div>
+
+<header class="top">
+  <div class="wrap top-inner">
+    <div class="brand">
+      <svg viewBox="0 0 40 40" fill="none">
+        <circle cx="20" cy="12" r="6" fill="#C97B84"/>
+        <circle cx="12" cy="20" r="6" fill="#C9A24B"/>
+        <circle cx="28" cy="20" r="6" fill="#6E8F52"/>
+        <circle cx="20" cy="24" r="5" fill="#22331B"/>
+      </svg>
+      <div>
+        <div class="brand-name" id="shopName" contenteditable="true">Bloom &amp; Stem Florist</div>
+        <div class="brand-badge" id="shopBadge" contenteditable="true">Official Online Partner</div>
+        <div class="brand-tag" id="shopTag" contenteditable="true">Cut flower &amp; potted goods</div>
+      </div>
+    </div>
+    <nav class="tabs" id="navTabs">
+      <button class="active" data-view="shop">Shop Now<span class="nav-badge" id="orderCountBadge" style="display:none;">0</span></button>
+      <button data-view="faq">FAQ</button>
+      <button data-view="reviews">Reviews</button>
+      <button data-view="care">Care Tips</button>
+      <button data-view="partners">Partners</button>
+      <div class="admin-menu" id="adminMenu">
+        <button type="button" id="adminToggleBtn">Admin <span class="caret">▾</span></button>
+        <div class="admin-dropdown" id="adminDropdown">
+          <button data-view="orders">Orders</button>
+          <button type="button" id="adminEditToggleBtn">Enable editing</button>
+          <button type="button" id="adminChangePassBtn" class="admin-change-pass">Change passcode</button>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="admin-modal-overlay" id="adminModalOverlay" style="display:none;">
+  <div class="admin-modal">
+    <h3>Admin access</h3>
+    <p>Enter the passcode to view Orders.</p>
+    <div class="passcode-field-wrap">
+      <input type="password" id="adminPasscodeInput" placeholder="Passcode" autocomplete="off">
+      <button type="button" id="adminPasscodeToggle" title="Show passcode">👁</button>
+    </div>
+    <div class="admin-modal-err" id="adminModalErr" style="display:none;">Incorrect passcode. Try again.</div>
+    <div class="admin-modal-actions">
+      <button type="button" class="btn ghost small" id="adminModalCancel">Cancel</button>
+      <button type="button" class="btn small" id="adminModalSubmit">Unlock</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<div class="hero wrap">
+  <svg class="hero-rose" viewBox="15 35 270 420" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+      <linearGradient id="bqLeafGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#9BC97A"/>
+        <stop offset="100%" stop-color="#6E8F52"/>
+      </linearGradient>
+      <linearGradient id="bqRoseGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#E4747B"/>
+        <stop offset="100%" stop-color="#B8202C"/>
+      </linearGradient>
+      <radialGradient id="bqSunflowerPetalGrad" cx="50%" cy="100%" r="100%">
+        <stop offset="0%" stop-color="#F6C445"/>
+        <stop offset="100%" stop-color="#E3A857"/>
+      </radialGradient>
+      <radialGradient id="bqSunflowerCenterGrad" cx="40%" cy="35%" r="70%">
+        <stop offset="0%" stop-color="#6B4A2A"/>
+        <stop offset="100%" stop-color="#3B2712"/>
+      </radialGradient>
+      <radialGradient id="bqDaisyCenterGrad" cx="40%" cy="35%" r="70%">
+        <stop offset="0%" stop-color="#F6D465"/>
+        <stop offset="100%" stop-color="#D6952E"/>
+      </radialGradient>
+      <linearGradient id="bqRibbonGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#E8A6B0"/>
+        <stop offset="55%" stop-color="#C9A24B"/>
+        <stop offset="100%" stop-color="#E3B23C"/>
+      </linearGradient>
+      <linearGradient id="bqRibbonRedGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#9C1B27"/>
+        <stop offset="55%" stop-color="#6E0F1A"/>
+        <stop offset="100%" stop-color="#8C1620"/>
+      </linearGradient>
+      <linearGradient id="bqTulipGrad" x1="0" y1="1" x2="0" y2="0">
+        <stop offset="0%" stop-color="#D8385A"/>
+        <stop offset="100%" stop-color="#F17FA0"/>
+      </linearGradient>
+      <linearGradient id="bqLilyGrad" x1="0" y1="1" x2="0" y2="0">
+        <stop offset="0%" stop-color="#F3C7D6"/>
+        <stop offset="100%" stop-color="#FDF6F5"/>
+      </linearGradient>
+      <linearGradient id="bqWrapGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#E3B889"/>
+        <stop offset="100%" stop-color="#A8703F"/>
+      </linearGradient>
+      <symbol id="bqBlossom" viewBox="-8 -12 16 20">
+        <ellipse cx="0" cy="-5.6" rx="3" ry="4.8"/>
+        <ellipse cx="0" cy="-5.6" rx="3" ry="4.8" transform="rotate(72)"/>
+        <ellipse cx="0" cy="-5.6" rx="3" ry="4.8" transform="rotate(144)"/>
+        <ellipse cx="0" cy="-5.6" rx="3" ry="4.8" transform="rotate(216)"/>
+        <ellipse cx="0" cy="-5.6" rx="3" ry="4.8" transform="rotate(288)"/>
+        <circle r="2" fill="#5B4467" opacity="0.55"/>
+      </symbol>
+    </defs>
+
+    <!-- united lower stem, mostly tucked behind the paper wrap -->
+    <path d="M150,326 C147,364 152,404 149,452" stroke="url(#bqLeafGrad)" stroke-width="11" stroke-linecap="round" fill="none"/>
+
+    <!-- wispy eucalyptus-style sprigs for airiness, peeking above the wrap -->
+    <g stroke="#6E8F52" stroke-width="2" fill="none" opacity="0.85">
+      <path d="M150,300 C130,258 108,222 78,192"/>
+      <path d="M150,300 C172,254 198,214 226,182"/>
+    </g>
+    <g fill="#9BC97A">
+      <ellipse cx="118" cy="240" rx="5" ry="8" transform="rotate(-40 118 240)"/>
+      <ellipse cx="102" cy="216" rx="5" ry="8" transform="rotate(-35 102 216)"/>
+      <ellipse cx="86" cy="200" rx="4.5" ry="7" transform="rotate(-30 86 200)"/>
+      <ellipse cx="184" cy="236" rx="5" ry="8" transform="rotate(40 184 236)"/>
+      <ellipse cx="200" cy="210" rx="5" ry="8" transform="rotate(35 200 210)"/>
+      <ellipse cx="216" cy="194" rx="4.5" ry="7" transform="rotate(30 216 194)"/>
+    </g>
+
+    <!-- stems up to each bloom -->
+    <g stroke="#5F7F45" stroke-width="4" fill="none" stroke-linecap="round">
+      <path d="M150,320 C150,258 150,202 150,152"/>
+      <path d="M150,320 C122,286 102,230 96,168"/>
+      <path d="M150,320 C178,286 198,228 205,150"/>
+      <path d="M150,320 C165,288 172,248 176,208"/>
+      <path d="M150,320 C128,282 100,230 78,178"/>
+      <path d="M150,320 C195,290 222,236 243,183"/>
+    </g>
+
+    <!-- filler blossom clusters -->
+    <g opacity="0.95">
+      <use href="#bqBlossom" xlink:href="#bqBlossom" x="-8" y="-12" width="16" height="20" transform="translate(62,232) scale(1.05)" fill="#F6F1E7"/>
+      <use href="#bqBlossom" xlink:href="#bqBlossom" x="-8" y="-12" width="16" height="20" transform="translate(72,218) scale(0.8)" fill="#E8A6B0"/>
+      <use href="#bqBlossom" xlink:href="#bqBlossom" x="-8" y="-12" width="16" height="20" transform="translate(52,210) scale(0.7)" fill="#9B8AC4"/>
+
+      <use href="#bqBlossom" xlink:href="#bqBlossom" x="-8" y="-12" width="16" height="20" transform="translate(238,222) scale(1.05)" fill="#F6F1E7"/>
+      <use href="#bqBlossom" xlink:href="#bqBlossom" x="-8" y="-12" width="16" height="20" transform="translate(226,206) scale(0.8)" fill="#E8A6B0"/>
+
+      <use href="#bqBlossom" xlink:href="#bqBlossom" x="-8" y="-12" width="16" height="20" transform="translate(140,64) scale(0.9)" fill="#9B8AC4"/>
+      <use href="#bqBlossom" xlink:href="#bqBlossom" x="-8" y="-12" width="16" height="20" transform="translate(158,58) scale(0.7)" fill="#F6F1E7"/>
+      <use href="#bqBlossom" xlink:href="#bqBlossom" x="-8" y="-12" width="16" height="20" transform="translate(122,72) scale(0.6)" fill="#F6F1E7"/>
+    </g>
+
+    <!-- paper wrap gathered around the stems, cinched by the ribbon -->
+    <g>
+      <path d="M150,322 C108,296 68,248 48,196 L74,180 L100,194 L126,176 L150,192 L174,176 L200,194 L226,180 L252,196 C232,248 192,296 150,322 Z"
+            fill="url(#bqWrapGrad)"/>
+      <path d="M150,322 C120,300 90,264 70,222 L48,196 C68,248 108,296 150,322 Z" fill="#00000018"/>
+      <g stroke="#7A5230" stroke-width="1.1" opacity="0.4" fill="none">
+        <path d="M150,320 L100,196"/>
+        <path d="M150,320 L150,190"/>
+        <path d="M150,320 L200,196"/>
+      </g>
+      <g stroke="#F4DDBB" stroke-width="1" opacity="0.35" fill="none">
+        <path d="M150,320 L125,200"/>
+        <path d="M150,320 L175,200"/>
+      </g>
+    </g>
+
+    <!-- rose (focal bloom, centered) -->
+    <g transform="translate(150,148) scale(0.54)">
+      <g fill="url(#bqRoseGrad)">
+        <path transform="rotate(0) scale(1.15)" d="M0,-8 C-28,-16 -40,-42 -26,-66 C-16,-84 16,-84 26,-66 C40,-42 28,-16 0,-8 Z"/>
+        <path transform="rotate(45) scale(1.15)" d="M0,-8 C-28,-16 -40,-42 -26,-66 C-16,-84 16,-84 26,-66 C40,-42 28,-16 0,-8 Z"/>
+        <path transform="rotate(90) scale(1.15)" d="M0,-8 C-28,-16 -40,-42 -26,-66 C-16,-84 16,-84 26,-66 C40,-42 28,-16 0,-8 Z"/>
+        <path transform="rotate(135) scale(1.15)" d="M0,-8 C-28,-16 -40,-42 -26,-66 C-16,-84 16,-84 26,-66 C40,-42 28,-16 0,-8 Z"/>
+        <path transform="rotate(180) scale(1.15)" d="M0,-8 C-28,-16 -40,-42 -26,-66 C-16,-84 16,-84 26,-66 C40,-42 28,-16 0,-8 Z"/>
+        <path transform="rotate(225) scale(1.15)" d="M0,-8 C-28,-16 -40,-42 -26,-66 C-16,-84 16,-84 26,-66 C40,-42 28,-16 0,-8 Z"/>
+        <path transform="rotate(270) scale(1.15)" d="M0,-8 C-28,-16 -40,-42 -26,-66 C-16,-84 16,-84 26,-66 C40,-42 28,-16 0,-8 Z"/>
+        <path transform="rotate(315) scale(1.15)" d="M0,-8 C-28,-16 -40,-42 -26,-66 C-16,-84 16,-84 26,-66 C40,-42 28,-16 0,-8 Z"/>
+      </g>
+      <g fill="#C21F2D">
+        <path transform="rotate(25) scale(0.95)" d="M0,-8 C-28,-16 -40,-42 -26,-66 C-16,-84 16,-84 26,-66 C40,-42 28,-16 0,-8 Z"/>
+        <path transform="rotate(76) scale(0.95)" d="M0,-8 C-28,-16 -40,-42 -26,-66 C-16,-84 16,-84 26,-66 C40,-42 28,-16 0,-8 Z"/>
+        <path transform="rotate(128) scale(0.95)" d="M0,-8 C-28,-16 -40,-42 -26,-66 C-16,-84 16,-84 26,-66 C40,-42 28,-16 0,-8 Z"/>
+        <path transform="rotate(179) scale(0.95)" d="M0,-8 C-28,-16 -40,-42 -26,-66 C-16,-84 16,-84 26,-66 C40,-42 28,-16 0,-8 Z"/>
+        <path transform="rotate(231) scale(0.95)" d="M0,-8 C-28,-16 -40,-42 -26,-66 C-16,-84 16,-84 26,-66 C40,-42 28,-16 0,-8 Z"/>
+        <path transform="rotate(282) scale(0.95)" d="M0,-8 C-28,-16 -40,-42 -26,-66 C-16,-84 16,-84 26,-66 C40,-42 28,-16 0,-8 Z"/>
+        <path transform="rotate(334) scale(0.95)" d="M0,-8 C-28,-16 -40,-42 -26,-66 C-16,-84 16,-84 26,-66 C40,-42 28,-16 0,-8 Z"/>
+      </g>
+      <g fill="#A61C2E">
+        <path transform="rotate(15) scale(0.75)" d="M0,-8 C-28,-16 -40,-42 -26,-66 C-16,-84 16,-84 26,-66 C40,-42 28,-16 0,-8 Z"/>
+        <path transform="rotate(75) scale(0.75)" d="M0,-8 C-28,-16 -40,-42 -26,-66 C-16,-84 16,-84 26,-66 C40,-42 28,-16 0,-8 Z"/>
+        <path transform="rotate(135) scale(0.75)" d="M0,-8 C-28,-16 -40,-42 -26,-66 C-16,-84 16,-84 26,-66 C40,-42 28,-16 0,-8 Z"/>
+        <path transform="rotate(195) scale(0.75)" d="M0,-8 C-28,-16 -40,-42 -26,-66 C-16,-84 16,-84 26,-66 C40,-42 28,-16 0,-8 Z"/>
+        <path transform="rotate(255) scale(0.75)" d="M0,-8 C-28,-16 -40,-42 -26,-66 C-16,-84 16,-84 26,-66 C40,-42 28,-16 0,-8 Z"/>
+        <path transform="rotate(315) scale(0.75)" d="M0,-8 C-28,-16 -40,-42 -26,-66 C-16,-84 16,-84 26,-66 C40,-42 28,-16 0,-8 Z"/>
+      </g>
+      <g fill="#7E1220">
+        <path transform="rotate(10) scale(0.52)" d="M0,-8 C-28,-16 -40,-42 -26,-66 C-16,-84 16,-84 26,-66 C40,-42 28,-16 0,-8 Z"/>
+        <path transform="rotate(82) scale(0.52)" d="M0,-8 C-28,-16 -40,-42 -26,-66 C-16,-84 16,-84 26,-66 C40,-42 28,-16 0,-8 Z"/>
+        <path transform="rotate(154) scale(0.52)" d="M0,-8 C-28,-16 -40,-42 -26,-66 C-16,-84 16,-84 26,-66 C40,-42 28,-16 0,-8 Z"/>
+        <path transform="rotate(226) scale(0.52)" d="M0,-8 C-28,-16 -40,-42 -26,-66 C-16,-84 16,-84 26,-66 C40,-42 28,-16 0,-8 Z"/>
+        <path transform="rotate(298) scale(0.52)" d="M0,-8 C-28,-16 -40,-42 -26,-66 C-16,-84 16,-84 26,-66 C40,-42 28,-16 0,-8 Z"/>
+      </g>
+      <g fill="#5B0E17">
+        <path transform="rotate(0) scale(0.32)" d="M0,-8 C-28,-16 -40,-42 -26,-66 C-16,-84 16,-84 26,-66 C40,-42 28,-16 0,-8 Z"/>
+        <path transform="rotate(90) scale(0.32)" d="M0,-8 C-28,-16 -40,-42 -26,-66 C-16,-84 16,-84 26,-66 C40,-42 28,-16 0,-8 Z"/>
+        <path transform="rotate(180) scale(0.32)" d="M0,-8 C-28,-16 -40,-42 -26,-66 C-16,-84 16,-84 26,-66 C40,-42 28,-16 0,-8 Z"/>
+        <path transform="rotate(270) scale(0.32)" d="M0,-8 C-28,-16 -40,-42 -26,-66 C-16,-84 16,-84 26,-66 C40,-42 28,-16 0,-8 Z"/>
+      </g>
+    </g>
+
+    <!-- purple filler flowers (statice), left of the rose -->
+    <g opacity="0.95" transform="translate(68,148)">
+      <use href="#bqBlossom" xlink:href="#bqBlossom" x="-8" y="-12" width="16" height="20" transform="scale(1.05)" fill="#9B8AC4"/>
+      <use href="#bqBlossom" xlink:href="#bqBlossom" x="-8" y="-12" width="16" height="20" transform="translate(-16,10) scale(0.78)" fill="#8172B0"/>
+      <use href="#bqBlossom" xlink:href="#bqBlossom" x="-8" y="-12" width="16" height="20" transform="translate(14,14) scale(0.7)" fill="#AFA0D6"/>
+      <use href="#bqBlossom" xlink:href="#bqBlossom" x="-8" y="-12" width="16" height="20" transform="translate(-4,-17) scale(0.6)" fill="#9B8AC4"/>
+    </g>
+
+    <!-- baby's breath cluster, lower left, tucked beside the rose -->
+    <g opacity="0.95" transform="translate(58,190)">
+      <use href="#bqBlossom" xlink:href="#bqBlossom" x="-8" y="-12" width="16" height="20" transform="scale(0.9)" fill="#F6F1E7"/>
+      <use href="#bqBlossom" xlink:href="#bqBlossom" x="-8" y="-12" width="16" height="20" transform="translate(-13,-8) scale(0.62)" fill="#FFFFFF"/>
+      <use href="#bqBlossom" xlink:href="#bqBlossom" x="-8" y="-12" width="16" height="20" transform="translate(12,-10) scale(0.55)" fill="#F6F1E7"/>
+      <use href="#bqBlossom" xlink:href="#bqBlossom" x="-8" y="-12" width="16" height="20" transform="translate(-3,15) scale(0.5)" fill="#FFFFFF"/>
+      <use href="#bqBlossom" xlink:href="#bqBlossom" x="-8" y="-12" width="16" height="20" transform="translate(15,12) scale(0.5)" fill="#F6F1E7"/>
+    </g>
+
+    <!-- small purple accent tucked between the rose and the tulip cluster -->
+    <g opacity="0.95" transform="translate(112,198)">
+      <use href="#bqBlossom" xlink:href="#bqBlossom" x="-8" y="-12" width="16" height="20" transform="scale(0.6)" fill="#9B8AC4"/>
+      <use href="#bqBlossom" xlink:href="#bqBlossom" x="-8" y="-12" width="16" height="20" transform="translate(10,8) scale(0.5)" fill="#F6F1E7"/>
+    </g>
+
+    <!-- tulip cluster, upper right -->
+    <g transform="translate(205,150) rotate(-6) scale(0.6)">
+      <path transform="rotate(-24)" d="M0,0 C-17,-9 -23,-32 -15,-52 C-9,-65 9,-65 15,-52 C23,-32 17,-9 0,0 Z" fill="#B92C4C"/>
+      <path transform="rotate(24)" d="M0,0 C-17,-9 -23,-32 -15,-52 C-9,-65 9,-65 15,-52 C23,-32 17,-9 0,0 Z" fill="#B92C4C"/>
+      <path transform="rotate(-11)" d="M0,0 C-16,-8 -21,-30 -14,-50 C-8,-62 8,-62 14,-50 C21,-30 16,-8 0,0 Z" fill="url(#bqTulipGrad)"/>
+      <path transform="rotate(11)" d="M0,0 C-16,-8 -21,-30 -14,-50 C-8,-62 8,-62 14,-50 C21,-30 16,-8 0,0 Z" fill="url(#bqTulipGrad)"/>
+      <path transform="rotate(0)" d="M0,0 C-15,-7 -19,-28 -13,-48 C-7,-60 7,-60 13,-48 C19,-28 15,-7 0,0 Z" fill="#F6A6BB"/>
+    </g>
+
+    <!-- tulip cluster, right, lower and forward -->
+    <g transform="translate(178,206) rotate(11) scale(0.68)">
+      <path transform="rotate(-24)" d="M0,0 C-17,-9 -23,-32 -15,-52 C-9,-65 9,-65 15,-52 C23,-32 17,-9 0,0 Z" fill="#B92C4C"/>
+      <path transform="rotate(24)" d="M0,0 C-17,-9 -23,-32 -15,-52 C-9,-65 9,-65 15,-52 C23,-32 17,-9 0,0 Z" fill="#B92C4C"/>
+      <path transform="rotate(-11)" d="M0,0 C-16,-8 -21,-30 -14,-50 C-8,-62 8,-62 14,-50 C21,-30 16,-8 0,0 Z" fill="url(#bqTulipGrad)"/>
+      <path transform="rotate(11)" d="M0,0 C-16,-8 -21,-30 -14,-50 C-8,-62 8,-62 14,-50 C21,-30 16,-8 0,0 Z" fill="url(#bqTulipGrad)"/>
+      <path transform="rotate(0)" d="M0,0 C-15,-7 -19,-28 -13,-48 C-7,-60 7,-60 13,-48 C19,-28 15,-7 0,0 Z" fill="#F6A6BB"/>
+    </g>
+
+    <!-- tulip cluster, far right -->
+    <g transform="translate(243,178) rotate(-10) scale(0.5)">
+      <path transform="rotate(-24)" d="M0,0 C-17,-9 -23,-32 -15,-52 C-9,-65 9,-65 15,-52 C23,-32 17,-9 0,0 Z" fill="#B92C4C"/>
+      <path transform="rotate(24)" d="M0,0 C-17,-9 -23,-32 -15,-52 C-9,-65 9,-65 15,-52 C23,-32 17,-9 0,0 Z" fill="#B92C4C"/>
+      <path transform="rotate(-11)" d="M0,0 C-16,-8 -21,-30 -14,-50 C-8,-62 8,-62 14,-50 C21,-30 16,-8 0,0 Z" fill="url(#bqTulipGrad)"/>
+      <path transform="rotate(11)" d="M0,0 C-16,-8 -21,-30 -14,-50 C-8,-62 8,-62 14,-50 C21,-30 16,-8 0,0 Z" fill="url(#bqTulipGrad)"/>
+      <path transform="rotate(0)" d="M0,0 C-15,-7 -19,-28 -13,-48 C-7,-60 7,-60 13,-48 C19,-28 15,-7 0,0 Z" fill="#F6A6BB"/>
+    </g>
+
+    <!-- ribbon bow tying the wrap -->
+    <g>
+      <path d="M150,322 C120,300 92,308 87,324 C83,338 106,347 130,334 C140,329 148,325 150,322 Z" fill="url(#bqRibbonRedGrad)"/>
+      <path d="M150,322 C180,300 208,308 213,324 C217,338 194,347 170,334 C160,329 152,325 150,322 Z" fill="url(#bqRibbonRedGrad)"/>
+      <path d="M130,334 C118,326 108,326 100,330" stroke="#4A0A10" stroke-width="1" opacity="0.4" fill="none"/>
+      <path d="M170,334 C182,326 192,326 200,330" stroke="#4A0A10" stroke-width="1" opacity="0.4" fill="none"/>
+      <path d="M143,324 L153,324 L156,414 L149,398 L142,414 Z" fill="url(#bqRibbonRedGrad)"/>
+      <path d="M150,326 L160,326 L172,416 L165,400 L158,416 Z" fill="url(#bqRibbonRedGrad)"/>
+      <rect x="137" y="314" width="26" height="17" rx="5" fill="#7A1420"/>
+      <rect x="137" y="314" width="26" height="17" rx="5" fill="none" stroke="#4A0A10" stroke-width="0.8" opacity="0.5"/>
+    </g>
+  </svg>
+  <div class="eyebrow" id="heroEyebrow" contenteditable="true">Open Tuesday — Sunday</div>
+  <h1 contenteditable="true" id="heroTitle">Flowers, cut this <em>morning</em>.</h1>
+  <p class="sub" contenteditable="true" id="heroSub">Small-batch bouquets, potted greens, and seasonal arrangements — grown local, gathered by hand, and ready for pickup or delivery same day.</p>
+  <div style="margin-bottom:28px;">
+    <a href="flower-order-form_2.html" class="btn blink-red" style="display:inline-flex; align-items:center; gap:8px; text-decoration:none; font-size:15px; padding:13px 28px;">
+      🌸 Order Now
+    </a>
+  </div>
+  <div class="hero-meta">
+    <div class="item"><span class="label">Address</span><span class="val" contenteditable="true" id="metaAddr" data-placeholder="Add your address">14 Garden Row, Bacolod City</span></div>
+    <div class="item"><span class="label">Hours</span><span class="val" contenteditable="true" id="metaHours">8:00 – 18:00</span></div>
+    <div class="item"><span class="label">Contact</span><span class="val" contenteditable="true" id="metaContact">hello@hollowbloom.shop</span></div>
+  </div>
+</div>
+
+<!-- Floating Order Now button — stays visible once the hero's button scrolls out of view -->
+<a href="flower-order-form_2.html" id="floatOrderBtn" class="float-order-btn">🌸 Order Now</a>
+
+<!-- ============ PARTNERS VIEW ============ -->
+<section class="panel wrap" id="view-partners" style="display:none;">
+  <div class="panel-head">
+    <div>
+      <h2>Our Partners</h2>
+    </div>
+    <button class="btn ghost small" id="addPartnerBtn">+ Add partner</button>
+  </div>
+  <div class="partners-grid" id="partnersGrid"></div>
+</section>
+
+<!-- Partner Inquiry Form Modal -->
+<div id="partner-form-modal" style="display:none; position:fixed; inset:0; z-index:300;
+     background:rgba(22,34,15,0.72); backdrop-filter:blur(4px);
+     align-items:center; justify-content:center; padding:20px;">
+  <div style="background:var(--ivory); border-radius:14px; max-width:440px; width:100%;
+       padding:30px; box-shadow:0 30px 60px -20px rgba(0,0,0,0.5); position:relative;">
+    <button id="partner-form-close" type="button"
+      style="position:absolute; top:14px; right:14px; border:none; background:transparent;
+             font-size:18px; cursor:pointer; color:#67624e; line-height:1;">✕</button>
+    <h3 style="margin:0 0 4px; font-family:'Fraunces',serif; font-size:22px; color:var(--forest-deep);">🌸 Partner Inquiry</h3>
+    <p style="margin:0 0 20px; font-size:13px; color:#67624e; font-family:'Inter',sans-serif; line-height:1.5;">
+      Interested in partnering with Bloom & Stem? Fill out the form below and we'll get back to you!
+    </p>
+    <form id="partner-inquiry-form" action="https://formspree.io/f/myegywjp" method="POST"
+      style="display:flex; flex-direction:column; gap:13px;">
+      <div>
+        <label style="display:block; font-size:11px; font-weight:700; letter-spacing:0.5px;
+               text-transform:uppercase; color:var(--forest); margin-bottom:5px; font-family:'Inter',sans-serif;">Full Name *</label>
+        <input type="text" name="name" required placeholder="Your full name"
+          style="width:100%; padding:11px 13px; border:1px solid #d0c8b0; border-radius:8px;
+                 background:#fdfcf9; font-family:'Inter',sans-serif; font-size:14px;
+                 color:var(--ink); box-sizing:border-box; outline:none;">
+      </div>
+      <div>
+        <label style="display:block; font-size:11px; font-weight:700; letter-spacing:0.5px;
+               text-transform:uppercase; color:var(--forest); margin-bottom:5px; font-family:'Inter',sans-serif;">Email Address *</label>
+        <input type="email" name="email" required placeholder="you@example.com"
+          style="width:100%; padding:11px 13px; border:1px solid #d0c8b0; border-radius:8px;
+                 background:#fdfcf9; font-family:'Inter',sans-serif; font-size:14px;
+                 color:var(--ink); box-sizing:border-box; outline:none;">
+      </div>
+      <div>
+        <label style="display:block; font-size:11px; font-weight:700; letter-spacing:0.5px;
+               text-transform:uppercase; color:var(--forest); margin-bottom:5px; font-family:'Inter',sans-serif;">Phone Number</label>
+        <input type="tel" name="phone" placeholder="+63 912 345 6789"
+          style="width:100%; padding:11px 13px; border:1px solid #d0c8b0; border-radius:8px;
+                 background:#fdfcf9; font-family:'Inter',sans-serif; font-size:14px;
+                 color:var(--ink); box-sizing:border-box; outline:none;">
+      </div>
+      <div>
+        <label style="display:block; font-size:11px; font-weight:700; letter-spacing:0.5px;
+               text-transform:uppercase; color:var(--forest); margin-bottom:5px; font-family:'Inter',sans-serif;">Business Name</label>
+        <input type="text" name="business" placeholder="Your business or shop name"
+          style="width:100%; padding:11px 13px; border:1px solid #d0c8b0; border-radius:8px;
+                 background:#fdfcf9; font-family:'Inter',sans-serif; font-size:14px;
+                 color:var(--ink); box-sizing:border-box; outline:none;">
+      </div>
+      <div>
+        <label style="display:block; font-size:11px; font-weight:700; letter-spacing:0.5px;
+               text-transform:uppercase; color:var(--forest); margin-bottom:5px; font-family:'Inter',sans-serif;">Message *</label>
+        <textarea name="message" required placeholder="Tell us about your partnership idea..."
+          rows="4"
+          style="width:100%; padding:11px 13px; border:1px solid #d0c8b0; border-radius:8px;
+                 background:#fdfcf9; font-family:'Inter',sans-serif; font-size:14px;
+                 color:var(--ink); box-sizing:border-box; outline:none; resize:vertical;"></textarea>
+      </div>
+      <div id="partner-form-success" style="display:none; background:#e8f5e1; border:1px solid #a8d48a;
+           border-radius:8px; padding:12px 16px; font-size:13px; color:#2e5c1a; font-family:'Inter',sans-serif;">
+        ✅ Thank you! We'll be in touch soon.
+      </div>
+      <div id="partner-form-error" style="display:none; background:#fde8e8; border:1px solid #e4a0a0;
+           border-radius:8px; padding:12px 16px; font-size:13px; color:#8c2020; font-family:'Inter',sans-serif;">
+        ❌ Something went wrong. Please try again.
+      </div>
+      <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:4px;">
+        <button type="button" id="partner-form-cancel"
+          style="padding:10px 18px; border-radius:999px; border:1px solid #d0c8b0;
+                 background:transparent; color:#67624e; cursor:pointer; font-size:13px; font-family:'Inter',sans-serif;">Cancel</button>
+        <button type="submit" id="partner-form-submit"
+          style="padding:10px 20px; border-radius:999px; border:none;
+                 background:var(--forest); color:var(--ivory); cursor:pointer; font-size:13px;
+                 font-weight:600; font-family:'Inter',sans-serif;">Send Inquiry</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+(function(){
+  var modal = document.getElementById('partner-form-modal');
+  var form = document.getElementById('partner-inquiry-form');
+  var closeBtn = document.getElementById('partner-form-close');
+  var cancelBtn = document.getElementById('partner-form-cancel');
+  var submitBtn = document.getElementById('partner-form-submit');
+  var successMsg = document.getElementById('partner-form-success');
+  var errorMsg = document.getElementById('partner-form-error');
+
+  window.openPartnerForm = function(){
+    successMsg.style.display = 'none';
+    errorMsg.style.display = 'none';
+    form.reset();
+    modal.style.display = 'flex';
+  };
+  function closeForm(){
+    modal.style.display = 'none';
+  }
+  closeBtn.addEventListener('click', closeForm);
+  cancelBtn.addEventListener('click', closeForm);
+  modal.addEventListener('click', function(e){ if(e.target === modal) closeForm(); });
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    submitBtn.textContent = 'Sending…';
+    submitBtn.disabled = true;
+    successMsg.style.display = 'none';
+    errorMsg.style.display = 'none';
+    try {
+      var res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if(res.ok){
+        successMsg.style.display = 'block';
+        form.reset();
+        submitBtn.textContent = 'Send Inquiry';
+        submitBtn.disabled = false;
+        setTimeout(closeForm, 3000);
+      } else {
+        throw new Error('Failed');
+      }
+    } catch(err){
+      errorMsg.style.display = 'block';
+      submitBtn.textContent = 'Send Inquiry';
+      submitBtn.disabled = false;
+    }
+  });
+})();
+</script>
+
+<!-- ============ HOW TO ORDER VIEW ============ -->
+<section class="panel wrap" id="view-howto" style="display:none;">
+  <div class="panel-head">
+    <div>
+      <h2>How to order</h2>
+      <div class="desc">A quick walkthrough of the ordering process. Click any text to edit it.</div>
+    </div>
+    <button class="btn ghost small" id="addHowToBtn">+ Add step</button>
+  </div>
+  <div class="howto-note">
+    <span class="howto-note-label">Order Instructions</span>
+    <div class="howto-note-text" id="howToNote" contenteditable="true"></div>
+  </div>
+  <div class="care-grid" id="howToGrid"></div>
+</section>
+
+<!-- ============ SHOP VIEW ============ -->
+<section class="panel wrap" id="view-shop">
+  <div class="panel-head">
+    <div>
+      <h2 class="catalog-highlight">The Catalog</h2>
+    </div>
+    <button class="btn ghost small" id="addCatBtn">+ Add category</button>
+  </div>
+  <div class="cat-row" id="catRow"></div>
+  <div class="grid" id="itemGrid"></div>
+</section>
+
+<!-- ============ REVIEWS VIEW ============ -->
+<section class="panel wrap" id="view-reviews" style="display:none;">
+  <div class="panel-head" style="justify-content:flex-start;">
+    <div>
+      <h2>What customers say</h2>
+      <div class="desc">Click the stars, name, or quote to edit. Real reviews build trust — keep them genuine.</div>
+    </div>
+    <div style="display:flex; gap:10px; margin-left:24px;">
+      <button class="btn ghost small" id="leaveReviewBtn">★ Leave a review</button>
+      <button class="btn ghost small" id="addTestimonialBtn">+ Add review</button>
+    </div>
+  </div>
+
+  <!-- Admin-only moderation queue for customer-submitted reviews -->
+  <div id="pendingReviewsBox" style="display:none; margin-bottom:26px; background:rgba(201,162,75,0.1); border:1px solid rgba(201,162,75,0.35); border-radius:8px; padding:18px 20px;">
+    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+      <div class="mono" style="font-size:12px; text-transform:uppercase; letter-spacing:0.06em; color:var(--gold);" id="pendingReviewsCount">New reviews to approve</div>
+      <button class="btn ghost small" id="refreshPendingBtn" type="button" style="color:#8A6200; border-color:#c9a24b;">↻ Refresh</button>
+    </div>
+    <div id="pendingReviewsList" style="display:flex; flex-direction:column; gap:10px;"></div>
+  </div>
+
+  <div class="testimonials-grid" id="testimonialsGrid"></div>
+</section>
+
+<!-- Leave a Review Modal (public — no admin login required) -->
+<div id="review-form-modal" style="display:none; position:fixed; inset:0; z-index:300;
+     background:rgba(22,34,15,0.72); backdrop-filter:blur(4px);
+     align-items:center; justify-content:center; padding:20px;">
+  <div style="background:var(--ivory); border-radius:14px; max-width:440px; width:100%;
+       padding:30px; box-shadow:0 30px 60px -20px rgba(0,0,0,0.5); position:relative;">
+    <button id="review-form-close" type="button"
+      style="position:absolute; top:14px; right:14px; border:none; background:transparent;
+             font-size:18px; cursor:pointer; color:#67624e; line-height:1;">✕</button>
+    <h3 style="margin:0 0 4px; font-family:'Fraunces',serif; font-size:22px; color:var(--forest-deep);">🌸 Leave a Review</h3>
+    <p style="margin:0 0 20px; font-size:13px; color:#67624e; font-family:'Inter',sans-serif; line-height:1.5;">
+      Tell other customers about your experience. We'll review it before it goes live on the site.
+    </p>
+    <form id="review-inquiry-form" style="display:flex; flex-direction:column; gap:13px;">
+      <div>
+        <label style="display:block; font-size:11px; font-weight:700; letter-spacing:0.5px;
+               text-transform:uppercase; color:var(--forest); margin-bottom:5px; font-family:'Inter',sans-serif;">Rating *</label>
+        <div id="review-form-stars" style="display:flex; gap:6px; font-size:22px; line-height:1;"></div>
+      </div>
+      <div>
+        <label style="display:block; font-size:11px; font-weight:700; letter-spacing:0.5px;
+               text-transform:uppercase; color:var(--forest); margin-bottom:5px; font-family:'Inter',sans-serif;">Your Name *</label>
+        <input type="text" name="name" required maxlength="80" placeholder="Your name"
+          style="width:100%; padding:11px 13px; border:1px solid #d0c8b0; border-radius:8px;
+                 background:#fdfcf9; font-family:'Inter',sans-serif; font-size:14px;
+                 color:var(--ink); box-sizing:border-box; outline:none;">
+      </div>
+      <div>
+        <label style="display:block; font-size:11px; font-weight:700; letter-spacing:0.5px;
+               text-transform:uppercase; color:var(--forest); margin-bottom:5px; font-family:'Inter',sans-serif;">Role or Location</label>
+        <input type="text" name="role" maxlength="80" placeholder="e.g. Repeat customer, Bacolod City"
+          style="width:100%; padding:11px 13px; border:1px solid #d0c8b0; border-radius:8px;
+                 background:#fdfcf9; font-family:'Inter',sans-serif; font-size:14px;
+                 color:var(--ink); box-sizing:border-box; outline:none;">
+      </div>
+      <div>
+        <label style="display:block; font-size:11px; font-weight:700; letter-spacing:0.5px;
+               text-transform:uppercase; color:var(--forest); margin-bottom:5px; font-family:'Inter',sans-serif;">Your Review *</label>
+        <textarea name="quote" required maxlength="600" placeholder="What was your experience like?"
+          rows="4"
+          style="width:100%; padding:11px 13px; border:1px solid #d0c8b0; border-radius:8px;
+                 background:#fdfcf9; font-family:'Inter',sans-serif; font-size:14px;
+                 color:var(--ink); box-sizing:border-box; outline:none; resize:vertical;"></textarea>
+      </div>
+      <div id="review-form-success" style="display:none; background:#e8f5e1; border:1px solid #a8d48a;
+           border-radius:8px; padding:12px 16px; font-size:13px; color:#2e5c1a; font-family:'Inter',sans-serif;">
+        ✅ Thank you! Your review will appear once approved.
+      </div>
+      <div id="review-form-error" style="display:none; background:#fde8e8; border:1px solid #e4a0a0;
+           border-radius:8px; padding:12px 16px; font-size:13px; color:#8c2020; font-family:'Inter',sans-serif;">
+        ❌ Something went wrong. Please try again.
+      </div>
+      <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:4px;">
+        <button type="button" id="review-form-cancel"
+          style="padding:10px 18px; border-radius:999px; border:1px solid #d0c8b0;
+                 background:transparent; color:#67624e; cursor:pointer; font-size:13px; font-family:'Inter',sans-serif;">Cancel</button>
+        <button type="submit" id="review-form-submit"
+          style="padding:10px 20px; border-radius:999px; border:none;
+                 background:var(--forest); color:var(--ivory); cursor:pointer; font-size:13px;
+                 font-weight:600; font-family:'Inter',sans-serif;">Submit Review</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ============ CARE TIPS VIEW ============ -->
+<section class="panel wrap" id="view-care" style="display:none;">
+  <div class="panel-head">
+    <div>
+      <h2>Keeping your flowers fresh</h2>
+      <div class="desc">A few simple habits that make bouquets last longer. Click any tip to edit it.</div>
+    </div>
+    <button class="btn ghost small" id="addCareTipBtn">+ Add tip</button>
+  </div>
+  <div class="care-grid" id="careGrid"></div>
+</section>
+
+<!-- ============ FAQ VIEW ============ -->
+<section class="panel wrap" id="view-faq" style="display:none;">
+  <div class="panel-head">
+    <div>
+      <h2>Frequently asked questions</h2>
+      <div class="desc">Click a question to expand it. Click the text to edit questions or answers.</div>
+    </div>
+    <button class="btn ghost small" id="addFaqBtn">+ Add question</button>
+  </div>
+  <div class="faq-list" id="faqList"></div>
+</section>
+
+
+
+<!-- ============ ORDERS VIEW ============ -->
+<section class="panel wrap" id="view-orders" style="display:none;">
+  <div class="panel-head">
+    <div>
+      <h2>Orders</h2>
+      <div class="desc">Track incoming orders and move them through fulfillment. Everything here is editable.</div>
+    </div>
+    <button class="btn" id="addOrderBtn">+ New order</button>
+  </div>
+  <div class="table-wrap">
+    <table class="table" id="ordersTable">
+      <thead>
+        <tr><th>Customer</th><th>Item</th><th>Qty</th><th>Address</th><th>Due</th><th>Status</th><th></th></tr>
+      </thead>
+      <tbody id="ordersBody"></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ SCHEDULE VIEW ============ -->
+<section class="panel wrap" id="view-schedule" style="display:none;">
+  <div class="panel-head">
+    <div>
+      <h2>Schedule</h2>
+      <div class="desc">Deliveries, market days, and shop tasks — kept in date order.</div>
+    </div>
+    <button class="btn" id="addSchedBtn">+ Add entry</button>
+  </div>
+  <div class="table-wrap">
+    <div class="sched-list" id="schedList"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span class="mono">© <span id="year"></span> — built with care, edited by hand</span>
+    <span class="mono">Website by: <span id="footerCredit" contenteditable="true">Your Name</span></span>
+    <span class="mono" id="saveStatus">Editing locked — Admin only</span>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ---------------- SUPABASE (shared catalog: categories, items, product photos) ---------------- */
+const SUPABASE_URL = 'https://aqithhkqgmaonmrlylob.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFxaXRoaGtxZ21hb25tcmx5bG9iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYwMTY1MTAsImV4cCI6MjEwMTU5MjUxMH0.RtzMkDWBhG3GfyZBrIcwthguGley0-u3JhtkKena2N4';
+const ADMIN_EMAIL = 'cyberpen007@gmail.com';
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+/* ---------------- STATE (hero/testimonials/etc. persisted via window.storage or localStorage; catalog is persisted via Supabase — shared by everyone) ---------------- */
+let state = {
+  hero: {
+    shopName: 'Bloom &amp; Stem Florist',
+    shopBadge: 'Official Online Partner',
+    shopTag: 'Cut flower &amp; potted goods',
+    eyebrow: 'Open Tuesday — Sunday',
+    title: 'Flowers, cut this <em>morning</em>.',
+    sub: 'Small-batch bouquets, potted greens, and seasonal arrangements — grown local, gathered by hand, and ready for pickup or delivery same day.',
+    addr: '14 Garden Row, Bacolod City',
+    hours: '8:00 – 18:00',
+    contact: 'hello@hollowbloom.shop',
+    credit: 'Your Name',
+    howToNote: 'Orders are accepted daily from 8:00 AM to 5:00 PM. Please place your order at least 3 hours before your preferred pickup or delivery time so we have enough time to prepare your bouquet fresh.',
+  },
+  categories: [
+    { id:'c1', name:'Bouquets' },
+    { id:'c2', name:'Potted Plants' },
+    { id:'c3', name:'Seasonal' },
+    { id:'c4', name:'Weddings' },
+    { id:'c5', name:'Partner' },
+  ],
+  activeCat: 'c1',
+  partners: [
+    { id:'p1', name:'', address:'', link:'' },
+    { id:'p2', name:'', address:'', link:'' },
+    { id:'p3', name:'', address:'', link:'' },
+    { id:'p4', name:'', address:'', link:'' },
+    { id:'p5', name:'', address:'', link:'' },
+  ],
+  testimonials: [
+    { id:'t1', rating:5, quote:'The peonies lasted almost two weeks and the arrangement looked even better on day three.', name:'Maria Santos', role:'Repeat customer' },
+    { id:'t2', rating:5, quote:'Same-day delivery for my mom\u2019s birthday, and the bouquet was fresher than anything from the mall.', name:'Andre Lim', role:'Bacolod City' },
+    { id:'t3', rating:4, quote:'Great value for wedding flowers. Communication could be a touch faster, but the quality made up for it.', name:'Cristina Reyes', role:'Wedding client' },
+  ],
+  howToSteps: [
+    { id:'ho1', title:'Browse the <span class="howto-ref">(Shop Now)</span>', desc:'Head to <span class="howto-ref">(Shop Now)</span> and pick a category to see available bouquets and potted goods.' },
+    { id:'ho2', title:'Message us your order', desc:'Note the item name and price, then send it to us via the contact details found under <span class="howto-ref-yellow">(Partners)</span> on this page.' },
+    { id:'ho3', title:'Confirm details & pay', desc:'We\u2019ll confirm delivery address, date, and payment method with you before preparing your order.' },
+    { id:'ho4', title:'Sit back & enjoy', desc:'We prepare and deliver your flowers fresh, right on schedule.' },
+  ],
+  careTips: [
+    { id:'ct1', title:'Trim the stems', desc:'Cut 1–2 inches off each stem at a 45° angle before placing in water, and re-trim every few days.' },
+    { id:'ct2', title:'Change the water', desc:'Replace the water every 2 days and rinse the vase to keep bacteria from shortening bloom life.' },
+    { id:'ct3', title:'Keep it cool', desc:'Place away from direct sun, heaters, and ripening fruit — flowers stay fresher in cooler spots.' },
+    { id:'ct4', title:'Remove wilted leaves', desc:'Strip any leaves that sit below the waterline so they don\u2019t rot and cloud the water.' },
+  ],
+  faqs: [
+    { id:'fq1', q:'Do you offer same-day delivery?', a:'Yes — orders placed before 2:00 PM are eligible for same-day delivery within Bacolod City, subject to availability.', open:false },
+    { id:'fq2', q:'Can I substitute flowers if something is out of season?', a:'Occasionally a specific bloom may be unavailable. If that happens, we substitute with a similar flower of equal or greater value and always keep the color palette in mind.', open:false },
+    { id:'fq3', q:'What is your refund or replacement policy?', a:'If your flowers arrive damaged or wilted, contact us within 24 hours with a photo and we\u2019ll replace or refund the order.', open:false },
+    { id:'fq4', q:'Do you deliver outside Bacolod City?', a:'We currently deliver within Bacolod City and nearby areas. Message us your address and we\u2019ll confirm delivery availability and fees.', open:false },
+  ],
+  items: [
+    { id:'i1', cat:'c1', name:'Sunrise Peony Bunch', desc:'Peonies, ranunculus, eucalyptus', price:'₱1,450', img:'', orderNumber:'ORD-0001' },
+    { id:'i2', cat:'c1', name:'Garden Rose Bundle', desc:'Garden roses, spray roses, foliage', price:'₱1,200', img:'', orderNumber:'ORD-0002' },
+    { id:'i3', cat:'c1', name:'Wildflower Mix', desc:'Seasonal wild-picked stems', price:'₱950', img:'', orderNumber:'ORD-0003' },
+    { id:'i4', cat:'c2', name:'Fiddle Leaf Fig', desc:'6" pot, indoor, low light tolerant', price:'₱1,800', img:'', orderNumber:'ORD-0004' },
+    { id:'i5', cat:'c2', name:'Trailing Pothos', desc:'Hanging basket, easy care', price:'₱650', img:'', orderNumber:'ORD-0005' },
+    { id:'i6', cat:'c3', name:'Sunflower Bunch', desc:'Peak-summer stems, 8 count', price:'₱850', img:'', orderNumber:'ORD-0006' },
+    { id:'i7', cat:'c4', name:'Bridal Cascade', desc:'White garden roses, trailing ivy', price:'₱4,200', img:'', orderNumber:'ORD-0007' },
+  ],
+  itemOrderCounter: 7,
+  orders: [
+    { id:'o1', customer:'Maria Santos', item:'Sunrise Peony Bunch', qty:2, address:'Bacolod City', due:'2026-08-03', status:'progress' },
+    { id:'o2', customer:'James Cruz', item:'Bridal Cascade', qty:1, address:'Silay City', due:'2026-08-10', status:'new' },
+    { id:'o3', customer:'Lea Villanueva', item:'Trailing Pothos', qty:3, address:'Bacolod City', due:'2026-08-01', status:'ready' },
+  ],
+  schedule: [
+    { id:'s1', date:'2026-08-02', time:'07:00', task:'Flower market run — wholesale pickup', tag:'sourcing' },
+    { id:'s2', date:'2026-08-03', time:'14:00', task:'Deliver — Sunrise Peony Bunch to M. Santos', tag:'delivery' },
+    { id:'s3', date:'2026-08-05', time:'09:00', task:'Restock potted section', tag:'shop' },
+  ],
+};
+let uid = 100;
+const newId = (p) => p + (uid++);
+const nextOrderNumber = () => {
+  state.itemOrderCounter = (state.itemOrderCounter || 0) + 1;
+  return 'ORD-' + String(state.itemOrderCounter).padStart(4, '0');
+};
+
+/* ---------------- AUTOSAVE ---------------- */
+const STORAGE_KEY = 'hollow-bloom-site-state';
+const saveStatusEl = () => document.getElementById('saveStatus');
+let saveTimer = null;
+
+function showSyncBanner(msg){
+  let el = document.getElementById('syncBanner');
+  if(!el){
+    el = document.createElement('div');
+    el.id = 'syncBanner';
+    el.style.cssText = 'position:sticky;top:0;z-index:9999;background:#8C2E26;color:#F6F1E7;font:600 13px/1.4 Inter,sans-serif;padding:10px 16px;text-align:center;';
+    document.body.prepend(el);
+  }
+  el.textContent = '⚠ ' + msg;
+  el.style.display = 'block';
+}
+function hideSyncBanner(){
+  const el = document.getElementById('syncBanner');
+  if(el) el.style.display = 'none';
+}
+
+function flashStatus(text, revertAfter){
+  const el = saveStatusEl();
+  if(!el) return;
+  el.textContent = text;
+  if(revertAfter){
+    clearTimeout(el._revertTimer);
+    el._revertTimer = setTimeout(()=>{ el.textContent = adminUnlocked ? 'All fields are click-to-edit' : 'Editing locked — Admin only'; }, revertAfter);
+  }
+}
+
+/* ---------------- STORAGE LAYER (works both hosted-as-artifact and as a plain local/uploaded file) ---------------- */
+async function storageSet(key, value){
+  if(window.storage && typeof window.storage.set === 'function'){
+    try{
+      const result = await window.storage.set(key, value, false);
+      if(result) return result;
+    }catch(err){ /* fall through to localStorage */ }
+  }
+  try{
+    localStorage.setItem(key, value);
+    return { key, value };
+  }catch(err){
+    return null;
+  }
+}
+async function storageGet(key){
+  if(window.storage && typeof window.storage.get === 'function'){
+    try{
+      const result = await window.storage.get(key, false);
+      if(result) return result;
+    }catch(err){ /* fall through to localStorage */ }
+  }
+  try{
+    const v = localStorage.getItem(key);
+    return v !== null ? { key, value: v } : null;
+  }catch(err){
+    return null;
+  }
+}
+
+/* ---------------- SITE STATE (shared via Supabase: hero, partners, testimonials, how-to, care tips, FAQ, orders, schedule) ---------------- */
+let lastSiteStateLoadError = null;
+async function loadSiteStateFromSupabase(){
+  lastSiteStateLoadError = null;
+  try{
+    const { data, error } = await sb.from('site_state').select('value').eq('key', STORAGE_KEY).maybeSingle();
+    if(error){ console.error('Site state load error:', error); lastSiteStateLoadError = error; return false; }
+    if(data && data.value){
+      const saved = data.value;
+      state = Object.assign({}, state, saved);
+      if(saved.hero) state.hero = Object.assign({}, state.hero, saved.hero);
+      return true;
+    }
+    return false;
+  }catch(err){
+    console.error('Site state load exception:', err);
+    lastSiteStateLoadError = err;
+    return false;
+  }
+}
+
+async function saveSiteStateToSupabase(){
+  try{
+    const { categories, items, activeCat, ...rest } = state; // catalog syncs separately via its own tables; activeCat is per-visitor, not shared
+    const { error } = await sb.from('site_state').upsert({ key: STORAGE_KEY, value: rest, updated_at: new Date().toISOString() });
+    if(error){
+      console.error('Site state save error:', error);
+      return { ok:false, sessionExpired: isAuthError(error), detail: describeError(error) };
+    }
+    return { ok:true };
+  }catch(err){
+    console.error('Site state save exception:', err);
+    return { ok:false, sessionExpired: isAuthError(err), detail: describeError(err) };
+  }
+}
+
+/* Turns a Supabase/Postgres error object into a short, human-readable string
+   (code + message) so banners can show the exact technical reason instead of
+   a generic guess. */
+function describeError(error){
+  if(!error) return 'unknown error';
+  const code = error.code ? `[${error.code}] ` : '';
+  const msg = error.message || error.error_description || error.msg || String(error);
+  return code + msg;
+}
+
+/* A 42501 ("row-level security policy") or 401/PGRST301 error while we believe we're
+   an admin means the Supabase login session has actually expired/gone stale in the
+   background (common after a tab is left open/backgrounded for a while) — the write
+   is being attempted as an anonymous visitor. That's different from a real database
+   config problem, so we detect it and tell the person to log back in instead of
+   pointing them at RLS policies that are, in fact, already set up correctly. */
+function isAuthError(error){
+  if(!error) return false;
+  const code = String(error.code || '').toLowerCase();
+  const msg = String(error.message || '').toLowerCase();
+  return code === '42501' || code === 'pgrst301' || code === '401' ||
+    msg.includes('row-level security') || msg.includes('jwt') || msg.includes('permission denied');
+}
+
+function saveState(){
+  clearTimeout(saveTimer);
+  flashStatus('Saving…');
+  // Capture this *before* the async save — needed to tell "an admin session went
+  // stale mid-edit" apart from "this edit was never admin-authenticated to begin
+  // with" (e.g. a visitor editing a review), which need different messaging.
+  const wasAdmin = adminUnlocked;
+  saveTimer = setTimeout(async ()=>{
+    try{
+      const result = await saveSiteStateToSupabase();
+      if(result.ok){
+        flashStatus('Saved ✓', 2200);
+        hideStateSyncBanner();
+        // keep a local copy too, purely as an offline emergency fallback
+        storageSet(STORAGE_KEY, JSON.stringify(state)).catch(()=>{});
+      } else {
+        // Supabase failed — fall back to local-only save so the edit isn't lost in this tab
+        const localResult = await storageSet(STORAGE_KEY, JSON.stringify(state));
+        if(result.sessionExpired && wasAdmin){
+          // Looks like the admin login went stale in the background — but show the
+          // real error too, so if this classification is wrong, it's visible instead
+          // of hidden behind a "just log back in" message that wouldn't actually fix it.
+          adminUnlocked = false;
+          document.body.classList.remove('admin-mode');
+          updateAdminEditLabel();
+          flashStatus('Session expired — saved locally only', 4000);
+          showStateSyncBanner('Your admin session expired, so this change only saved in this browser. Click Admin → Enable editing to log back in, then make the edit again to sync it. (' + result.detail + ')');
+        } else if(result.sessionExpired && !wasAdmin){
+          // Expected case for a visitor editing a review without an admin login:
+          // the database correctly refused the write. Keep it low-key, no scary banner.
+          flashStatus('Saved on this device only — not visible to other visitors yet', 4200);
+        } else if(localResult){
+          flashStatus('Saved locally only — not synced to other visitors', 4000);
+          showStateSyncBanner('Changes are not syncing to the shared database — only visible in this browser. (' + result.detail + ')');
+        } else {
+          flashStatus('Save failed — changes kept only in this tab', 3000);
+        }
+      }
+    }catch(err){
+      console.error('Autosave error:', err);
+      flashStatus('Save failed — changes kept only in this tab', 3000);
+    }
+  }, 400);
+}
+
+function showStateSyncBanner(msg){ showSyncBanner(msg); }
+function hideStateSyncBanner(){ hideSyncBanner(); }
+
+function mapDbCategory(c){ return { id: c.id, name: c.name }; }
+function mapDbItem(i){ return { id: i.id, cat: i.category_id, name: i.name, desc: i.description, price: i.price, img: i.image_url || '', orderNumber: i.order_number }; }
+
+async function loadCatalogFromSupabase(){
+  const [{ data: cats, error: catErr }, { data: itms, error: itmErr }] = await Promise.all([
+    sb.from('categories').select('*').order('sort_order'),
+    sb.from('catalog_items').select('*').order('sort_order'),
+  ]);
+  if(catErr || itmErr){
+    console.error('Supabase load error:', catErr || itmErr);
+    showSyncBanner('Catalog is not syncing from the shared database (' + ((catErr||itmErr).message || 'unknown error') + '). Visitors may be seeing outdated items. Check Supabase RLS policies.');
+    return false;
+  }
+  hideSyncBanner();
+  if(cats && cats.length){
+    state.categories = cats.map(mapDbCategory);
+    state.items = (itms || []).map(mapDbItem);
+    // Always land on the first category for every fresh visitor/page load.
+    state.activeCat = state.categories[0].id;
+    state.itemOrderCounter = state.items.reduce((max, i)=>{
+      const n = parseInt(String(i.orderNumber || '').replace(/[^0-9]/g,''), 10);
+      return isNaN(n) ? max : Math.max(max, n);
+    }, state.itemOrderCounter || 0);
+    return true;
+  }
+  // First run — nothing in Supabase yet, seed it with the starter catalog below.
+  const seedCats = state.categories.map((c, idx) => ({ id: c.id, name: c.name, sort_order: idx }));
+  const seedItems = state.items.map((i, idx) => ({
+    id: i.id, category_id: i.cat, name: i.name, description: i.desc,
+    price: i.price || '', order_number: i.orderNumber, image_url: i.img || null, sort_order: idx,
+  }));
+  await sb.from('categories').insert(seedCats);
+  await sb.from('catalog_items').insert(seedItems);
+  return true;
+}
+
+async function loadState(){
+  try{
+    const remoteOk = await loadSiteStateFromSupabase();
+    if(!remoteOk){
+      showStateSyncBanner('Site content (hero, testimonials, FAQ, etc.) is not loading from the shared database — visitors may see outdated info. (' + describeError(lastSiteStateLoadError) + ')');
+      // fall back to whatever this browser has locally, so at least something renders
+      const result = await storageGet(STORAGE_KEY);
+      if(result && result.value){
+        const saved = JSON.parse(result.value);
+        state = Object.assign({}, state, saved);
+        if(saved.hero) state.hero = Object.assign({}, state.hero, saved.hero);
+      }
+    }
+  }catch(err){
+    // no saved state yet — keep defaults
+  }
+  try{
+    await loadCatalogFromSupabase();
+  }catch(err){
+    console.error('Catalog load failed, falling back to local copy:', err);
+  }
+  // Every fresh page load should start with all FAQ answers collapsed —
+  // "open" is per-visitor UI state, not something that should carry over
+  // from whatever was last expanded (by anyone) in the shared data.
+  if(state.faqs) state.faqs.forEach(f=>{ f.open = false; });
+  const allIds = [
+    ...state.categories.map(c=>c.id),
+    ...state.items.map(i=>i.id),
+    ...state.orders.map(o=>o.id),
+    ...state.schedule.map(s=>s.id),
+    ...state.testimonials.map(t=>t.id),
+    ...state.partners.map(p=>p.id),
+    ...state.howToSteps.map(h=>h.id),
+    ...state.careTips.map(c=>c.id),
+    ...state.faqs.map(f=>f.id),
+  ];
+  const maxNum = allIds.reduce((max, id)=>{
+    const n = parseInt(String(id).replace(/[^0-9]/g,''), 10);
+    return isNaN(n) ? max : Math.max(max, n);
+  }, 99);
+  uid = maxNum + 1;
+
+  if(!state.itemOrderCounter){
+    state.itemOrderCounter = state.items.reduce((max, i)=>{
+      const n = parseInt(String(i.orderNumber || '').replace(/[^0-9]/g,''), 10);
+      return isNaN(n) ? max : Math.max(max, n);
+    }, 0);
+  }
+  state.items.forEach(item=>{
+    if(!item.orderNumber) item.orderNumber = nextOrderNumber();
+  });
+}
+
+function applyHeroToDOM(){
+  document.getElementById('shopName').innerHTML = state.hero.shopName;
+  document.getElementById('shopBadge').innerHTML = state.hero.shopBadge;
+  document.getElementById('shopTag').innerHTML = state.hero.shopTag;
+  document.getElementById('heroEyebrow').innerHTML = state.hero.eyebrow;
+  document.getElementById('heroTitle').innerHTML = state.hero.title;
+  document.getElementById('heroSub').innerHTML = state.hero.sub;
+  document.getElementById('metaAddr').innerHTML = state.hero.addr;
+  document.getElementById('metaHours').innerHTML = state.hero.hours;
+  document.getElementById('metaContact').innerHTML = state.hero.contact;
+  document.getElementById('footerCredit').innerHTML = state.hero.credit;
+  document.getElementById('howToNote').innerHTML = state.hero.howToNote;
+}
+
+function wireHeroInputs(){
+  const bind = (id, key) => {
+    document.getElementById(id).addEventListener('blur', e=>{
+      state.hero[key] = e.target.innerHTML.trim();
+      saveState();
+    });
+  };
+  bind('shopName','shopName');
+  bind('shopBadge','shopBadge');
+  bind('shopTag','shopTag');
+  bind('heroEyebrow','eyebrow');
+  bind('heroTitle','title');
+  bind('heroSub','sub');
+  bind('metaAddr','addr');
+  bind('metaHours','hours');
+  bind('metaContact','contact');
+  bind('footerCredit','credit');
+  bind('howToNote','howToNote');
+}
+
+/* ---------------- NAV ---------------- */
+let adminUnlocked = false;
+let pendingAdminAction = null;
+
+function activateView(view, activeNavBtn){
+  document.querySelectorAll('#navTabs > button').forEach(b=>b.classList.remove('active'));
+  document.getElementById('adminToggleBtn').classList.remove('active');
+  document.querySelectorAll('.admin-dropdown button[data-view]').forEach(b=>b.classList.remove('active'));
+  if(view === 'orders' || view === 'schedule'){
+    document.getElementById('adminToggleBtn').classList.add('active');
+    const dropBtn = document.querySelector(`.admin-dropdown button[data-view="${view}"]`);
+    if(dropBtn) dropBtn.classList.add('active');
+  } else if(activeNavBtn){
+    activeNavBtn.classList.add('active');
+  }
+  ['howto','partners','shop','orders','schedule','reviews','care','faq'].forEach(v=>{
+    document.getElementById('view-'+v).style.display = (v===view) ? '' : 'none';
+  });
+  if(view === 'howto') renderHowTo();
+  if(view === 'partners') renderPartners();
+  if(view === 'orders') renderOrders();
+  if(view === 'schedule') renderSchedule();
+  if(view === 'reviews'){ renderTestimonials(); refreshPendingReviews(); }
+  if(view === 'care') renderCareTips();
+  if(view === 'faq') renderFaqs();
+}
+
+function closeAdminDropdown(){
+  document.getElementById('adminMenu').classList.remove('open');
+}
+
+function updateAdminEditLabel(){
+  const btn = document.getElementById('adminEditToggleBtn');
+  btn.textContent = adminUnlocked ? 'Lock site' : 'Enable editing';
+}
+
+function unlockAdmin(){
+  adminUnlocked = true;
+  document.body.classList.add('admin-mode');
+  updateAdminEditLabel();
+  flashStatus('All fields are click-to-edit');
+  refreshPendingReviews();
+}
+
+function lockAdmin(){
+  adminUnlocked = false;
+  document.body.classList.remove('admin-mode');
+  sb.auth.signOut();
+  updateAdminEditLabel();
+  flashStatus('Editing locked — Admin only');
+  document.getElementById('pendingReviewsBox').style.display = 'none';
+  const ordersVisible = document.getElementById('view-orders').style.display !== 'none';
+  const schedVisible = document.getElementById('view-schedule').style.display !== 'none';
+  if(ordersVisible || schedVisible){
+    activateView('partners', document.querySelector('#navTabs button[data-view="partners"]'));
+  }
+}
+
+function openAdminModal(onSuccess){
+  pendingAdminAction = onSuccess;
+  document.getElementById('adminModalErr').style.display = 'none';
+  const input = document.getElementById('adminPasscodeInput');
+  input.value = '';
+  input.type = 'password';
+  document.getElementById('adminPasscodeToggle').textContent = '👁';
+  document.getElementById('adminModalOverlay').style.display = 'flex';
+  setTimeout(()=>document.getElementById('adminPasscodeInput').focus(), 30);
+}
+document.getElementById('adminPasscodeToggle').addEventListener('click', ()=>{
+  const input = document.getElementById('adminPasscodeInput');
+  const btn = document.getElementById('adminPasscodeToggle');
+  if(input.type === 'password'){
+    input.type = 'text';
+    btn.textContent = '🙈';
+    btn.title = 'Hide passcode';
+  } else {
+    input.type = 'password';
+    btn.textContent = '👁';
+    btn.title = 'Show passcode';
+  }
+  input.focus();
+});
+function closeAdminModal(){
+  document.getElementById('adminModalOverlay').style.display = 'none';
+  pendingAdminAction = null;
+}
+let adminFailCount = 0;
+let adminLockoutUntil = 0;
+
+async function submitAdminPasscode(){
+  const errEl = document.getElementById('adminModalErr');
+  const now = Date.now();
+  if(now < adminLockoutUntil){
+    const secsLeft = Math.ceil((adminLockoutUntil - now) / 1000);
+    errEl.textContent = `Too many attempts. Try again in ${secsLeft}s.`;
+    errEl.style.display = 'block';
+    return;
+  }
+  const val = document.getElementById('adminPasscodeInput').value;
+  const submitBtn = document.getElementById('adminModalSubmit');
+  submitBtn.disabled = true;
+  const { error } = await sb.auth.signInWithPassword({ email: ADMIN_EMAIL, password: val });
+  submitBtn.disabled = false;
+  if(!error){
+    adminFailCount = 0;
+    unlockAdmin();
+    const action = pendingAdminAction;
+    closeAdminModal();
+    if(action) action();
+  } else {
+    adminFailCount++;
+    if(adminFailCount >= 5){
+      adminLockoutUntil = Date.now() + 30000; // 30s lockout after 5 bad tries
+      adminFailCount = 0;
+      errEl.textContent = 'Too many attempts. Try again in 30s.';
+    } else {
+      errEl.textContent = 'Incorrect passcode. Try again.';
+    }
+    errEl.style.display = 'block';
+  }
+}
+
+/* Block keyboard-focus edits (e.g. Tab key) while locked, as a backstop to the CSS. */
+document.addEventListener('focusin', (e)=>{
+  if(!adminUnlocked && e.target && e.target.isContentEditable){
+    e.target.blur();
+  }
+});
+
+document.getElementById('navTabs').addEventListener('click', (e)=>{
+  if(e.target.closest('#adminToggleBtn')){
+    document.getElementById('adminMenu').classList.toggle('open');
+    return;
+  }
+  if(e.target.closest('#adminEditToggleBtn')){
+    closeAdminDropdown();
+    if(adminUnlocked){
+      lockAdmin();
+    } else {
+      openAdminModal(()=>{});
+    }
+    return;
+  }
+  if(e.target.closest('#adminChangePassBtn')){
+    closeAdminDropdown();
+    if(!adminUnlocked){ alert('Unlock editing first, then you can change your passcode.'); return; }
+    const next = window.prompt('Enter a new passcode (min 6 characters):');
+    if(next && next.trim().length >= 6){
+      sb.auth.updateUser({ password: next.trim() }).then(({ error })=>{
+        if(error){ alert('Could not update passcode: ' + error.message); }
+        else{ alert('Passcode updated.'); }
+      });
+    } else if(next !== null){
+      alert('Passcode must be at least 6 characters.');
+    }
+    return;
+  }
+  const btn = e.target.closest('button[data-view]'); if(!btn) return;
+  const view = btn.dataset.view;
+  closeAdminDropdown();
+  if((view === 'orders' || view === 'schedule') && !adminUnlocked){
+    openAdminModal(()=> activateView(view));
+    return;
+  }
+  activateView(view, btn);
+});
+
+document.getElementById('adminModalCancel').addEventListener('click', closeAdminModal);
+document.getElementById('adminModalSubmit').addEventListener('click', submitAdminPasscode);
+document.getElementById('adminPasscodeInput').addEventListener('keydown', e=>{
+  if(e.key === 'Enter') submitAdminPasscode();
+});
+document.getElementById('adminModalOverlay').addEventListener('click', e=>{
+  if(e.target.id === 'adminModalOverlay') closeAdminModal();
+});
+document.addEventListener('click', (e)=>{
+  const menu = document.getElementById('adminMenu');
+  if(menu.classList.contains('open') && !menu.contains(e.target)) menu.classList.remove('open');
+});
+
+/* ---------------- STEM ICON ---------------- */
+const stemSVG = `<svg class="stem" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="4" fill="#C97B84" opacity="0.9"/><path d="M10 11 L10 18" stroke="#6E8F52" stroke-width="2" stroke-linecap="round"/></svg>`;
+
+document.getElementById('addPartnerBtn').addEventListener('click', ()=>{
+  state.partners.push({ id:newId('p'), name:'', address:'', link:'' });
+  renderPartners(); saveState();
+});
+
+/* ---------------- RENDER: PARTNERS ---------------- */
+function renderPartners(){
+  const grid = document.getElementById('partnersGrid');
+  grid.innerHTML = '';
+  state.partners.forEach((p, idx)=>{
+    const card = document.createElement('div');
+    card.className = 'partner-card';
+    card.innerHTML = `
+      <button class="partner-del" title="Remove partner">✕</button>
+      <span class="partner-num">Partner ${idx+1}</span>
+      <div class="partner-field-wrap">
+        <span class="partner-label">Name</span>
+        <div class="partner-field" contenteditable="true" data-placeholder="Partner name">${p.name}</div>
+      </div>
+      <div class="partner-field-wrap">
+        <span class="partner-label">Address</span>
+        <div class="partner-field" contenteditable="true" data-placeholder="Partner address">${p.address}</div>
+      </div>
+    `;
+    card.querySelector('.partner-del').addEventListener('click', ()=>{
+      state.partners = state.partners.filter(x=>x.id!==p.id);
+      renderPartners(); saveState();
+    });
+    const fields = card.querySelectorAll('.partner-field');
+    fields[0].addEventListener('blur', e=>{ p.name = e.target.textContent.trim(); saveState(); });
+    fields[1].addEventListener('blur', e=>{ p.address = e.target.textContent.trim(); saveState(); });
+    grid.appendChild(card);
+  });
+}
+
+/* ---------------- SCROLL REVEAL ---------------- */
+const revealObserver = ('IntersectionObserver' in window) ? new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('in-view');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold:0.1, rootMargin:'0px 0px -40px 0px' }) : null;
+function observeReveal(el){
+  if(revealObserver){ revealObserver.observe(el); }
+  else { el.classList.add('in-view'); }
+}
+
+/* ---------------- RENDER: TESTIMONIALS ---------------- */
+function renderTestimonials(){
+  const grid = document.getElementById('testimonialsGrid');
+  grid.innerHTML = '';
+  state.testimonials.forEach(t=>{
+    const card = document.createElement('div');
+    card.className = 'testimonial-card reveal';
+    const starsHtml = [1,2,3,4,5].map(n=>`<span class="star${n<=t.rating?' filled':''}" data-n="${n}">★</span>`).join('');
+    card.innerHTML = `
+      <button class="testimonial-del" title="Remove review">✕</button>
+      <div class="stars">${starsHtml}</div>
+      <div class="testimonial-quote" contenteditable="true">${t.quote}</div>
+      <div>
+        <div class="testimonial-name" contenteditable="true">${t.name}</div>
+        <div class="testimonial-role" contenteditable="true">${t.role}</div>
+      </div>
+    `;
+    card.querySelector('.testimonial-del').addEventListener('click', ()=>{
+      state.testimonials = state.testimonials.filter(x=>x.id!==t.id);
+      renderTestimonials(); saveState();
+    });
+    card.querySelectorAll('.stars .star').forEach(starEl=>{
+      starEl.addEventListener('click', ()=>{
+        t.rating = parseInt(starEl.dataset.n, 10);
+        renderTestimonials(); saveState();
+      });
+    });
+    card.querySelector('.testimonial-quote').addEventListener('blur', e=>{ t.quote = e.target.textContent.trim(); saveState(); });
+    card.querySelector('.testimonial-name').addEventListener('blur', e=>{ t.name = e.target.textContent.trim(); saveState(); });
+    card.querySelector('.testimonial-role').addEventListener('blur', e=>{ t.role = e.target.textContent.trim(); saveState(); });
+    grid.appendChild(card);
+    observeReveal(card);
+  });
+}
+document.getElementById('addTestimonialBtn').addEventListener('click', ()=>{
+  state.testimonials.push({ id:newId('t'), rating:5, quote:'New review — click to edit.', name:'Customer name', role:'Role or location' });
+  renderTestimonials(); saveState();
+});
+
+/* ---------------- LEAVE A REVIEW (public submission → pending_reviews table) ---------------- */
+(function(){
+  const modal = document.getElementById('review-form-modal');
+  const form = document.getElementById('review-inquiry-form');
+  const closeBtn = document.getElementById('review-form-close');
+  const cancelBtn = document.getElementById('review-form-cancel');
+  const submitBtn = document.getElementById('review-form-submit');
+  const successMsg = document.getElementById('review-form-success');
+  const errorMsg = document.getElementById('review-form-error');
+  const starsBox = document.getElementById('review-form-stars');
+  let formRating = 5;
+
+  function renderFormStars(){
+    starsBox.innerHTML = [1,2,3,4,5].map(n =>
+      `<span data-n="${n}" style="cursor:pointer; color:${n<=formRating ? 'var(--gold)' : '#ddd3ba'};">★</span>`
+    ).join('');
+    starsBox.querySelectorAll('span').forEach(s=>{
+      s.addEventListener('click', ()=>{ formRating = parseInt(s.dataset.n, 10); renderFormStars(); });
+    });
+  }
+
+  function openReviewForm(){
+    successMsg.style.display = 'none';
+    errorMsg.style.display = 'none';
+    form.reset();
+    formRating = 5;
+    renderFormStars();
+    modal.style.display = 'flex';
+  }
+  function closeReviewForm(){ modal.style.display = 'none'; }
+
+  document.getElementById('leaveReviewBtn').addEventListener('click', openReviewForm);
+  closeBtn.addEventListener('click', closeReviewForm);
+  cancelBtn.addEventListener('click', closeReviewForm);
+  modal.addEventListener('click', (e)=>{ if(e.target === modal) closeReviewForm(); });
+
+  form.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    submitBtn.textContent = 'Submitting…';
+    submitBtn.disabled = true;
+    successMsg.style.display = 'none';
+    errorMsg.style.display = 'none';
+    const fd = new FormData(form);
+    try{
+      const { error } = await sb.from('pending_reviews').insert({
+        rating: formRating,
+        quote: String(fd.get('quote') || '').trim(),
+        name: String(fd.get('name') || '').trim() || 'Customer',
+        role: String(fd.get('role') || '').trim(),
+      });
+      if(error) throw error;
+      successMsg.style.display = 'block';
+      form.reset();
+      submitBtn.textContent = 'Submit Review';
+      submitBtn.disabled = false;
+      setTimeout(closeReviewForm, 2500);
+      if(adminUnlocked) refreshPendingReviews();
+    }catch(err){
+      console.error('Review submit error:', err);
+      errorMsg.style.display = 'block';
+      submitBtn.textContent = 'Submit Review';
+      submitBtn.disabled = false;
+    }
+  });
+})();
+
+/* ---------------- ADMIN: PENDING REVIEWS QUEUE ---------------- */
+document.getElementById('refreshPendingBtn').addEventListener('click', refreshPendingReviews);
+async function refreshPendingReviews(){
+  const box = document.getElementById('pendingReviewsBox');
+  if(!adminUnlocked){ box.style.display = 'none'; return; }
+  try{
+    const { data, error } = await sb.from('pending_reviews').select('*').order('created_at', { ascending:true });
+    if(error){ console.error('Pending reviews load error:', error); box.style.display = 'none'; return; }
+    renderPendingReviews(data || []);
+  }catch(err){
+    console.error('Pending reviews load exception:', err);
+  }
+}
+
+function renderPendingReviews(rows){
+  const box = document.getElementById('pendingReviewsBox');
+  const list = document.getElementById('pendingReviewsList');
+  const countEl = document.getElementById('pendingReviewsCount');
+  if(!rows.length){ box.style.display = 'none'; list.innerHTML = ''; return; }
+  box.style.display = 'block';
+  countEl.textContent = `${rows.length} new review${rows.length===1?'':'s'} to approve`;
+  list.innerHTML = '';
+  rows.forEach(row=>{
+    const stars = '★★★★★☆☆☆☆☆'.slice(5 - row.rating, 10 - row.rating);
+    const item = document.createElement('div');
+    item.style.cssText = 'background:#fff; border:1px solid var(--line); border-radius:6px; padding:14px 16px; display:flex; flex-direction:column; gap:6px;';
+    item.innerHTML = `
+      <div style="color:var(--gold); font-size:13px;">${stars}</div>
+      <div style="font-family:'Fraunces',serif; font-style:italic; font-size:14px; color:var(--forest-deep); line-height:1.5;"></div>
+      <div style="font-size:12.5px; font-weight:600; color:var(--leaf);"></div>
+      <div style="display:flex; gap:8px; margin-top:6px;">
+        <button class="btn ghost small pending-approve" type="button" style="color:#2e5c1a; border-color:#a8d48a; background:#f0f8e8;">✓ Approve &amp; publish</button>
+        <button class="btn ghost small pending-reject" type="button" style="color:#8c2020; border-color:#e4a0a0; background:#fdf0f0;">✕ Discard</button>
+      </div>
+    `;
+    item.children[1].textContent = row.quote;
+    item.children[2].textContent = row.name + (row.role ? ' — ' + row.role : '');
+    item.querySelector('.pending-approve').addEventListener('click', async ()=>{
+      state.testimonials.push({ id:newId('t'), rating:row.rating, quote:row.quote, name:row.name, role:row.role || 'Customer' });
+      renderTestimonials(); saveState();
+      await sb.from('pending_reviews').delete().eq('id', row.id);
+      refreshPendingReviews();
+    });
+    item.querySelector('.pending-reject').addEventListener('click', async ()=>{
+      await sb.from('pending_reviews').delete().eq('id', row.id);
+      refreshPendingReviews();
+    });
+    list.appendChild(item);
+  });
+}
+
+/* ---------------- RENDER: HOW TO ORDER ---------------- */
+function renderHowTo(){
+  const grid = document.getElementById('howToGrid');
+  grid.innerHTML = '';
+  state.howToSteps.forEach((step, idx)=>{
+    const card = document.createElement('div');
+    card.className = 'care-card reveal';
+    card.innerHTML = `
+      <button class="care-tip-del" title="Remove step">✕</button>
+      <div class="care-num">${idx+1}</div>
+      <div class="care-body">
+        <div class="care-title" contenteditable="true">${step.title}</div>
+        <div class="care-desc" contenteditable="true">${step.desc}</div>
+      </div>
+    `;
+    card.querySelector('.care-tip-del').addEventListener('click', ()=>{
+      state.howToSteps = state.howToSteps.filter(x=>x.id!==step.id);
+      renderHowTo(); saveState();
+    });
+    card.querySelector('.care-title').addEventListener('blur', e=>{ step.title = e.target.textContent.trim(); saveState(); });
+    card.querySelector('.care-desc').addEventListener('blur', e=>{ step.desc = e.target.textContent.trim(); saveState(); });
+    grid.appendChild(card);
+    observeReveal(card);
+  });
+}
+document.getElementById('addHowToBtn').addEventListener('click', ()=>{
+  state.howToSteps.push({ id:newId('ho'), title:'New step', desc:'Click to add a description.' });
+  renderHowTo(); saveState();
+});
+
+/* ---------------- RENDER: CARE TIPS ---------------- */
+function renderCareTips(){
+  const grid = document.getElementById('careGrid');
+  grid.innerHTML = '';
+  state.careTips.forEach((tip, idx)=>{
+    const card = document.createElement('div');
+    card.className = 'care-card reveal';
+    card.innerHTML = `
+      <button class="care-tip-del" title="Remove tip">✕</button>
+      <div class="care-num">${idx+1}</div>
+      <div class="care-body">
+        <div class="care-title" contenteditable="true">${tip.title}</div>
+        <div class="care-desc" contenteditable="true">${tip.desc}</div>
+      </div>
+    `;
+    card.querySelector('.care-tip-del').addEventListener('click', ()=>{
+      state.careTips = state.careTips.filter(x=>x.id!==tip.id);
+      renderCareTips(); saveState();
+    });
+    card.querySelector('.care-title').addEventListener('blur', e=>{ tip.title = e.target.textContent.trim(); saveState(); });
+    card.querySelector('.care-desc').addEventListener('blur', e=>{ tip.desc = e.target.textContent.trim(); saveState(); });
+    grid.appendChild(card);
+    observeReveal(card);
+  });
+}
+document.getElementById('addCareTipBtn').addEventListener('click', ()=>{
+  state.careTips.push({ id:newId('ct'), title:'New tip', desc:'Click to add a description.' });
+  renderCareTips(); saveState();
+});
+
+/* ---------------- RENDER: FAQ ---------------- */
+function renderFaqs(){
+  const list = document.getElementById('faqList');
+  list.innerHTML = '';
+  state.faqs.forEach(f=>{
+    const item = document.createElement('div');
+    item.className = 'faq-item reveal' + (f.open ? ' open' : '');
+    item.innerHTML = `
+      <button class="faq-del" title="Remove question">✕</button>
+      <div class="faq-q">
+        <span class="faq-q-text" contenteditable="true">${f.q}</span>
+        <span class="faq-caret">▾</span>
+      </div>
+      <div class="faq-a-wrap"><div class="faq-a" contenteditable="true">${f.a}</div></div>
+    `;
+    item.querySelector('.faq-del').addEventListener('click', (e)=>{
+      e.stopPropagation();
+      state.faqs = state.faqs.filter(x=>x.id!==f.id);
+      renderFaqs(); saveState();
+    });
+    item.querySelector('.faq-q').addEventListener('click', (e)=>{
+      if(adminUnlocked && e.target.closest('.faq-q-text')) return;
+      f.open = !f.open;
+      item.classList.toggle('open', f.open);
+      // NOTE: intentionally not calling saveState() here — the open/closed state
+      // of a question is per-visitor UI state, not shared site content. Every
+      // visitor should land on all-questions-collapsed, regardless of what
+      // anyone else (or the admin) last had expanded.
+    });
+    item.querySelector('.faq-q-text').addEventListener('blur', e=>{ f.q = e.target.textContent.trim(); saveState(); });
+    item.querySelector('.faq-a').addEventListener('blur', e=>{ f.a = e.target.textContent.trim(); saveState(); });
+    item.querySelector('.faq-a').addEventListener('click', e=>e.stopPropagation());
+    list.appendChild(item);
+    observeReveal(item);
+  });
+}
+document.getElementById('addFaqBtn').addEventListener('click', ()=>{
+  state.faqs.push({ id:newId('fq'), q:'New question', a:'Click to add the answer.', open:false });
+  renderFaqs(); saveState();
+});
+
+/* ---------------- RENDER: CATEGORIES ---------------- */
+function renderCats(){
+  const row = document.getElementById('catRow');
+  row.innerHTML = '';
+  state.categories.forEach(cat=>{
+    const count = state.items.filter(i=>i.cat===cat.id).length;
+    const pill = document.createElement('button');
+    pill.className = 'cat-pill' + (state.activeCat===cat.id ? ' active' : '');
+    pill.innerHTML = `<span contenteditable="true" class="catname">${cat.name}</span><span class="count">${count}</span><span class="cat-del" title="Delete category">✕</span>`;
+    pill.addEventListener('click', (e)=>{
+      if(e.target.classList.contains('catname') || e.target.classList.contains('cat-del')) return;
+      state.activeCat = cat.id;
+      document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));
+      e.currentTarget.classList.add('active');
+      renderItems();
+      saveState();
+    });
+    const nameEl = pill.querySelector('.catname');
+    nameEl.addEventListener('click', e=>e.stopPropagation());
+    nameEl.addEventListener('blur', async ()=>{
+      const newName = nameEl.textContent.trim() || cat.name;
+      cat.name = newName;
+      saveState();
+      const { error } = await sb.from('categories').update({ name: newName }).eq('id', cat.id);
+      if(error){ console.error('Category rename failed:', error); flashStatus('Sync failed — check connection', 3000); }
+    });
+    const delEl = pill.querySelector('.cat-del');
+    delEl.addEventListener('click', async (e)=>{
+      e.stopPropagation();
+      if(state.categories.length <= 1){ alert("You need at least one category."); return; }
+      const msg = count > 0
+        ? `Delete "${cat.name}" and its ${count} item${count===1?'':'s'}? This can't be undone.`
+        : `Delete "${cat.name}"? This can't be undone.`;
+      if(!confirm(msg)) return;
+      const { error } = await sb.from('categories').delete().eq('id', cat.id);
+      if(error){ alert('Could not delete category: ' + error.message); return; }
+      state.categories = state.categories.filter(c=>c.id!==cat.id);
+      state.items = state.items.filter(i=>i.cat!==cat.id);
+      if(state.activeCat === cat.id) state.activeCat = state.categories[0].id;
+      renderItems();
+      renderCats();
+      saveState();
+    });
+    row.appendChild(pill);
+  });
+}
+
+/* ---------------- RENDER: ITEMS ---------------- */
+function renderItems(){
+  const grid = document.getElementById('itemGrid');
+  grid.innerHTML = '';
+  const items = state.items.filter(i=>i.cat===state.activeCat);
+  items.forEach(item=>{
+    const card = document.createElement('div');
+    card.className = 'card reveal';
+    card.innerHTML = `
+      ${stemSVG}
+      <button class="card-del" title="Delete entire entry (photo, name, description &amp; order number)">✕</button>
+      <label class="card-img">
+        ${item.img ? `<img src="${item.img}"><button type="button" class="img-del" title="Remove photo">✕</button>` : `<span class="upload-hint">click to<br>upload photo</span>`}
+        <input type="file" accept="image/*">
+      </label>
+      <div class="card-body">
+        <div class="name" contenteditable="true">${item.name}</div>
+        <div class="desc" contenteditable="true">${item.desc}</div>
+        <div class="order-number">Order No: ${item.orderNumber}</div>
+      </div>
+    `;
+    card.querySelector('.card-del').addEventListener('click', async ()=>{
+      const { error } = await sb.from('catalog_items').delete().eq('id', item.id);
+      if(error){ alert('Could not delete item: ' + error.message); return; }
+      state.items = state.items.filter(i=>i.id!==item.id);
+      renderItems();
+      renderCats();
+      saveState();
+    });
+    card.querySelector('.name').addEventListener('blur', async e=>{
+      item.name = e.target.textContent.trim();
+      saveState();
+      const { error } = await sb.from('catalog_items').update({ name: item.name }).eq('id', item.id);
+      if(error){ console.error('Item name sync failed:', error); flashStatus('Sync failed — check connection', 3000); }
+    });
+    card.querySelector('.desc').addEventListener('blur', async e=>{
+      item.desc = e.target.textContent.trim();
+      saveState();
+      const { error } = await sb.from('catalog_items').update({ description: item.desc }).eq('id', item.id);
+      if(error){ console.error('Item description sync failed:', error); flashStatus('Sync failed — check connection', 3000); }
+    });
+    const fileInput = card.querySelector('input[type=file]');
+    fileInput.addEventListener('change', async (e)=>{
+      const file = e.target.files[0]; if(!file) return;
+      flashStatus('Uploading photo…');
+      const ext = (file.name.split('.').pop() || 'jpg').toLowerCase();
+      const path = `${item.id}-${Date.now()}.${ext}`;
+      const { error: upErr } = await sb.storage.from('product-images').upload(path, file, { upsert: true });
+      if(upErr){
+        console.error('Photo upload error:', upErr);
+        flashStatus('Upload failed', 4000);
+        if(isAuthError(upErr)){
+          adminUnlocked = false;
+          document.body.classList.remove('admin-mode');
+          updateAdminEditLabel();
+          showStateSyncBanner('Your admin session expired, so the photo could not be uploaded. Click Admin → Enable editing to log back in, then try again. (' + describeError(upErr) + ')');
+        } else {
+          showStateSyncBanner('Photo upload failed. (' + describeError(upErr) + ')');
+        }
+        return;
+      }
+      const { data: pub } = sb.storage.from('product-images').getPublicUrl(path);
+      item.img = pub.publicUrl;
+      const { error: dbErr } = await sb.from('catalog_items').update({ image_url: item.img }).eq('id', item.id);
+      if(dbErr){ console.error('Image URL sync failed:', dbErr); }
+      renderItems();
+      saveState();
+    });
+    const imgDelBtn = card.querySelector('.img-del');
+    if(imgDelBtn){
+      imgDelBtn.addEventListener('click', async (e)=>{
+        e.preventDefault(); e.stopPropagation();
+        item.img = '';
+        const { error } = await sb.from('catalog_items').update({ image_url: null }).eq('id', item.id);
+        if(error){ console.error('Image removal sync failed:', error); }
+        renderItems(); saveState();
+      });
+    }
+    grid.appendChild(card);
+    observeReveal(card);
+  });
+  const addCard = document.createElement('div');
+  addCard.className = 'add-card reveal';
+  addCard.innerHTML = `<span class="plus">+</span><span>Add flower</span>`;
+  addCard.addEventListener('click', async ()=>{
+    const newItem = { id:newId('i'), cat:state.activeCat, name:'New Item', desc:'Add a description', price:'₱0', img:'', orderNumber:nextOrderNumber() };
+    const { error } = await sb.from('catalog_items').insert({
+      id: newItem.id, category_id: newItem.cat, name: newItem.name, description: newItem.desc,
+      price: newItem.price, order_number: newItem.orderNumber, image_url: null,
+    });
+    if(error){ alert('Could not add item: ' + error.message); return; }
+    state.items.push(newItem);
+    renderItems();
+    renderCats();
+    saveState();
+  });
+  grid.appendChild(addCard);
+  observeReveal(addCard);
+
+  /* ---- Bulk add: pick a whole folder of photos at once, one new card per photo ---- */
+  const bulkAddCard = document.createElement('div');
+  bulkAddCard.className = 'add-card reveal bulk-add-card';
+  bulkAddCard.innerHTML = `<span class="plus">⇪</span><span>Bulk add photos</span><input type="file" accept="image/*" multiple style="display:none">`;
+  const bulkInput = bulkAddCard.querySelector('input[type=file]');
+  bulkAddCard.addEventListener('click', ()=> bulkInput.click());
+  bulkInput.addEventListener('change', async (e)=>{
+    const files = Array.from(e.target.files || []);
+    bulkInput.value = ''; // reset so picking the same folder again still fires 'change'
+    if(!files.length) return;
+    const targetCat = state.activeCat;
+    let ok = 0, failed = 0;
+    for(let i=0;i<files.length;i++){
+      const file = files[i];
+      flashStatus(`Uploading ${i+1} of ${files.length}…`);
+      // Turn "pink-rose-bouquet.jpg" into "Pink Rose Bouquet" as a starting name — editable after.
+      const rawName = file.name.replace(/\.[^.]+$/, '').replace(/[_-]+/g, ' ').trim();
+      const niceName = rawName.replace(/\b\w/g, c => c.toUpperCase()) || 'New Item';
+      const newItem = { id:newId('i'), cat:targetCat, name:niceName, desc:'Add a description', price:'₱0', img:'', orderNumber:nextOrderNumber() };
+      const { error: insErr } = await sb.from('catalog_items').insert({
+        id: newItem.id, category_id: newItem.cat, name: newItem.name, description: newItem.desc,
+        price: newItem.price, order_number: newItem.orderNumber, image_url: null,
+      });
+      if(insErr){ console.error('Bulk add: item insert failed for', file.name, insErr); failed++; continue; }
+      const ext = (file.name.split('.').pop() || 'jpg').toLowerCase();
+      const path = `${newItem.id}-${Date.now()}-${i}.${ext}`;
+      const { error: upErr } = await sb.storage.from('product-images').upload(path, file, { upsert:true });
+      if(upErr){
+        console.error('Bulk add: photo upload failed for', file.name, upErr);
+        failed++;
+        state.items.push(newItem); // card is created even if the photo failed, so nothing is silently lost
+        if(isAuthError(upErr)){
+          adminUnlocked = false;
+          document.body.classList.remove('admin-mode');
+          updateAdminEditLabel();
+          showStateSyncBanner('Your admin session expired partway through the bulk upload. Click Admin → Enable editing to log back in, then re-select the remaining photos. (' + describeError(upErr) + ')');
+          break; // no point continuing — every remaining upload will fail the same way
+        }
+        continue;
+      }
+      const { data: pub } = sb.storage.from('product-images').getPublicUrl(path);
+      newItem.img = pub.publicUrl;
+      const { error: imgErr } = await sb.from('catalog_items').update({ image_url: newItem.img }).eq('id', newItem.id);
+      if(imgErr) console.error('Bulk add: image url sync failed for', file.name, imgErr);
+      state.items.push(newItem);
+      ok++;
+    }
+    renderItems();
+    renderCats();
+    saveState();
+    flashStatus(failed ? `Added ${ok} of ${files.length} — ${failed} failed, check console` : `Added ${ok} photo${ok===1?'':'s'}`, 4000);
+  });
+  grid.appendChild(bulkAddCard);
+  observeReveal(bulkAddCard);
+}
+
+/* ---------------- ADD TO ORDER: micro-interaction ---------------- */
+let orderCount = 0;
+function handleAddToOrder(item, btn){
+  btn.classList.remove('pulse');
+  void btn.offsetWidth; // restart animation
+  btn.classList.add('pulse');
+  setTimeout(()=>btn.classList.remove('pulse'), 460);
+
+  const foot = btn.closest('.card-foot');
+  const float = document.createElement('span');
+  float.className = 'float-add';
+  float.textContent = '+1 ✿';
+  foot.appendChild(float);
+  setTimeout(()=>float.remove(), 900);
+
+  orderCount++;
+  const badge = document.getElementById('orderCountBadge');
+  badge.textContent = orderCount;
+  badge.style.display = 'inline-block';
+
+  showToast(`Added "${item.name}" to your order`);
+}
+
+let toastTimer = null;
+function showToast(msg){
+  let toast = document.getElementById('appToast');
+  if(!toast){
+    toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.id = 'appToast';
+    document.body.appendChild(toast);
+  }
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>toast.classList.remove('show'), 2200);
+}
+
+
+document.getElementById('addCatBtn').addEventListener('click', async ()=>{
+  const cat = { id:newId('c'), name:'New Category' };
+  const { error } = await sb.from('categories').insert({ id: cat.id, name: cat.name, sort_order: state.categories.length });
+  if(error){ alert('Could not create category: ' + error.message); return; }
+  state.categories.push(cat);
+  state.activeCat = cat.id;
+  renderCats(); renderItems(); saveState();
+});
+
+/* ---------------- RENDER: ORDERS ---------------- */
+function statusClass(s){ return { new:'st-new', progress:'st-progress', ready:'st-ready', done:'st-done', cancelled:'st-cancelled' }[s]; }
+
+function renderOrders(){
+  const body = document.getElementById('ordersBody');
+  body.innerHTML = '';
+  state.orders.forEach(o=>{
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td data-label="Customer" contenteditable="true">${o.customer}</td>
+      <td data-label="Item" contenteditable="true">${o.item}</td>
+      <td data-label="Qty" contenteditable="true" class="mono">${o.qty}</td>
+      <td data-label="Address" contenteditable="true" class="address-col">${o.address||''}</td>
+      <td data-label="Due"><input type="date" value="${o.due}" style="font-family:'JetBrains Mono',monospace;font-size:12.5px;border:1px solid var(--line);border-radius:6px;padding:5px 8px;background:#2a2a2a;color:#fff;"></td>
+      <td data-label="Status">
+        <select class="status-select ${statusClass(o.status)}">
+          <option value="new" ${o.status==='new'?'selected':''}>New</option>
+          <option value="progress" ${o.status==='progress'?'selected':''}>In progress</option>
+          <option value="ready" ${o.status==='ready'?'selected':''}>Ready</option>
+          <option value="done" ${o.status==='done'?'selected':''}>Delivered</option>
+          <option value="cancelled" ${o.status==='cancelled'?'selected':''}>Cancelled</option>
+        </select>
+      </td>
+      <td data-label=""><button class="row-del">✕</button></td>
+    `;
+    tr.querySelectorAll('td[contenteditable]')[0].addEventListener('blur', e=>{ o.customer = e.target.textContent.trim(); saveState(); });
+    tr.querySelectorAll('td[contenteditable]')[1].addEventListener('blur', e=>{ o.item = e.target.textContent.trim(); saveState(); });
+    tr.querySelectorAll('td[contenteditable]')[2].addEventListener('blur', e=>{ o.qty = e.target.textContent.trim(); saveState(); });
+    tr.querySelectorAll('td[contenteditable]')[3].addEventListener('blur', e=>{ o.address = e.target.textContent.trim(); saveState(); });
+    tr.querySelector('input[type=date]').addEventListener('change', e=>{ o.due = e.target.value; saveState(); });
+    const sel = tr.querySelector('select');
+    sel.addEventListener('change', e=>{
+      o.status = e.target.value;
+      sel.className = 'status-select ' + statusClass(o.status);
+      saveState();
+    });
+    tr.querySelector('.row-del').addEventListener('click', ()=>{
+      state.orders = state.orders.filter(x=>x.id!==o.id);
+      renderOrders(); saveState();
+    });
+    body.appendChild(tr);
+  });
+}
+
+document.getElementById('addOrderBtn').addEventListener('click', ()=>{
+  state.orders.push({ id:newId('o'), customer:'New Customer', item:'Item', qty:1, address:'', due:new Date().toISOString().slice(0,10), status:'new' });
+  renderOrders(); saveState();
+});
+
+/* ---------------- RENDER: SCHEDULE ---------------- */
+function renderSchedule(){
+  const list = document.getElementById('schedList');
+  list.innerHTML = '';
+  const sorted = [...state.schedule].sort((a,b)=> (a.date+a.time).localeCompare(b.date+b.time));
+  sorted.forEach(s=>{
+    const row = document.createElement('div');
+    row.className = 'sched-row';
+    const dateObj = new Date(s.date+'T00:00:00');
+    const dateLabel = isNaN(dateObj) ? s.date : dateObj.toLocaleDateString('en-US',{month:'short', day:'numeric'});
+    row.innerHTML = `
+      <input type="date" value="${s.date}" class="sched-date" style="border:none;background:transparent;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--forest-deep);font-weight:500;">
+      <input type="time" value="${s.time}" class="sched-time" style="border:none;background:transparent;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--leaf);">
+      <div class="sched-task" contenteditable="true">${s.task}</div>
+      <select class="tag-select">
+        <option value="sourcing" ${s.tag==='sourcing'?'selected':''}>Sourcing</option>
+        <option value="delivery" ${s.tag==='delivery'?'selected':''}>Delivery</option>
+        <option value="shop" ${s.tag==='shop'?'selected':''}>Shop task</option>
+        <option value="market" ${s.tag==='market'?'selected':''}>Market</option>
+        <option value="success" ${s.tag==='success'?'selected':''}>Success</option>
+      </select>
+      <button class="row-del">✕</button>
+    `;
+    row.querySelector('input[type=date]').addEventListener('change', e=>{ s.date = e.target.value; saveState(); });
+    row.querySelector('input[type=time]').addEventListener('change', e=>{ s.time = e.target.value; saveState(); });
+    row.querySelector('.sched-task').addEventListener('blur', e=>{ s.task = e.target.textContent.trim(); saveState(); });
+    row.querySelector('.tag-select').addEventListener('change', e=>{ s.tag = e.target.value; saveState(); });
+    row.querySelector('.row-del').addEventListener('click', ()=>{
+      state.schedule = state.schedule.filter(x=>x.id!==s.id);
+      renderSchedule(); saveState();
+    });
+    list.appendChild(row);
+  });
+}
+
+document.getElementById('addSchedBtn').addEventListener('click', ()=>{
+  state.schedule.push({ id:newId('s'), date:new Date().toISOString().slice(0,10), time:'09:00', task:'New task', tag:'shop' });
+  renderSchedule(); saveState();
+});
+
+/* ---------------- GARDEN AMBIANCE: drifting petals ---------------- */
+(function spawnPetals(){
+  const layer = document.getElementById('petalsLayer');
+  const svgNS = 'http://www.w3.org/2000/svg';
+  const variants = [
+    { sym:'#blossom', color:'var(--lavender)' },
+    { sym:'#blossom', color:'var(--blush)' },
+    { sym:'#blossom', color:'var(--marigold)' },
+    { sym:'#rose', color:'var(--rose-red)' },
+    { sym:'#rose', color:'var(--rose-yellow)' },
+  ];
+  const count = window.innerWidth < 720 ? 8 : 14;
+  for(let i=0;i<count;i++){
+    const size = 12 + Math.random()*14;
+    const left = Math.random()*100;
+    const duration = 16 + Math.random()*14;
+    const delay = Math.random()*-30;
+    const drift = (Math.random()*120 - 60).toFixed(0) + 'px';
+    const variant = variants[Math.floor(Math.random()*variants.length)];
+
+    const p = document.createElementNS(svgNS, 'svg');
+    p.setAttribute('viewBox', '-12 -12 24 24');
+    p.setAttribute('width', size);
+    p.setAttribute('height', size);
+    p.classList.add('petal');
+    p.style.left = left + 'vw';
+    p.style.animationDuration = duration + 's';
+    p.style.animationDelay = delay + 's';
+    p.style.setProperty('--drift', drift);
+
+    const use = document.createElementNS(svgNS, 'use');
+    use.setAttribute('href', variant.sym);
+    use.setAttribute('fill', variant.color);
+    p.appendChild(use);
+    layer.appendChild(p);
+  }
+})();
+
+/* ---------------- GARDEN AMBIANCE: flying butterflies ---------------- */
+(function spawnButterflies(){
+  const layer = document.getElementById('butterfliesLayer');
+  const svgNS = 'http://www.w3.org/2000/svg';
+  const colorPairs = [
+    ['#E8792B', '#3A2213'], // monarch orange / dark brown
+    ['#4A7FC9', '#1E2F52'], // morpho blue / deep navy
+    ['#F2C230', '#2E2410'], // swallowtail yellow / near-black
+    ['#B23E33', '#5B1712'], // admiral red / maroon
+    ['#9B8AC4', '#5B4467'], // lavender / plum
+    ['#E8A6B0', '#B23E33'], // blush / rose-red
+    ['#E3A857', '#C6902A'], // marigold / rose-yellow-deep
+    ['#9BC97A', '#3E5A2C'], // leaf-bright / deep forest
+    ['#C9A24B', '#E3B23C'], // gold / rose-yellow
+    ['#59C7C0', '#1E4A46'], // teal / deep teal
+    ['#E85D8A', '#5B1A38'], // magenta pink / deep wine
+    ['#EDEDED', '#3A3A3A'], // cabbage white / charcoal
+  ];
+  const shuffled = [...colorPairs].sort(()=>Math.random()-0.5);
+  const isMobile = window.innerWidth < 720;
+
+  function wingMarkup(c1, c2){
+    return `
+      <g class="wing left" data-fill1 data-fill2>
+        <path d="M0,-1.2 C-2.5,-5.5 -7,-9.5 -11.5,-9 C-14.5,-8.6 -14.5,-4.6 -12,-2.4 C-9.5,-0.3 -3.5,-0.4 0,-1.2 Z" fill="${c1}" class="wf1"/>
+        <path d="M0,1 C-2,4.5 -6.5,8.3 -9.8,7.4 C-12,6.8 -11.6,3 -8.6,1.2 C-6,-0.3 -2.4,0.2 0,1 Z" fill="${c2}" class="wf2"/>
+        <path d="M0,-1.2 C-3.5,-3 -8,-5 -11.5,-8.4" stroke="#2a1f18" stroke-width="0.22" fill="none" opacity="0.45"/>
+        <path d="M0,0.4 C-3,1.6 -6.5,3.6 -9,6.4" stroke="#2a1f18" stroke-width="0.2" fill="none" opacity="0.4"/>
+        <ellipse cx="-9.4" cy="-5.4" rx="1.1" ry="0.85" fill="#fbf6ea" opacity="0.88"/>
+        <ellipse cx="-6.6" cy="-2.6" rx="0.6" ry="0.5" fill="#fbf6ea" opacity="0.7"/>
+        <ellipse cx="-7.6" cy="4.2" rx="0.85" ry="0.7" fill="#fbf6ea" opacity="0.75"/>
+      </g>
+      <g class="wing right">
+        <path d="M0,-1.2 C2.5,-5.5 7,-9.5 11.5,-9 C14.5,-8.6 14.5,-4.6 12,-2.4 C9.5,-0.3 3.5,-0.4 0,-1.2 Z" fill="${c1}" class="wf1"/>
+        <path d="M0,1 C2,4.5 6.5,8.3 9.8,7.4 C12,6.8 11.6,3 8.6,1.2 C6,-0.3 2.4,0.2 0,1 Z" fill="${c2}" class="wf2"/>
+        <path d="M0,-1.2 C3.5,-3 8,-5 11.5,-8.4" stroke="#2a1f18" stroke-width="0.22" fill="none" opacity="0.45"/>
+        <path d="M0,0.4 C3,1.6 6.5,3.6 9,6.4" stroke="#2a1f18" stroke-width="0.2" fill="none" opacity="0.4"/>
+        <ellipse cx="9.4" cy="-5.4" rx="1.1" ry="0.85" fill="#fbf6ea" opacity="0.88"/>
+        <ellipse cx="6.6" cy="-2.6" rx="0.6" ry="0.5" fill="#fbf6ea" opacity="0.7"/>
+        <ellipse cx="7.6" cy="4.2" rx="0.85" ry="0.7" fill="#fbf6ea" opacity="0.75"/>
+      </g>
+      <path d="M-0.9,-1 C-1.1,2 -1,5 0,7.4 C1,5 1.1,2 0.9,-1 C0.6,-2.6 -0.6,-2.6 -0.9,-1 Z" fill="#2a1f18"/>
+      <ellipse cx="0" cy="-2.6" rx="0.95" ry="1.9" fill="#241a13"/>
+      <circle cx="0" cy="-5.3" r="0.95" fill="#241a13"/>
+      <path d="M-0.3,-6 C-1,-7.6 -2.2,-8.8 -3.3,-10.2" stroke="#241a13" stroke-width="0.38" fill="none" stroke-linecap="round"/>
+      <path d="M0.3,-6 C1,-7.6 2.2,-8.8 3.3,-10.2" stroke="#241a13" stroke-width="0.38" fill="none" stroke-linecap="round"/>
+      <circle cx="-3.3" cy="-10.2" r="0.48" fill="#241a13"/>
+      <circle cx="3.3" cy="-10.2" r="0.48" fill="#241a13"/>
+    `;
+  }
+
+  function makeButterfly({size, top, duration, delay, bobDur, bobDelay, rise, bob, c1, c2, flapSpeed}){
+    const b = document.createElementNS(svgNS, 'svg');
+    b.setAttribute('viewBox', '-16 -12 32 24');
+    b.setAttribute('width', size);
+    b.setAttribute('height', size * 0.75);
+    b.classList.add('butterfly');
+    b.style.top = top + 'vh';
+    b.style.animationDuration = `${duration}s, ${bobDur}s`;
+    b.style.animationDelay = `${delay}s, ${bobDelay}s`;
+    b.style.setProperty('--rise', rise + 'px');
+    b.style.setProperty('--bob', '-' + bob + 'px');
+    b.innerHTML = wingMarkup(c1, c2);
+    b.querySelectorAll('.wing').forEach(w => w.style.animationDuration = flapSpeed + 's');
+    return b;
+  }
+
+  if (isMobile){
+    // Mobile: a single butterfly on screen at a time, changing to a
+    // fresh color from the palette every time it completes a lap.
+    const duration = 13;
+    let colorIdx = 0;
+    const [c1, c2] = shuffled[0];
+    const b = makeButterfly({
+      size: 52, top: 14 + Math.random()*50, duration, delay: 0,
+      bobDur: 1.9, bobDelay: 0, rise: (Math.random()*100-50).toFixed(0),
+      bob: (12 + Math.random()*14).toFixed(0), c1, c2, flapSpeed: 0.28
+    });
+    b.addEventListener('animationiteration', (e) => {
+      if (e.animationName !== 'fly-across') return;
+      colorIdx = (colorIdx + 1) % shuffled.length;
+      const [nc1, nc2] = shuffled[colorIdx];
+      b.querySelectorAll('.wf1').forEach(p => p.setAttribute('fill', nc1));
+      b.querySelectorAll('.wf2').forEach(p => p.setAttribute('fill', nc2));
+      b.style.top = (14 + Math.random()*50) + 'vh';
+    });
+    layer.appendChild(b);
+  } else {
+    const count = 6;
+    for(let i=0;i<count;i++){
+      const size = 42 + Math.random()*22;
+      const top = 6 + Math.random()*68;
+      const duration = 15 + Math.random()*14;
+      const delay = Math.random()*-24;
+      const bobDur = 1.6 + Math.random()*1.4;
+      const bobDelay = Math.random()*-3;
+      const rise = (Math.random()*120 - 60).toFixed(0);
+      const bob = (10 + Math.random()*18).toFixed(0);
+      const [c1, c2] = shuffled[i % shuffled.length];
+      const flapSpeed = (0.22 + Math.random()*0.18).toFixed(2);
+      layer.appendChild(makeButterfly({size, top, duration, delay, bobDur, bobDelay, rise, bob, c1, c2, flapSpeed}));
+    }
+  }
+})();
+
+/* ---------------- GARDEN AMBIANCE: flying bees ---------------- */
+(function spawnBees(){
+  const layer = document.getElementById('beesLayer');
+  const svgNS = 'http://www.w3.org/2000/svg';
+  // Fantasy-garden bee color variants: [stripe color, body base color]
+  const colorPairs = [
+    ['#2E2410', '#F2C230'], // classic black / honey yellow
+    ['#3A2213', '#E8792B'], // dark brown / amber orange
+    ['#1E2F52', '#4A7FC9'], // navy / sky blue "bumble"
+    ['#5B1712', '#E85D8A'], // maroon / magenta pink
+    ['#3E5A2C', '#9BC97A'], // deep forest / leaf green
+    ['#5B4467', '#9B8AC4'], // plum / lavender
+    ['#8A6200', '#E3B23C'], // amber-brown / gold
+    ['#1E4A46', '#59C7C0'], // deep teal / teal
+  ];
+  const shuffled = [...colorPairs].sort(()=>Math.random()-0.5);
+  const count = window.innerWidth < 720 ? 4 : 5;
+  for(let i=0;i<count;i++){
+    const size = 20 + Math.random()*10;
+    const top = 10 + Math.random()*70;
+    const duration = 10 + Math.random()*8; // bees zip across faster than butterflies
+    // Interleave bees between butterflies in time rather than all starting together.
+    const delay = -(i * 3 + Math.random()*3);
+    const bobDur = 0.9 + Math.random()*0.6;
+    const bobDelay = Math.random()*-2;
+    const rise = (Math.random()*90 - 45).toFixed(0);
+    const bob = (8 + Math.random()*10).toFixed(0);
+    const [stripe, base] = shuffled[i % shuffled.length];
+
+    const b = document.createElementNS(svgNS, 'svg');
+    b.setAttribute('viewBox', '-10 -8 20 16');
+    b.setAttribute('width', size);
+    b.setAttribute('height', size * 0.8);
+    b.classList.add('bee');
+    b.style.top = top + 'vh';
+    b.style.animationDuration = `${duration}s, ${bobDur}s`;
+    b.style.animationDelay = `${delay}s, ${bobDelay}s`;
+    b.style.setProperty('--rise', rise + 'px');
+    b.style.setProperty('--bob', '-' + bob + 'px');
+    b.innerHTML = `
+      <g class="wing" style="opacity:0.75;">
+        <ellipse cx="-1.2" cy="-2.6" rx="2.6" ry="1.7" fill="#fbf6ea" opacity="0.75" transform="rotate(-18 -1.2 -2.6)"/>
+        <ellipse cx="1.6" cy="-2.6" rx="2.6" ry="1.7" fill="#fbf6ea" opacity="0.75" transform="rotate(18 1.6 -2.6)"/>
+      </g>
+      <ellipse cx="0" cy="0.5" rx="4.6" ry="3.2" fill="${base}"/>
+      <path d="M-4.5,-0.6 L4.5,-0.6 L4.5,0.6 L-4.5,0.6 Z" fill="${stripe}" opacity="0.9"/>
+      <path d="M-2.6,-2.9 C-2.9,-2.9 -3.2,-2.5 -3.2,-2.1 L-3.2,2.9 C-3.2,3.3 -2.9,3.6 -2.6,3.6 C-2.3,3.6 -2,3.3 -2,2.9 L-2,-2.1 C-2,-2.5 -2.3,-2.9 -2.6,-2.9 Z" fill="${stripe}"/>
+      <path d="M1.6,-3.1 C1.3,-3.1 1,-2.7 1,-2.3 L1,3.1 C1,3.5 1.3,3.8 1.6,3.8 C1.9,3.8 2.2,3.5 2.2,3.1 L2.2,-2.3 C2.2,-2.7 1.9,-3.1 1.6,-3.1 Z" fill="${stripe}"/>
+      <circle cx="4.4" cy="0.5" r="1.5" fill="#241a13"/>
+      <path d="M5.2,-0.4 C5.7,-1 6.4,-1.3 7,-1.2" stroke="#241a13" stroke-width="0.3" fill="none" stroke-linecap="round"/>
+      <path d="M5.2,1.4 C5.7,2 6.4,2.3 7,2.2" stroke="#241a13" stroke-width="0.3" fill="none" stroke-linecap="round"/>
+    `;
+    layer.appendChild(b);
+  }
+})();
+
+/* Keep adminUnlocked in sync with the real Supabase session. Sessions can go stale
+   silently (e.g. the tab sits open/backgrounded for a long time and the background
+   token refresh doesn't get a chance to run), so re-check whenever the tab becomes
+   visible again and log the admin out gracefully rather than letting edits fail. */
+sb.auth.onAuthStateChange((event, session) => {
+  if((event === 'SIGNED_OUT' || event === 'TOKEN_REFRESH_FAILED') && adminUnlocked){
+    adminUnlocked = false;
+    document.body.classList.remove('admin-mode');
+    updateAdminEditLabel();
+    flashStatus('Session expired — please log in again');
+    showStateSyncBanner('Your admin session expired. Click Admin → Enable editing to log back in before making more changes.');
+  }
+});
+document.addEventListener('visibilitychange', () => {
+  if(document.visibilityState === 'visible' && adminUnlocked){
+    sb.auth.getSession().then(({ data: { session } })=>{
+      if(!session){
+        adminUnlocked = false;
+        document.body.classList.remove('admin-mode');
+        updateAdminEditLabel();
+        flashStatus('Session expired — please log in again');
+        showStateSyncBanner('Your admin session expired while this tab was in the background. Click Admin → Enable editing to log back in before making more changes.');
+      }
+    }).catch(()=>{});
+  }
+});
+
+/* ---------------- FLOATING ORDER NOW BUTTON ---------------- */
+(function(){
+  const floatBtn = document.getElementById('floatOrderBtn');
+  const heroBtnWrap = document.querySelector('.hero .btn.blink-red');
+  if(!floatBtn || !heroBtnWrap) return;
+  if('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        // Show the floating button once the original hero button has scrolled out of view.
+        floatBtn.classList.toggle('show', !entry.isIntersecting);
+      });
+    }, { threshold:0 });
+    io.observe(heroBtnWrap);
+  } else {
+    // Fallback for older browsers without IntersectionObserver.
+    window.addEventListener('scroll', ()=>{
+      const rect = heroBtnWrap.getBoundingClientRect();
+      floatBtn.classList.toggle('show', rect.bottom < 0);
+    });
+  }
+})();
+
+/* ---------------- INIT ---------------- */
+(async function init(){
+  flashStatus('Loading saved changes…');
+  const { data: { session } } = await sb.auth.getSession();
+  if(session){ adminUnlocked = true; document.body.classList.add('admin-mode'); }
+  await loadState();
+  applyHeroToDOM();
+  wireHeroInputs();
+  renderPartners();
+  renderCats();
+  renderItems();
+  renderOrders();
+  renderSchedule();
+  updateAdminEditLabel();
+  flashStatus(adminUnlocked ? 'All fields are click-to-edit' : 'Editing locked — Admin only');
+  if(adminUnlocked) refreshPendingReviews();
+})();
+
+/* ---------------- SERVICE WORKER REGISTRATION (PWA) ---------------- */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js')
+      .then(reg => console.log('✓ Service Worker registered'))
+      .catch(err => console.log('Service Worker registration failed:', err));
+  });
+}
+</script>
+</body>
+</html>
