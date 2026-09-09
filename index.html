@@ -10,7 +10,7 @@
 <meta property="og:type" content="website">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='12' r='6' fill='%23C97B84'/%3E%3Ccircle cx='12' cy='20' r='6' fill='%23C9A24B'/%3E%3Ccircle cx='28' cy='20' r='6' fill='%236E8F52'/%3E%3Ccircle cx='20' cy='24' r='5' fill='%2322331B'/%3E%3C/svg%3E">
 <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
 <meta name="theme-color" content="#16220F">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Great+Vibes&family=Parisienne&family=Alex+Brush&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -3198,8 +3198,9 @@ if ('serviceWorker' in navigator) {
 let deferredPrompt;
 const downloadAppBtn = document.getElementById('downloadAppBtn');
 
-// Hide the button by default until we know install is possible
-if (downloadAppBtn) downloadAppBtn.style.display = 'none';
+// Keep the Download App button visible at all times so it's easy to find.
+// The click handler below figures out the right install flow per browser.
+if (downloadAppBtn) downloadAppBtn.style.display = 'flex';
 
 // Listen for the beforeinstallprompt event
 window.addEventListener('beforeinstallprompt', (e) => {
