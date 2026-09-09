@@ -1,69 +1,20 @@
-// Service Worker for Bloom & Stem
+// Minimal service worker — required for Chrome/Edge to treat this site as an installable app.
+// It doesn't need to cache anything for the install prompt to work, but a basic
+// pass-through fetch handler is included so the site still works offline-ish.
+
 const CACHE_NAME = 'bloom-stem-v1';
-const urlsToCache = [
-  './index.html',
-  './manifest.json'
-];
 
-// Install event - cache assets
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => cache.addAll(urlsToCache))
-      .then(() => self.skipWaiting())
-  );
+  self.skipWaiting();
 });
 
-// Activate event - clean up old caches
 self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    }).then(() => self.clients.claim())
-  );
+  event.waitUntil(self.clients.claim());
 });
 
-// Fetch event - serve from cache, fall back to network
 self.addEventListener('fetch', (event) => {
-  // Skip non-GET requests
-  if (event.request.method !== 'GET') {
-    return;
-  }
-
+  // Simple network-first strategy; falls back to cache if offline.
   event.respondWith(
-    caches.match(event.request)
-      .then((response) => {
-        // Cache hit - return response
-        if (response) {
-          return response;
-        }
-
-        return fetch(event.request).then((response) => {
-          // Check if valid response
-          if (!response || response.status !== 200 || response.type !== 'basic') {
-            return response;
-          }
-
-          // Clone the response
-          const responseToCache = response.clone();
-
-          caches.open(CACHE_NAME)
-            .then((cache) => {
-              cache.put(event.request, responseToCache);
-            });
-
-          return response;
-        });
-      })
-      .catch(() => {
-        // Return offline page or cached response if available
-        return caches.match(event.request);
-      })
+    fetch(event.request).catch(() => caches.match(event.request))
   );
 });
