@@ -3203,21 +3203,29 @@ window.addEventListener('beforeinstallprompt', (e) => {
 // Handle Download App button click
 downloadAppBtn.addEventListener('click', async () => {
   if (deferredPrompt) {
-    // Show the install prompt
-    deferredPrompt.prompt();
-    
-    // Wait for the user to respond
-    const { outcome } = await deferredPrompt.userChoice;
-    
-    console.log(`User response: ${outcome}`);
-    
-    // Clear the deferredPrompt for the next time
-    deferredPrompt = null;
-    
-    // Hide the button after install
-    if (outcome === 'accepted') {
-      downloadAppBtn.style.display = 'none';
+    try {
+      // Show the install prompt
+      deferredPrompt.prompt();
+      
+      // Wait for the user to respond (with timeout)
+      const timeoutPromise = new Promise(resolve => setTimeout(() => resolve({ outcome: 'timeout' }), 5000));
+      const { outcome } = await Promise.race([deferredPrompt.userChoice, timeoutPromise]);
+      
+      console.log(`User response: ${outcome}`);
+      
+      // Clear the deferredPrompt for the next time
+      deferredPrompt = null;
+      
+      // Hide the button after install
+      if (outcome === 'accepted') {
+        downloadAppBtn.style.display = 'none';
+      }
+    } catch (err) {
+      console.error('Install prompt error:', err);
+      alert('Could not install app. Please try again or check your browser settings.');
     }
+  } else {
+    alert('App installation is not available on this browser. Please try on a mobile device or desktop Chrome/Edge.');
   }
 });
 
