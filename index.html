@@ -1108,6 +1108,7 @@
       </div>
     </div>
     <nav class="tabs" id="navTabs">
+      <button id="downloadAppBtn" style="background: linear-gradient(135deg, #d32f2f 0%, #c41c1c 100%); color: white; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 14px; display: flex; align-items: center; gap: 6px;">📱 Download App</button>
       <button class="active" data-view="shop">Shop Now<span class="nav-badge" id="orderCountBadge" style="display:none;">0</span></button>
       <button data-view="faq">FAQ</button>
       <button data-view="reviews">Reviews</button>
@@ -3180,29 +3181,10 @@ document.addEventListener('visibilitychange', () => {
   flashStatus(adminUnlocked ? 'All fields are click-to-edit' : 'Editing locked — Admin only');
   if(adminUnlocked) refreshPendingReviews();
 })();
-</script>
-<!-- ADD THIS CODE TO YOUR index.html RIGHT BEFORE THE CLOSING </body> TAG -->
 
-<!-- Custom Install Button HTML -->
-<div id="installPrompt" style="display: none; position: fixed; top: 80px; left: 20px; right: 20px; background: linear-gradient(135deg, #d32f2f 0%, #c41c1c 100%); padding: 16px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 9999;">
-  <div style="display: flex; align-items: center; justify-content: space-between; color: white;">
-    <div style="flex: 1;">
-      <div style="font-weight: bold; font-size: 16px; margin-bottom: 4px;">🌹 Install Bloom & Stem</div>
-      <div style="font-size: 14px; opacity: 0.9;">Add our app to your home screen!</div>
-    </div>
-    <div style="display: flex; gap: 8px; margin-left: 12px;">
-      <button id="installBtn" style="background: white; color: #d32f2f; border: none; padding: 8px 16px; border-radius: 6px; font-weight: bold; cursor: pointer; white-space: nowrap;">Install</button>
-      <button id="dismissBtn" style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; white-space: nowrap;">Dismiss</button>
-    </div>
-  </div>
-</div>
-
-<!-- Install Button JavaScript -->
-<script>
+/* ===== Download App Button ===== */
 let deferredPrompt;
-const installPrompt = document.getElementById('installPrompt');
-const installBtn = document.getElementById('installBtn');
-const dismissBtn = document.getElementById('dismissBtn');
+const downloadAppBtn = document.getElementById('downloadAppBtn');
 
 // Listen for the beforeinstallprompt event
 window.addEventListener('beforeinstallprompt', (e) => {
@@ -3212,14 +3194,14 @@ window.addEventListener('beforeinstallprompt', (e) => {
   // Stash the event for later use
   deferredPrompt = e;
   
-  // Show the install prompt
-  installPrompt.style.display = 'block';
+  // Make the Download App button visible
+  downloadAppBtn.style.display = 'flex';
   
   console.log('Install prompt is ready!');
 });
 
-// Handle install button click
-installBtn.addEventListener('click', async () => {
+// Handle Download App button click
+downloadAppBtn.addEventListener('click', async () => {
   if (deferredPrompt) {
     // Show the install prompt
     deferredPrompt.prompt();
@@ -3232,20 +3214,17 @@ installBtn.addEventListener('click', async () => {
     // Clear the deferredPrompt for the next time
     deferredPrompt = null;
     
-    // Hide the install prompt
-    installPrompt.style.display = 'none';
+    // Hide the button after install
+    if (outcome === 'accepted') {
+      downloadAppBtn.style.display = 'none';
+    }
   }
 });
 
-// Handle dismiss button click
-dismissBtn.addEventListener('click', () => {
-  installPrompt.style.display = 'none';
-});
-
-// Hide the prompt if the app is already installed
+// Hide the button if the app is already installed
 window.addEventListener('appinstalled', () => {
   console.log('App was installed!');
-  installPrompt.style.display = 'none';
+  downloadAppBtn.style.display = 'none';
   deferredPrompt = null;
 });
 </script>
