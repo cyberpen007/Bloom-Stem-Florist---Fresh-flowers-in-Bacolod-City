@@ -3181,5 +3181,73 @@ document.addEventListener('visibilitychange', () => {
   if(adminUnlocked) refreshPendingReviews();
 })();
 </script>
+<!-- ADD THIS CODE TO YOUR index.html RIGHT BEFORE THE CLOSING </body> TAG -->
+
+<!-- Custom Install Button HTML -->
+<div id="installPrompt" style="display: none; position: fixed; bottom: 20px; left: 20px; right: 20px; background: linear-gradient(135deg, #d32f2f 0%, #c41c1c 100%); padding: 16px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 9999;">
+  <div style="display: flex; align-items: center; justify-content: space-between; color: white;">
+    <div style="flex: 1;">
+      <div style="font-weight: bold; font-size: 16px; margin-bottom: 4px;">🌹 Install Bloom & Stem</div>
+      <div style="font-size: 14px; opacity: 0.9;">Add our app to your home screen!</div>
+    </div>
+    <div style="display: flex; gap: 8px; margin-left: 12px;">
+      <button id="installBtn" style="background: white; color: #d32f2f; border: none; padding: 8px 16px; border-radius: 6px; font-weight: bold; cursor: pointer; white-space: nowrap;">Install</button>
+      <button id="dismissBtn" style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; white-space: nowrap;">Dismiss</button>
+    </div>
+  </div>
+</div>
+
+<!-- Install Button JavaScript -->
+<script>
+let deferredPrompt;
+const installPrompt = document.getElementById('installPrompt');
+const installBtn = document.getElementById('installBtn');
+const dismissBtn = document.getElementById('dismissBtn');
+
+// Listen for the beforeinstallprompt event
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevent the mini-infobar from appearing on mobile
+  e.preventDefault();
+  
+  // Stash the event for later use
+  deferredPrompt = e;
+  
+  // Show the install prompt
+  installPrompt.style.display = 'block';
+  
+  console.log('Install prompt is ready!');
+});
+
+// Handle install button click
+installBtn.addEventListener('click', async () => {
+  if (deferredPrompt) {
+    // Show the install prompt
+    deferredPrompt.prompt();
+    
+    // Wait for the user to respond
+    const { outcome } = await deferredPrompt.userChoice;
+    
+    console.log(`User response: ${outcome}`);
+    
+    // Clear the deferredPrompt for the next time
+    deferredPrompt = null;
+    
+    // Hide the install prompt
+    installPrompt.style.display = 'none';
+  }
+});
+
+// Handle dismiss button click
+dismissBtn.addEventListener('click', () => {
+  installPrompt.style.display = 'none';
+});
+
+// Hide the prompt if the app is already installed
+window.addEventListener('appinstalled', () => {
+  console.log('App was installed!');
+  installPrompt.style.display = 'none';
+  deferredPrompt = null;
+});
+</script>
 </body>
 </html>
