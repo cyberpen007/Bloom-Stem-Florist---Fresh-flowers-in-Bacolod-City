@@ -3194,6 +3194,17 @@ if ('serviceWorker' in navigator) {
   });
 }
 
+// TEMPORARY DEBUG: check if the browser thinks this is already installed
+window.addEventListener('load', () => {
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  if (isStandalone) {
+    const banner = document.createElement('div');
+    banner.textContent = '📱 DEBUG: Running as installed app (standalone mode)';
+    banner.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#1565c0;color:#fff;text-align:center;padding:10px;z-index:99999;font-size:14px;font-weight:bold;';
+    document.body.prepend(banner);
+  }
+});
+
 /* ===== Download App Button ===== */
 let deferredPrompt;
 const downloadAppBtn = document.getElementById('downloadAppBtn');
@@ -3214,6 +3225,12 @@ window.addEventListener('beforeinstallprompt', (e) => {
   downloadAppBtn.style.display = 'flex';
   
   console.log('Install prompt is ready!');
+
+  // TEMPORARY DEBUG BANNER — shows directly on page when install becomes available
+  const debugBanner = document.createElement('div');
+  debugBanner.textContent = '✅ DEBUG: Install prompt is ready on this device!';
+  debugBanner.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#2e7d32;color:#fff;text-align:center;padding:10px;z-index:99999;font-size:14px;font-weight:bold;';
+  document.body.prepend(debugBanner);
 });
 
 // Handle Download App button click
