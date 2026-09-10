@@ -9,9 +9,6 @@
 <meta property="og:description" content="Handcrafted bouquets for life's most meaningful moments. Fresh flowers, safe delivery, made with love.">
 <meta property="og:type" content="website">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='12' r='6' fill='%23C97B84'/%3E%3Ccircle cx='12' cy='20' r='6' fill='%23C9A24B'/%3E%3Ccircle cx='28' cy='20' r='6' fill='%236E8F52'/%3E%3Ccircle cx='20' cy='24' r='5' fill='%2322331B'/%3E%3C/svg%3E">
-<link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="icon-192.png">
-<meta name="theme-color" content="#16220F">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Great+Vibes&family=Parisienne&family=Alex+Brush&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -261,7 +258,7 @@
   @media (max-width:1300px){ .hero-rose{ width:340px; right:0px; top:70px; } }
 
   .eyebrow{ font-family:'JetBrains Mono',monospace; font-size:12px; text-transform:uppercase; letter-spacing:0.16em; color:#000000; margin-bottom:16px; }
-  .hero h1{ font-size:56px; line-height:1.03; max-width:640px; margin:0 0 20px; color:#59C7C0; }
+  .hero h1{ font-size:56px; line-height:1.03; max-width:640px; margin:0 0 20px; color:var(--gold); }
   .hero h1 em{ font-style:italic; color:var(--rose-red); }
   .hero p.sub{ font-size:17px; line-height:1.6; max-width:520px; color:var(--text-soft); margin:0 0 28px; }
   .hero-meta{ display:flex; gap:32px; margin-top:8px; flex-wrap:wrap; }
@@ -273,16 +270,7 @@
   section.panel{ padding:12px 0 90px; }
   .panel-head{ display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:30px; flex-wrap:wrap; gap:16px; }
   .panel-head h2{ font-size:30px; margin:0; }
-  .catalog-highlight{ 
-    color:#E8A6B0;
-    font-family:'Fraunces', serif;
-    font-size:180px;
-    font-weight: 500;
-    font-style: italic;
-    letter-spacing: 3px;
-    text-shadow: 
-      0 2px 4px rgba(0, 0, 0, 0.3);
-  }
+  .catalog-highlight{ color:#59C7C0; font-size:44px; }
   .panel-head .desc{ font-size:14px; color:var(--text-soft); max-width:460px; margin-top:6px; }
 
   .btn{
@@ -414,24 +402,21 @@
   .table{ width:100%; border-collapse:collapse; }
   .table thead th{
     text-align:left; font-family:'JetBrains Mono',monospace; font-size:10.5px; text-transform:uppercase;
-    letter-spacing:0.08em; color:#a8d5a8; padding:0 14px 12px; border-bottom:1px solid var(--line); font-weight:500;
+    letter-spacing:0.08em; color:var(--leaf); padding:0 14px 12px; border-bottom:1px solid var(--line); font-weight:500;
   }
-  .table tbody td{ padding:14px; border-bottom:1px solid var(--line); font-size:13.5px; vertical-align:middle; color:#fff; }
-  .table tbody td.address-col{ max-width:120px; font-size:12px; padding:10px 14px; }
-  .table tbody td input[type=date]{ background:#2a2a2a; color:#fff; }
+  .table tbody td{ padding:14px; border-bottom:1px solid var(--line); font-size:13.5px; vertical-align:middle; }
   .table tbody tr:hover{ background:rgba(201,162,75,0.06); }
   .status-select{
     font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.05em;
-    padding:6px 10px; border-radius:999px; border:1px solid var(--line); background:#1a1a1a; color:#fff; cursor:pointer; font-weight:500;
+    padding:6px 10px; border-radius:999px; border:1px solid var(--line); background:#fff; cursor:pointer; font-weight:500;
   }
   .status-select.st-new{ color:var(--rose); border-color:var(--rose); }
   .status-select.st-progress{ color:var(--gold); border-color:var(--gold); }
   .status-select.st-ready{ color:var(--leaf); border-color:var(--leaf); }
   .status-select.st-done{ color:#8a8672; border-color:var(--line); }
-  .status-select.st-cancelled{ color:#d4514f; border-color:#d4514f; }
   .row-del{ border:none; background:transparent; color:var(--rose); cursor:pointer; font-size:13px; opacity:0.55; }
   .row-del:hover{ opacity:1; }
-  .table-wrap{ background:#1a1a1a; border:1px solid var(--line); border-radius:var(--radius); padding:8px 6px; overflow-x:auto; }
+  .table-wrap{ background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:8px 6px; overflow-x:auto; }
 
   /* ===== Testimonials ===== */
   .testimonials-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(260px,1fr)); gap:22px; }
@@ -682,6 +667,7 @@
     section.panel{ padding:8px 0 56px; }
     .panel-head{ margin-bottom:20px; gap:12px; }
     .panel-head h2{ font-size:23px; }
+    .catalog-highlight{ font-size:32px; }
     .panel-head .desc{ font-size:13px; max-width:100%; }
     .panel-head .btn{ width:auto; }
   }
@@ -1111,7 +1097,6 @@
       </div>
     </div>
     <nav class="tabs" id="navTabs">
-      <button id="downloadAppBtn" style="background: linear-gradient(135deg, #d32f2f 0%, #c41c1c 100%); color: white; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 14px; display: flex; align-items: center; gap: 6px;">📱 Download App</button>
       <button class="active" data-view="shop">Shop Now<span class="nav-badge" id="orderCountBadge" style="display:none;">0</span></button>
       <button data-view="faq">FAQ</button>
       <button data-view="reviews">Reviews</button>
@@ -1121,6 +1106,7 @@
         <button type="button" id="adminToggleBtn">Admin <span class="caret">▾</span></button>
         <div class="admin-dropdown" id="adminDropdown">
           <button data-view="orders">Orders</button>
+          <button data-view="schedule">Schedule</button>
           <button type="button" id="adminEditToggleBtn">Enable editing</button>
           <button type="button" id="adminChangePassBtn" class="admin-change-pass">Change passcode</button>
         </div>
@@ -1132,7 +1118,7 @@
 <div class="admin-modal-overlay" id="adminModalOverlay" style="display:none;">
   <div class="admin-modal">
     <h3>Admin access</h3>
-    <p>Enter the passcode to view Orders.</p>
+    <p>Enter the passcode to view Orders and Schedule.</p>
     <div class="passcode-field-wrap">
       <input type="password" id="adminPasscodeInput" placeholder="Passcode" autocomplete="off">
       <button type="button" id="adminPasscodeToggle" title="Show passcode">👁</button>
@@ -1368,7 +1354,7 @@
   <h1 contenteditable="true" id="heroTitle">Flowers, cut this <em>morning</em>.</h1>
   <p class="sub" contenteditable="true" id="heroSub">Small-batch bouquets, potted greens, and seasonal arrangements — grown local, gathered by hand, and ready for pickup or delivery same day.</p>
   <div style="margin-bottom:28px;">
-    <a href="flower-order-form_2_3.html" class="btn blink-red" style="display:inline-flex; align-items:center; gap:8px; text-decoration:none; font-size:15px; padding:13px 28px;">
+    <a href="flower-order-form_2.html" class="btn blink-red" style="display:inline-flex; align-items:center; gap:8px; text-decoration:none; font-size:15px; padding:13px 28px;">
       🌸 Order Now
     </a>
   </div>
@@ -1380,7 +1366,7 @@
 </div>
 
 <!-- Floating Order Now button — stays visible once the hero's button scrolls out of view -->
-<a href="flower-order-form_2_3.html" id="floatOrderBtn" class="float-order-btn">🌸 Order Now</a>
+<a href="flower-order-form_2.html" id="floatOrderBtn" class="float-order-btn">🌸 Order Now</a>
 
 <!-- ============ PARTNERS VIEW ============ -->
 <section class="panel wrap" id="view-partners" style="display:none;">
@@ -1679,7 +1665,7 @@
   <div class="table-wrap">
     <table class="table" id="ordersTable">
       <thead>
-        <tr><th>Customer</th><th>Item</th><th>Qty</th><th>Address</th><th>Due</th><th>Status</th><th></th></tr>
+        <tr><th>Customer</th><th>Item</th><th>Qty</th><th>Due</th><th>Status</th><th></th></tr>
       </thead>
       <tbody id="ordersBody"></tbody>
     </table>
@@ -1782,9 +1768,9 @@ let state = {
   ],
   itemOrderCounter: 7,
   orders: [
-    { id:'o1', customer:'Maria Santos', item:'Sunrise Peony Bunch', qty:2, address:'Bacolod City', due:'2026-08-03', status:'progress' },
-    { id:'o2', customer:'James Cruz', item:'Bridal Cascade', qty:1, address:'Silay City', due:'2026-08-10', status:'new' },
-    { id:'o3', customer:'Lea Villanueva', item:'Trailing Pothos', qty:3, address:'Bacolod City', due:'2026-08-01', status:'ready' },
+    { id:'o1', customer:'Maria Santos', item:'Sunrise Peony Bunch', qty:2, due:'2026-08-03', status:'progress' },
+    { id:'o2', customer:'James Cruz', item:'Bridal Cascade', qty:1, due:'2026-08-10', status:'new' },
+    { id:'o3', customer:'Lea Villanueva', item:'Trailing Pothos', qty:3, due:'2026-08-01', status:'ready' },
   ],
   schedule: [
     { id:'s1', date:'2026-08-02', time:'07:00', task:'Flower market run — wholesale pickup', tag:'sourcing' },
@@ -2831,7 +2817,7 @@ document.getElementById('addCatBtn').addEventListener('click', async ()=>{
 });
 
 /* ---------------- RENDER: ORDERS ---------------- */
-function statusClass(s){ return { new:'st-new', progress:'st-progress', ready:'st-ready', done:'st-done', cancelled:'st-cancelled' }[s]; }
+function statusClass(s){ return { new:'st-new', progress:'st-progress', ready:'st-ready', done:'st-done' }[s]; }
 
 function renderOrders(){
   const body = document.getElementById('ordersBody');
@@ -2842,15 +2828,13 @@ function renderOrders(){
       <td data-label="Customer" contenteditable="true">${o.customer}</td>
       <td data-label="Item" contenteditable="true">${o.item}</td>
       <td data-label="Qty" contenteditable="true" class="mono">${o.qty}</td>
-      <td data-label="Address" contenteditable="true" class="address-col">${o.address||''}</td>
-      <td data-label="Due"><input type="date" value="${o.due}" style="font-family:'JetBrains Mono',monospace;font-size:12.5px;border:1px solid var(--line);border-radius:6px;padding:5px 8px;background:#2a2a2a;color:#fff;"></td>
+      <td data-label="Due"><input type="date" value="${o.due}" style="font-family:'JetBrains Mono',monospace;font-size:12.5px;border:1px solid var(--line);border-radius:6px;padding:5px 8px;background:#fff;"></td>
       <td data-label="Status">
         <select class="status-select ${statusClass(o.status)}">
           <option value="new" ${o.status==='new'?'selected':''}>New</option>
           <option value="progress" ${o.status==='progress'?'selected':''}>In progress</option>
           <option value="ready" ${o.status==='ready'?'selected':''}>Ready</option>
           <option value="done" ${o.status==='done'?'selected':''}>Delivered</option>
-          <option value="cancelled" ${o.status==='cancelled'?'selected':''}>Cancelled</option>
         </select>
       </td>
       <td data-label=""><button class="row-del">✕</button></td>
@@ -2858,7 +2842,6 @@ function renderOrders(){
     tr.querySelectorAll('td[contenteditable]')[0].addEventListener('blur', e=>{ o.customer = e.target.textContent.trim(); saveState(); });
     tr.querySelectorAll('td[contenteditable]')[1].addEventListener('blur', e=>{ o.item = e.target.textContent.trim(); saveState(); });
     tr.querySelectorAll('td[contenteditable]')[2].addEventListener('blur', e=>{ o.qty = e.target.textContent.trim(); saveState(); });
-    tr.querySelectorAll('td[contenteditable]')[3].addEventListener('blur', e=>{ o.address = e.target.textContent.trim(); saveState(); });
     tr.querySelector('input[type=date]').addEventListener('change', e=>{ o.due = e.target.value; saveState(); });
     const sel = tr.querySelector('select');
     sel.addEventListener('change', e=>{
@@ -2875,7 +2858,7 @@ function renderOrders(){
 }
 
 document.getElementById('addOrderBtn').addEventListener('click', ()=>{
-  state.orders.push({ id:newId('o'), customer:'New Customer', item:'Item', qty:1, address:'', due:new Date().toISOString().slice(0,10), status:'new' });
+  state.orders.push({ id:newId('o'), customer:'New Customer', item:'Item', qty:1, due:new Date().toISOString().slice(0,10), status:'new' });
   renderOrders(); saveState();
 });
 
@@ -3184,144 +3167,6 @@ document.addEventListener('visibilitychange', () => {
   flashStatus(adminUnlocked ? 'All fields are click-to-edit' : 'Editing locked — Admin only');
   if(adminUnlocked) refreshPendingReviews();
 })();
-
-/* ===== Register Service Worker (required for PWA installability) ===== */
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js').catch(err => {
-      console.error('Service worker registration failed:', err);
-    });
-  });
-}
-
-/* ===== PWA Install Detection & Status Banner ===== */
-let deferredPrompt;
-const downloadAppBtn = document.getElementById('downloadAppBtn');
-let isAppInstalled = false;
-
-function markAppAsInstalled() {
-  isAppInstalled = true;
-  
-  // Update the download button — this is the only install indicator now
-  if (downloadAppBtn) {
-    downloadAppBtn.innerHTML = '✅ App Installed';
-    downloadAppBtn.disabled = true;
-    downloadAppBtn.style.opacity = '0.7';
-    downloadAppBtn.style.cursor = 'default';
-    downloadAppBtn.style.background = 'linear-gradient(135deg, #4a7a3a 0%, #2e5a26 100%)';
-  }
-  
-  // Save to localStorage so we remember across sessions
-  localStorage.setItem('pwa-app-installed', 'true');
-}
-
-function showInstallPrompt() {
-  isAppInstalled = false;
-  
-  // Update the download button
-  if (downloadAppBtn) {
-    downloadAppBtn.innerHTML = '📱 Download App';
-    downloadAppBtn.disabled = false;
-    downloadAppBtn.style.opacity = '1';
-    downloadAppBtn.style.cursor = 'pointer';
-    downloadAppBtn.style.background = '';
-  }
-  
-  // Clear localStorage
-  localStorage.removeItem('pwa-app-installed');
-}
-
-// Keep the Download App button visible at all times
-if (downloadAppBtn) downloadAppBtn.style.display = 'flex';
-
-// Check on page load if the app is already installed
-window.addEventListener('load', async () => {
-  // Method 1: Check if running in standalone mode (inside the installed app)
-  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-  if (isStandalone) {
-    markAppAsInstalled();
-    return;
-  }
-  
-  // Method 2: Check getInstalledRelatedApps() for desktop/mobile
-  if ('getInstalledRelatedApps' in navigator) {
-    try {
-      const relatedApps = await navigator.getInstalledRelatedApps();
-      if (relatedApps && relatedApps.length > 0) {
-        markAppAsInstalled();
-        return;
-      }
-    } catch (err) {
-      // Not supported or failed silently
-    }
-  }
-  
-  // Method 3: Check localStorage (if user previously installed it in this browser)
-  if (localStorage.getItem('pwa-app-installed') === 'true') {
-    // Only show if getInstalledRelatedApps also returned nothing
-    // This prevents false positives if they uninstalled the app
-    markAppAsInstalled();
-  }
-});
-
-// Listen for the beforeinstallprompt event
-window.addEventListener('beforeinstallprompt', (e) => {
-  // Prevent the mini-infobar from appearing on mobile
-  e.preventDefault();
-  
-  // Stash the event for later use
-  deferredPrompt = e;
-  
-  // Make sure button is visible and shows install prompt
-  if (!isAppInstalled) {
-    showInstallPrompt();
-    downloadAppBtn.style.display = 'flex';
-  }
-});
-
-// Handle Download App button click
-if (downloadAppBtn) {
-  downloadAppBtn.addEventListener('click', async () => {
-    if (deferredPrompt) {
-      try {
-        // Show the install prompt
-        deferredPrompt.prompt();
-        
-        // Wait for the user to respond (with timeout)
-        const timeoutPromise = new Promise(resolve => setTimeout(() => resolve({ outcome: 'timeout' }), 5000));
-        const { outcome } = await Promise.race([deferredPrompt.userChoice, timeoutPromise]);
-        
-        // Clear the deferredPrompt for the next time
-        deferredPrompt = null;
-        
-        // Mark as installed if user accepted
-        if (outcome === 'accepted') {
-          markAppAsInstalled();
-        }
-      } catch (err) {
-        console.error('Install prompt error:', err);
-        alert('Could not install app. Please try again or check your browser settings.');
-      }
-    } else {
-      // Fallback: Show instructions for manual install
-      const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-      const isAndroid = /android/i.test(navigator.userAgent);
-      if (isIOS) {
-        alert('To install this app on iPhone/iPad:\n\n1. Tap the Share button (square with an arrow)\n2. Scroll down and tap "Add to Home Screen"\n3. Tap "Add"');
-      } else if (isAndroid) {
-        alert('Your phone doesn\'t support one-tap install.\n\nYou can still add this app to your home screen manually:\n\n1. Tap the ⋮ menu (top right of Chrome)\n2. Tap "Add to Home screen" or "Install app"\n3. Tap "Add" or "Install"\n\nThis will add Bloom & Stem to your home screen just like an app.');
-      } else {
-        alert('This browser doesn\'t support one-tap install yet. Try Chrome or Edge, or use your browser\'s menu → "Install app" / "Add to Home screen".');
-      }
-    }
-  });
-}
-
-// Mark as installed when the OS-level install event fires
-window.addEventListener('appinstalled', () => {
-  markAppAsInstalled();
-  deferredPrompt = null;
-});
 </script>
 </body>
 </html>
