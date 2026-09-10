@@ -3194,43 +3194,111 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-/* ===== Download App Button ===== */
+/* ===== PWA Install Detection & Status Banner ===== */
 let deferredPrompt;
 const downloadAppBtn = document.getElementById('downloadAppBtn');
-const DOWNLOAD_BTN_DEFAULT_HTML = '📱 Download App';
-const DOWNLOAD_BTN_INSTALLED_HTML = '✅ App Installed';
+let isAppInstalled = false;
 
-function markAppAsInstalled() {
-  if (!downloadAppBtn) return;
-  downloadAppBtn.innerHTML = DOWNLOAD_BTN_INSTALLED_HTML;
-  downloadAppBtn.disabled = true;
-  downloadAppBtn.style.opacity = '0.7';
-  downloadAppBtn.style.cursor = 'default';
-  downloadAppBtn.style.background = 'linear-gradient(135deg, #4a7a3a 0%, #2e5a26 100%)';
+function createInstallBanner() {
+  // Create a banner element to show install status
+  const banner = document.createElement('div');
+  banner.id = 'pwa-install-banner';
+  banner.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #4a7a3a 0%, #2e5a26 100%);
+    color: #F6F1E7;
+    padding: 12px 20px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 100;
+    border-bottom: 1px solid rgba(246, 241, 231, 0.2);
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.01em;
+    display: none;
+  `;
+  document.body.insertBefore(banner, document.body.firstChild);
+  return banner;
 }
 
-// Keep the Download App button visible at all times so it's easy to find.
-// The click handler below figures out the right install flow per browser.
+const installBanner = createInstallBanner();
+
+function markAppAsInstalled() {
+  isAppInstalled = true;
+  
+  // Update the download button
+  if (downloadAppBtn) {
+    downloadAppBtn.innerHTML = '✅ App Installed';
+    downloadAppBtn.disabled = true;
+    downloadAppBtn.style.opacity = '0.7';
+    downloadAppBtn.style.cursor = 'default';
+    downloadAppBtn.style.background = 'linear-gradient(135deg, #4a7a3a 0%, #2e5a26 100%)';
+  }
+  
+  // Show the banner
+  if (installBanner) {
+    installBanner.innerHTML = '✓ App installed! Open it from your app drawer or applications.';
+    installBanner.style.display = 'block';
+  }
+  
+  // Save to localStorage so we remember across sessions
+  localStorage.setItem('pwa-app-installed', 'true');
+}
+
+function showInstallPrompt() {
+  isAppInstalled = false;
+  
+  // Update the download button
+  if (downloadAppBtn) {
+    downloadAppBtn.innerHTML = '📱 Download App';
+    downloadAppBtn.disabled = false;
+    downloadAppBtn.style.opacity = '1';
+    downloadAppBtn.style.cursor = 'pointer';
+    downloadAppBtn.style.background = '';
+  }
+  
+  // Hide the banner
+  if (installBanner) {
+    installBanner.style.display = 'none';
+  }
+  
+  // Clear localStorage
+  localStorage.removeItem('pwa-app-installed');
+}
+
+// Keep the Download App button visible at all times
 if (downloadAppBtn) downloadAppBtn.style.display = 'flex';
 
-// Check on load whether the app is already installed, three ways:
-// 1) We're currently running inside the installed app itself (standalone mode)
-// 2) The browser can directly tell us via getInstalledRelatedApps()
+// Check on page load if the app is already installed
 window.addEventListener('load', async () => {
+  // Method 1: Check if running in standalone mode (inside the installed app)
   const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
   if (isStandalone) {
     markAppAsInstalled();
     return;
   }
+  
+  // Method 2: Check getInstalledRelatedApps() for desktop/mobile
   if ('getInstalledRelatedApps' in navigator) {
     try {
       const relatedApps = await navigator.getInstalledRelatedApps();
       if (relatedApps && relatedApps.length > 0) {
         markAppAsInstalled();
+        return;
       }
     } catch (err) {
-      // Not supported or failed silently — fine, button just stays default
+      // Not supported or failed silently
     }
+  }
+  
+  // Method 3: Check localStorage (if user previously installed it in this browser)
+  if (localStorage.getItem('pwa-app-installed') === 'true') {
+    // Only show if getInstalledRelatedApps also returned nothing
+    // This prevents false positives if they uninstalled the app
+    markAppAsInstalled();
   }
 });
 
@@ -3242,52 +3310,53 @@ window.addEventListener('beforeinstallprompt', (e) => {
   // Stash the event for later use
   deferredPrompt = e;
   
-  // Make the Download App button visible
-  downloadAppBtn.style.display = 'flex';
-  
-  console.log('Install prompt is ready!');
-});
-
-// Handle Download App button click
-downloadAppBtn.addEventListener('click', async () => {
-  if (deferredPrompt) {
-    try {
-      // Show the install prompt
-      deferredPrompt.prompt();
-      
-      // Wait for the user to respond (with timeout)
-      const timeoutPromise = new Promise(resolve => setTimeout(() => resolve({ outcome: 'timeout' }), 5000));
-      const { outcome } = await Promise.race([deferredPrompt.userChoice, timeoutPromise]);
-      
-      console.log(`User response: ${outcome}`);
-      
-      // Clear the deferredPrompt for the next time
-      deferredPrompt = null;
-      
-      // Mark as installed instead of hiding, so returning users see confirmation
-      if (outcome === 'accepted') {
-        markAppAsInstalled();
-      }
-    } catch (err) {
-      console.error('Install prompt error:', err);
-      alert('Could not install app. Please try again or check your browser settings.');
-    }
-  } else {
-    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-    const isAndroid = /android/i.test(navigator.userAgent);
-    if (isIOS) {
-      alert('To install this app on iPhone/iPad:\n\n1. Tap the Share button (square with an arrow)\n2. Scroll down and tap "Add to Home Screen"\n3. Tap "Add"');
-    } else if (isAndroid) {
-      alert('Your phone doesn\'t support one-tap install.\n\nYou can still add this app to your home screen manually:\n\n1. Tap the ⋮ menu (top right of Chrome)\n2. Tap "Add to Home screen" or "Install app"\n3. Tap "Add" or "Install"\n\nThis will add Bloom & Stem to your home screen just like an app.');
-    } else {
-      alert('This browser doesn\'t support one-tap install yet. Try Chrome or Edge, or use your browser\'s menu → "Install app" / "Add to Home screen".');
-    }
+  // Make sure button is visible and shows install prompt
+  if (!isAppInstalled) {
+    showInstallPrompt();
+    downloadAppBtn.style.display = 'flex';
   }
 });
 
-// Mark as installed if the OS-level install event fires
+// Handle Download App button click
+if (downloadAppBtn) {
+  downloadAppBtn.addEventListener('click', async () => {
+    if (deferredPrompt) {
+      try {
+        // Show the install prompt
+        deferredPrompt.prompt();
+        
+        // Wait for the user to respond (with timeout)
+        const timeoutPromise = new Promise(resolve => setTimeout(() => resolve({ outcome: 'timeout' }), 5000));
+        const { outcome } = await Promise.race([deferredPrompt.userChoice, timeoutPromise]);
+        
+        // Clear the deferredPrompt for the next time
+        deferredPrompt = null;
+        
+        // Mark as installed if user accepted
+        if (outcome === 'accepted') {
+          markAppAsInstalled();
+        }
+      } catch (err) {
+        console.error('Install prompt error:', err);
+        alert('Could not install app. Please try again or check your browser settings.');
+      }
+    } else {
+      // Fallback: Show instructions for manual install
+      const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+      const isAndroid = /android/i.test(navigator.userAgent);
+      if (isIOS) {
+        alert('To install this app on iPhone/iPad:\n\n1. Tap the Share button (square with an arrow)\n2. Scroll down and tap "Add to Home Screen"\n3. Tap "Add"');
+      } else if (isAndroid) {
+        alert('Your phone doesn\'t support one-tap install.\n\nYou can still add this app to your home screen manually:\n\n1. Tap the ⋮ menu (top right of Chrome)\n2. Tap "Add to Home screen" or "Install app"\n3. Tap "Add" or "Install"\n\nThis will add Bloom & Stem to your home screen just like an app.');
+      } else {
+        alert('This browser doesn\'t support one-tap install yet. Try Chrome or Edge, or use your browser\'s menu → "Install app" / "Add to Home screen".');
+      }
+    }
+  });
+}
+
+// Mark as installed when the OS-level install event fires
 window.addEventListener('appinstalled', () => {
-  console.log('App was installed!');
   markAppAsInstalled();
   deferredPrompt = null;
 });
