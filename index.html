@@ -3199,49 +3199,16 @@ let deferredPrompt;
 const downloadAppBtn = document.getElementById('downloadAppBtn');
 let isAppInstalled = false;
 
-function createInstallBanner() {
-  // Create a banner element to show install status
-  const banner = document.createElement('div');
-  banner.id = 'pwa-install-banner';
-  banner.style.cssText = `
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(135deg, #4a7a3a 0%, #2e5a26 100%);
-    color: #F6F1E7;
-    padding: 12px 20px;
-    text-align: center;
-    font-size: 14px;
-    font-weight: 500;
-    z-index: 100;
-    border-bottom: 1px solid rgba(246, 241, 231, 0.2);
-    font-family: 'Inter', sans-serif;
-    letter-spacing: 0.01em;
-    display: none;
-  `;
-  document.body.insertBefore(banner, document.body.firstChild);
-  return banner;
-}
-
-const installBanner = createInstallBanner();
-
 function markAppAsInstalled() {
   isAppInstalled = true;
   
-  // Update the download button
+  // Update the download button — this is the only install indicator now
   if (downloadAppBtn) {
     downloadAppBtn.innerHTML = '✅ App Installed';
     downloadAppBtn.disabled = true;
     downloadAppBtn.style.opacity = '0.7';
     downloadAppBtn.style.cursor = 'default';
     downloadAppBtn.style.background = 'linear-gradient(135deg, #4a7a3a 0%, #2e5a26 100%)';
-  }
-  
-  // Show the banner
-  if (installBanner) {
-    installBanner.innerHTML = '✓ App installed! Open it from your app drawer or applications.';
-    installBanner.style.display = 'block';
   }
   
   // Save to localStorage so we remember across sessions
@@ -3258,11 +3225,6 @@ function showInstallPrompt() {
     downloadAppBtn.style.opacity = '1';
     downloadAppBtn.style.cursor = 'pointer';
     downloadAppBtn.style.background = '';
-  }
-  
-  // Hide the banner
-  if (installBanner) {
-    installBanner.style.display = 'none';
   }
   
   // Clear localStorage
