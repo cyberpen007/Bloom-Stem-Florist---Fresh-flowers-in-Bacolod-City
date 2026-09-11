@@ -261,7 +261,7 @@
   @media (max-width:1300px){ .hero-rose{ width:340px; right:0px; top:70px; } }
 
   .eyebrow{ font-family:'JetBrains Mono',monospace; font-size:12px; text-transform:uppercase; letter-spacing:0.16em; color:#000000; margin-bottom:16px; }
-  .hero h1{ font-size:56px; line-height:1.03; max-width:640px; margin:0 0 20px; color:#59C7C0; }
+  .hero h1{ font-size:56px; line-height:1.03; max-width:640px; margin:0 0 20px; color:var(--gold); }
   .hero h1 em{ font-style:italic; color:var(--rose-red); }
   .hero p.sub{ font-size:17px; line-height:1.6; max-width:520px; color:var(--text-soft); margin:0 0 28px; }
   .hero-meta{ display:flex; gap:32px; margin-top:8px; flex-wrap:wrap; }
@@ -273,10 +273,10 @@
   section.panel{ padding:12px 0 90px; }
   .panel-head{ display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:30px; flex-wrap:wrap; gap:16px; }
   .panel-head h2{ font-size:30px; margin:0; }
-  .catalog-highlight{ 
-    color:#E8A6B0;
+  .panel-head h2.catalog-highlight{ 
+    color:#59C7C0;
     font-family:'Fraunces', serif;
-    font-size:180px;
+    font-size:64px;
     font-weight: 500;
     font-style: italic;
     letter-spacing: 3px;
@@ -682,8 +682,12 @@
     section.panel{ padding:8px 0 56px; }
     .panel-head{ margin-bottom:20px; gap:12px; }
     .panel-head h2{ font-size:23px; }
+    .panel-head h2.catalog-highlight{ font-size:40px; letter-spacing:1px; }
     .panel-head .desc{ font-size:13px; max-width:100%; }
     .panel-head .btn{ width:auto; }
+  }
+  @media (max-width:400px){
+    .panel-head h2.catalog-highlight{ font-size:32px; }
   }
 
   /* Cards: single comfortable column, bigger touch targets on
