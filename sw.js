@@ -25,6 +25,11 @@ self.addEventListener('fetch', (event) => {
           caches.open(CACHE_NAME).then((c) => c.put(event.request, copy));
         }
         return res;
+        self.addEventListener('install', () => self.skipWaiting());
+self.addEventListener('activate', e => e.waitUntil(self.clients.claim()));
+self.addEventListener('fetch', e => {
+  e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));
+});
       })
       .catch(() => caches.match(event.request).then((r) => r || caches.match('./index.html')))
   );
