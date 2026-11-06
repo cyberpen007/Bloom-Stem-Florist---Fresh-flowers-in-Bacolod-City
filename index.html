@@ -9,6 +9,15 @@
 <meta property="og:description" content="Handcrafted bouquets for life's most meaningful moments. Fresh flowers, safe delivery, made with love.">
 <meta property="og:type" content="website">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='12' r='6' fill='%23C97B84'/%3E%3Ccircle cx='12' cy='20' r='6' fill='%23C9A24B'/%3E%3Ccircle cx='28' cy='20' r='6' fill='%236E8F52'/%3E%3Ccircle cx='20' cy='24' r='5' fill='%2322331B'/%3E%3C/svg%3E">
+<script>
+/* Capture the install event as early as possible so it is never missed */
+window.__bsDeferredPrompt = null;
+window.addEventListener('beforeinstallprompt', function (e) {
+  e.preventDefault();
+  window.__bsDeferredPrompt = e;
+  window.dispatchEvent(new Event('bs-install-ready'));
+});
+</script>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="theme-color" content="#16220F">
@@ -3198,15 +3207,16 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-/* ===== PWA Install Detection & Status Banner ===== */
-let deferredPrompt;
+/* ===== PWA Install: button, detection, and guided fallback ===== */
 const downloadAppBtn = document.getElementById('downloadAppBtn');
 let isAppInstalled = false;
 
+function isStandaloneMode() {
+  return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+}
+
 function markAppAsInstalled() {
   isAppInstalled = true;
-  
-  // Update the download button — this is the only install indicator now
   if (downloadAppBtn) {
     downloadAppBtn.innerHTML = '✅ App Installed';
     downloadAppBtn.disabled = true;
@@ -3214,118 +3224,110 @@ function markAppAsInstalled() {
     downloadAppBtn.style.cursor = 'default';
     downloadAppBtn.style.background = 'linear-gradient(135deg, #4a7a3a 0%, #2e5a26 100%)';
   }
-  
-  // Save to localStorage so we remember across sessions
-  localStorage.setItem('pwa-app-installed', 'true');
+  try { localStorage.setItem('pwa-app-installed', 'true'); } catch (e) {}
 }
 
 function showInstallPrompt() {
   isAppInstalled = false;
-  
-  // Update the download button
   if (downloadAppBtn) {
     downloadAppBtn.innerHTML = '📱 Download App';
     downloadAppBtn.disabled = false;
     downloadAppBtn.style.opacity = '1';
     downloadAppBtn.style.cursor = 'pointer';
     downloadAppBtn.style.background = '';
-  }
-  
-  // Clear localStorage
-  localStorage.removeItem('pwa-app-installed');
-}
-
-// Keep the Download App button visible at all times
-if (downloadAppBtn) downloadAppBtn.style.display = 'flex';
-
-// Check on page load if the app is already installed
-window.addEventListener('load', async () => {
-  // Method 1: Check if running in standalone mode (inside the installed app)
-  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-  if (isStandalone) {
-    markAppAsInstalled();
-    return;
-  }
-  
-  // Method 2: Check getInstalledRelatedApps() for desktop/mobile
-  if ('getInstalledRelatedApps' in navigator) {
-    try {
-      const relatedApps = await navigator.getInstalledRelatedApps();
-      if (relatedApps && relatedApps.length > 0) {
-        markAppAsInstalled();
-        return;
-      }
-    } catch (err) {
-      // Not supported or failed silently
-    }
-  }
-  
-  // Method 3: Check localStorage (if user previously installed it in this browser)
-  if (localStorage.getItem('pwa-app-installed') === 'true') {
-    // Only show if getInstalledRelatedApps also returned nothing
-    // This prevents false positives if they uninstalled the app
-    markAppAsInstalled();
-  }
-});
-
-// Listen for the beforeinstallprompt event
-window.addEventListener('beforeinstallprompt', (e) => {
-  // Prevent the mini-infobar from appearing on mobile
-  e.preventDefault();
-  
-  // Stash the event for later use
-  deferredPrompt = e;
-  
-  // Make sure button is visible and shows install prompt
-  if (!isAppInstalled) {
-    showInstallPrompt();
     downloadAppBtn.style.display = 'flex';
   }
+  try { localStorage.removeItem('pwa-app-installed'); } catch (e) {}
+}
+
+if (downloadAppBtn) downloadAppBtn.style.display = 'flex';
+
+// Already running as the installed app?
+if (isStandaloneMode()) markAppAsInstalled();
+
+// The browser says the app can be installed right now -> definitely not installed
+window.addEventListener('bs-install-ready', showInstallPrompt);
+if (window.__bsDeferredPrompt) showInstallPrompt();
+
+window.addEventListener('appinstalled', () => {
+  window.__bsDeferredPrompt = null;
+  markAppAsInstalled();
 });
 
-// Handle Download App button click
+/* Step-by-step help dialog (replaces the old plain alert) */
+function showInstallHelp() {
+  const ua = navigator.userAgent;
+  const isIOS = /iphone|ipad|ipod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const isAndroid = /android/i.test(ua);
+  const isFirefox = /firefox|fxios/i.test(ua);
+  const isEdge = /edg\//i.test(ua);
+  const isBrave = !!(navigator.brave);
+  const isSafari = /safari/i.test(ua) && !/chrome|crios|android/i.test(ua);
+
+  let title = 'Install Bloom & Stem';
+  let steps;
+  if (isIOS) {
+    steps = ['Open this page in <b>Safari</b> (other iPhone browsers can\u2019t install apps).',
+             'Tap the <b>Share</b> button (square with an arrow).',
+             'Scroll down and tap <b>Add to Home Screen</b>, then <b>Add</b>.'];
+  } else if (isAndroid) {
+    steps = ['Open this page in <b>Chrome</b>.',
+             'Tap the <b>\u22ee</b> menu at the top right.',
+             'Tap <b>Install app</b> (or <b>Add to Home screen</b>), then <b>Install</b>.'];
+  } else if (isFirefox) {
+    steps = ['Firefox on desktop can\u2019t install web apps.',
+             'Open this page in <b>Chrome</b> or <b>Edge</b> to install it.'];
+  } else if (isSafari) {
+    steps = ['In Safari, choose <b>File \u2192 Add to Dock\u2026</b> (macOS Sonoma or newer).'];
+  } else if (isEdge) {
+    steps = ['Click the <b>\u2026</b> menu at the top right.',
+             'Choose <b>Apps \u2192 Install this site as an app</b>.'];
+  } else {
+    steps = ['Look for the <b>install icon</b> (a monitor with a down arrow) at the right end of the address bar and click it.',
+             'Or open the <b>\u22ee</b> menu and choose <b>Cast, save and share \u2192 Install page as app\u2026</b> (or <b>Install Bloom & Stem</b>).',
+             'If you already installed it, open it from <b>chrome://apps</b> or your Start menu / Applications folder.'];
+    if (isBrave) steps.push('Brave: if nothing appears, check <b>brave://settings/privacy</b> and keep Shields from blocking service workers on this site.');
+  }
+
+  const old = document.getElementById('bsInstallHelp');
+  if (old) old.remove();
+  const wrap = document.createElement('div');
+  wrap.id = 'bsInstallHelp';
+  wrap.setAttribute('role', 'dialog');
+  wrap.setAttribute('aria-modal', 'true');
+  wrap.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;padding:16px;';
+  wrap.innerHTML =
+    '<div style="background:#F6F1E7;color:#22331B;max-width:420px;width:100%;border-radius:14px;padding:22px 22px 18px;font-family:Inter,system-ui,sans-serif;box-shadow:0 20px 60px rgba(0,0,0,.4);">' +
+      '<h3 style="margin:0 0 6px;font-size:20px;">\ud83d\udcf1 ' + title + '</h3>' +
+      '<p style="margin:0 0 12px;font-size:14px;opacity:.8;">Your browser didn\u2019t offer one-tap install, so follow these steps:</p>' +
+      '<ol style="margin:0 0 16px 18px;padding:0;font-size:14px;line-height:1.55;">' +
+        steps.map(s => '<li style="margin-bottom:6px;">' + s + '</li>').join('') +
+      '</ol>' +
+      '<button type="button" id="bsInstallHelpClose" style="background:#22331B;color:#fff;border:0;border-radius:8px;padding:9px 18px;font-weight:600;cursor:pointer;">Got it</button>' +
+    '</div>';
+  document.body.appendChild(wrap);
+  const close = () => wrap.remove();
+  wrap.addEventListener('click', e => { if (e.target === wrap) close(); });
+  wrap.querySelector('#bsInstallHelpClose').addEventListener('click', close);
+}
+
+/* Download App button */
 if (downloadAppBtn) {
   downloadAppBtn.addEventListener('click', async () => {
-    if (deferredPrompt) {
-      try {
-        // Show the install prompt
-        deferredPrompt.prompt();
-        
-        // Wait for the user to respond (with timeout)
-        const timeoutPromise = new Promise(resolve => setTimeout(() => resolve({ outcome: 'timeout' }), 5000));
-        const { outcome } = await Promise.race([deferredPrompt.userChoice, timeoutPromise]);
-        
-        // Clear the deferredPrompt for the next time
-        deferredPrompt = null;
-        
-        // Mark as installed if user accepted
-        if (outcome === 'accepted') {
-          markAppAsInstalled();
-        }
-      } catch (err) {
-        console.error('Install prompt error:', err);
-        alert('Could not install app. Please try again or check your browser settings.');
-      }
-    } else {
-      // Fallback: Show instructions for manual install
-      const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-      const isAndroid = /android/i.test(navigator.userAgent);
-      if (isIOS) {
-        alert('To install this app on iPhone/iPad:\n\n1. Tap the Share button (square with an arrow)\n2. Scroll down and tap "Add to Home Screen"\n3. Tap "Add"');
-      } else if (isAndroid) {
-        alert('Your phone doesn\'t support one-tap install.\n\nYou can still add this app to your home screen manually:\n\n1. Tap the ⋮ menu (top right of Chrome)\n2. Tap "Add to Home screen" or "Install app"\n3. Tap "Add" or "Install"\n\nThis will add Bloom & Stem to your home screen just like an app.');
-      } else {
-        alert('This browser doesn\'t support one-tap install yet. Try Chrome or Edge, or use your browser\'s menu → "Install app" / "Add to Home screen".');
-      }
+    const dp = window.__bsDeferredPrompt;
+    if (!dp) { showInstallHelp(); return; }
+    try {
+      await dp.prompt();
+      const { outcome } = await dp.userChoice;
+      window.__bsDeferredPrompt = null;   // an event can only be used once
+      if (outcome === 'accepted') markAppAsInstalled();
+    } catch (err) {
+      console.error('Install prompt error:', err);
+      window.__bsDeferredPrompt = null;
+      showInstallHelp();
     }
   });
 }
-
-// Mark as installed when the OS-level install event fires
-window.addEventListener('appinstalled', () => {
-  markAppAsInstalled();
-  deferredPrompt = null;
-});
 </script>
 </body>
 </html>
