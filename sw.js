@@ -1,20 +1,31 @@
-// Minimal service worker — required for Chrome/Edge to treat this site as an installable app.
-// It doesn't need to cache anything for the install prompt to work, but a basic
-// pass-through fetch handler is included so the site still works offline-ish.
-
-const CACHE_NAME = 'bloom-stem-v1';
+// Service worker for Bloom & Stem — makes the site installable and gives basic offline support.
+const CACHE_NAME = 'bloom-stem-v2';
+const CORE = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', (event) => {
+  event.waitUntil(caches.open(CACHE_NAME).then((c) => c.addAll(CORE)).catch(() => {}));
   self.skipWaiting();
 });
 
 self.addEventListener('activate', (event) => {
-  event.waitUntil(self.clients.claim());
+  event.waitUntil(
+    caches.keys()
+      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k))))
+      .then(() => self.clients.claim())
+  );
 });
 
 self.addEventListener('fetch', (event) => {
-  // Simple network-first strategy; falls back to cache if offline.
+  if (event.request.method !== 'GET') return;
   event.respondWith(
-    fetch(event.request).catch(() => caches.match(event.request))
+    fetch(event.request)
+      .then((res) => {
+        if (res && res.ok && new URL(event.request.url).origin === self.location.origin) {
+          const copy = res.clone();
+          caches.open(CACHE_NAME).then((c) => c.put(event.request, copy));
+        }
+        return res;
+      })
+      .catch(() => caches.match(event.request).then((r) => r || caches.match('./index.html')))
   );
 });
