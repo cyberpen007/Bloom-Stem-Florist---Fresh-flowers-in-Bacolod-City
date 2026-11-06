@@ -10,7 +10,6 @@
 <meta property="og:type" content="website">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='12' r='6' fill='%23C97B84'/%3E%3Ccircle cx='12' cy='20' r='6' fill='%23C9A24B'/%3E%3Ccircle cx='28' cy='20' r='6' fill='%236E8F52'/%3E%3Ccircle cx='20' cy='24' r='5' fill='%2322331B'/%3E%3C/svg%3E">
 <link rel="manifest" href="manifest.json">
-<script>window.__deferredPrompt=null;window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();window.__deferredPrompt=e;});</script>
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="theme-color" content="#16220F">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -3190,90 +3189,143 @@ document.addEventListener('visibilitychange', () => {
   if(adminUnlocked) refreshPendingReviews();
 })();
 
-</script>
-<script>
-/* ===== PWA: service worker + Download App button (separate script so site errors can't break it) ===== */
-(function () {
-  var btn = document.getElementById('downloadAppBtn');
-
-  // Remove the old "installed" flag that could leave the button stuck/disabled
-  try { localStorage.removeItem('pwa-app-installed'); } catch (e) {}
-
-  // Register the service worker (needs https or localhost, not file://)
-  if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-    window.addEventListener('load', function () {
-      navigator.serviceWorker.register('sw.js').catch(function (err) {
-        console.error('Service worker registration failed:', err);
-      });
+/* ===== Register Service Worker (required for PWA installability) ===== */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(err => {
+      console.error('Service worker registration failed:', err);
     });
-  }
-
-  function isStandalone() {
-    return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-  }
-
-  function showInstalled() {
-    if (!btn) return;
-    btn.innerHTML = '\u2705 App Installed';
-    btn.disabled = true;
-    btn.style.opacity = '0.7';
-    btn.style.cursor = 'default';
-    btn.style.background = 'linear-gradient(135deg, #4a7a3a 0%, #2e5a26 100%)';
-  }
-
-  function showReady() {
-    if (!btn) return;
-    btn.innerHTML = '\uD83D\uDCF1 Download App';
-    btn.disabled = false;
-    btn.style.opacity = '1';
-    btn.style.cursor = 'pointer';
-    btn.style.background = '';
-  }
-
-  if (btn) btn.style.display = 'flex';
-
-  // Only show "installed" when we are really running inside the installed app
-  if (isStandalone()) { showInstalled(); } else { showReady(); }
-
-  window.addEventListener('appinstalled', function () {
-    window.__deferredPrompt = null;
-    showInstalled();
   });
+}
 
-  if (!btn) return;
-  btn.addEventListener('click', async function () {
-    var prompt = window.__deferredPrompt;
+/* ===== PWA Install Detection & Status Banner ===== */
+let deferredPrompt;
+const downloadAppBtn = document.getElementById('downloadAppBtn');
+let isAppInstalled = false;
 
-    if (prompt) {
+function markAppAsInstalled() {
+  isAppInstalled = true;
+  
+  // Update the download button — this is the only install indicator now
+  if (downloadAppBtn) {
+    downloadAppBtn.innerHTML = '✅ App Installed';
+    downloadAppBtn.disabled = true;
+    downloadAppBtn.style.opacity = '0.7';
+    downloadAppBtn.style.cursor = 'default';
+    downloadAppBtn.style.background = 'linear-gradient(135deg, #4a7a3a 0%, #2e5a26 100%)';
+  }
+  
+  // Save to localStorage so we remember across sessions
+  localStorage.setItem('pwa-app-installed', 'true');
+}
+
+function showInstallPrompt() {
+  isAppInstalled = false;
+  
+  // Update the download button
+  if (downloadAppBtn) {
+    downloadAppBtn.innerHTML = '📱 Download App';
+    downloadAppBtn.disabled = false;
+    downloadAppBtn.style.opacity = '1';
+    downloadAppBtn.style.cursor = 'pointer';
+    downloadAppBtn.style.background = '';
+  }
+  
+  // Clear localStorage
+  localStorage.removeItem('pwa-app-installed');
+}
+
+// Keep the Download App button visible at all times
+if (downloadAppBtn) downloadAppBtn.style.display = 'flex';
+
+// Check on page load if the app is already installed
+window.addEventListener('load', async () => {
+  // Method 1: Check if running in standalone mode (inside the installed app)
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  if (isStandalone) {
+    markAppAsInstalled();
+    return;
+  }
+  
+  // Method 2: Check getInstalledRelatedApps() for desktop/mobile
+  if ('getInstalledRelatedApps' in navigator) {
+    try {
+      const relatedApps = await navigator.getInstalledRelatedApps();
+      if (relatedApps && relatedApps.length > 0) {
+        markAppAsInstalled();
+        return;
+      }
+    } catch (err) {
+      // Not supported or failed silently
+    }
+  }
+  
+  // Method 3: Check localStorage (if user previously installed it in this browser)
+  if (localStorage.getItem('pwa-app-installed') === 'true') {
+    // Only show if getInstalledRelatedApps also returned nothing
+    // This prevents false positives if they uninstalled the app
+    markAppAsInstalled();
+  }
+});
+
+// Listen for the beforeinstallprompt event
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevent the mini-infobar from appearing on mobile
+  e.preventDefault();
+  
+  // Stash the event for later use
+  deferredPrompt = e;
+  
+  // Make sure button is visible and shows install prompt
+  if (!isAppInstalled) {
+    showInstallPrompt();
+    downloadAppBtn.style.display = 'flex';
+  }
+});
+
+// Handle Download App button click
+if (downloadAppBtn) {
+  downloadAppBtn.addEventListener('click', async () => {
+    if (deferredPrompt) {
       try {
-        prompt.prompt();
-        var choice = await prompt.userChoice;   // wait for the person, no timeout
-        window.__deferredPrompt = null;
-        if (choice && choice.outcome === 'accepted') showInstalled();
+        // Show the install prompt
+        deferredPrompt.prompt();
+        
+        // Wait for the user to respond (with timeout)
+        const timeoutPromise = new Promise(resolve => setTimeout(() => resolve({ outcome: 'timeout' }), 5000));
+        const { outcome } = await Promise.race([deferredPrompt.userChoice, timeoutPromise]);
+        
+        // Clear the deferredPrompt for the next time
+        deferredPrompt = null;
+        
+        // Mark as installed if user accepted
+        if (outcome === 'accepted') {
+          markAppAsInstalled();
+        }
       } catch (err) {
         console.error('Install prompt error:', err);
-        alert('Could not install the app. Please try again or use your browser menu \u2192 Install app.');
+        alert('Could not install app. Please try again or check your browser settings.');
       }
-      return;
-    }
-
-    // No one-tap install available: explain why / what to do
-    var ua = navigator.userAgent;
-    if (location.protocol === 'file:') {
-      alert('You opened this page from a file on your computer.\n\nThe app can only be installed from the live website. Open your website link (it starts with https://) in Chrome or Edge and try again.');
-    } else if (/iphone|ipad|ipod/i.test(ua)) {
-      alert('To install on iPhone/iPad:\n\n1. Tap the Share button (square with an arrow)\n2. Tap "Add to Home Screen"\n3. Tap "Add"');
-    } else if (/android/i.test(ua)) {
-      alert('To install on Android:\n\n1. Tap the \u22EE menu (top right of Chrome)\n2. Tap "Install app" or "Add to Home screen"\n3. Tap "Install"');
-    } else if (/firefox/i.test(ua)) {
-      alert('Firefox on computers cannot install web apps.\n\nPlease open this website in Google Chrome or Microsoft Edge, then click Download App again.');
-    } else if (/edg\//i.test(ua)) {
-      alert('To install in Edge:\n\nClick the \u22EF menu \u2192 Apps \u2192 "Install this site as an app".\n\nOr click the install icon at the right end of the address bar.');
     } else {
-      alert('To install in Chrome:\n\nClick the install icon at the right end of the address bar,\nor the \u22EE menu \u2192 "Cast, save, and share" \u2192 "Install page as app".\n\nIf you do not see it, refresh the page (Ctrl+Shift+R) and wait a few seconds.');
+      // Fallback: Show instructions for manual install
+      const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+      const isAndroid = /android/i.test(navigator.userAgent);
+      if (isIOS) {
+        alert('To install this app on iPhone/iPad:\n\n1. Tap the Share button (square with an arrow)\n2. Scroll down and tap "Add to Home Screen"\n3. Tap "Add"');
+      } else if (isAndroid) {
+        alert('Your phone doesn\'t support one-tap install.\n\nYou can still add this app to your home screen manually:\n\n1. Tap the ⋮ menu (top right of Chrome)\n2. Tap "Add to Home screen" or "Install app"\n3. Tap "Add" or "Install"\n\nThis will add Bloom & Stem to your home screen just like an app.');
+      } else {
+        alert('This browser doesn\'t support one-tap install yet. Try Chrome or Edge, or use your browser\'s menu → "Install app" / "Add to Home screen".');
+      }
     }
   });
-})();
+}
+
+// Mark as installed when the OS-level install event fires
+window.addEventListener('appinstalled', () => {
+  markAppAsInstalled();
+  deferredPrompt = null;
+});
 </script>
 </body>
 </html>
