@@ -1,18 +1,1 @@
-name: Keep Supabase Active
-
-on:
-  schedule:
-    - cron: '0 0 * * 1,4'   # Runs every Monday and Thursday at midnight UTC
-  workflow_dispatch:         # Lets you also run it manually from the Actions tab
-
-jobs:
-  ping-database:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Ping Supabase to prevent auto-pause
-        env:
-          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
-        run: |
-          curl -s -X GET "https://aqithhkqgmaonmrlylob.supabase.co/rest/v1/site_state?select=key&limit=1" \
-            -H "apikey: $SUPABASE_KEY" \
-            -H "Authorization: Bearer $SUPABASE_KEY"
+ 
