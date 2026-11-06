@@ -1,15 +1,25 @@
 {
-  "id": "./",
   "name": "Bloom & Stem Florist",
   "short_name": "Bloom & Stem",
-  "description": "Handcrafted bouquets, potted greens, and seasonal arrangements in Bacolod City.",
-  "start_url": "./",
+  "description": "Handcrafted bouquets and same-day flower delivery in Bacolod City.",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "background_color": "#16220F",
   "theme_color": "#16220F",
+  "orientation": "portrait-primary",
   "icons": [
-    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
   ]
 }
