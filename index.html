@@ -3245,6 +3245,18 @@ if (downloadAppBtn) downloadAppBtn.style.display = 'flex';
 // Already running as the installed app?
 if (isStandaloneMode()) markAppAsInstalled();
 
+// Remember if it was installed earlier on this browser
+try {
+  if (localStorage.getItem('pwa-app-installed') === 'true') markAppAsInstalled();
+} catch (e) {}
+
+// Ask Chrome directly whether the app is installed
+if (navigator.getInstalledRelatedApps) {
+  navigator.getInstalledRelatedApps().then(apps => {
+    if (apps && apps.length && !window.__bsDeferredPrompt) markAppAsInstalled();
+  }).catch(() => {});
+}
+
 // The browser says the app can be installed right now -> definitely not installed
 window.addEventListener('bs-install-ready', showInstallPrompt);
 if (window.__bsDeferredPrompt) showInstallPrompt();
@@ -3331,4 +3343,3 @@ if (downloadAppBtn) {
 </script>
 </body>
 </html>
-
