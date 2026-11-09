@@ -1,30 +1,20 @@
-// Bloom & Stem service worker: makes the site installable and keeps a basic offline copy.
-const CACHE = 'bloom-stem-v4';
-const CORE = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png', './icon-maskable-512.png', './apple-touch-icon.png'];
+// Minimal service worker — required for Chrome/Edge to treat this site as an installable app.
+// It doesn't need to cache anything for the install prompt to work, but a basic
+// pass-through fetch handler is included so the site still works offline-ish.
 
-self.addEventListener('install', e => {
-  e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));
+const CACHE_NAME = 'bloom-stem-v1';
+
+self.addEventListener('install', (event) => {
+  self.skipWaiting();
 });
 
-self.addEventListener('activate', e => {
-  e.waitUntil(
-    caches.keys()
-      .then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k))))
-      .then(() => self.clients.claim())
-  );
+self.addEventListener('activate', (event) => {
+  event.waitUntil(self.clients.claim());
 });
 
-// Network first (so orders/Supabase and updates always work), cache as fallback.
-self.addEventListener('fetch', e => {
-  const req = e.request;
-  if (req.method !== 'GET' || !req.url.startsWith(self.location.origin)) return;
-  e.respondWith(
-    fetch(req)
-      .then(res => {
-        const copy = res.clone();
-        caches.open(CACHE).then(c => c.put(req, copy));
-        return res;
-      })
-      .catch(() => caches.match(req).then(r => r || caches.match('./index.html')))
+self.addEventListener('fetch', (event) => {
+  // Simple network-first strategy; falls back to cache if offline.
+  event.respondWith(
+    fetch(event.request).catch(() => caches.match(event.request))
   );
 });
