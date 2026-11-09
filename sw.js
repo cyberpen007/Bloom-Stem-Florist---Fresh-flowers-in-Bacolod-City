@@ -1,5 +1,5 @@
 // Bloom & Stem service worker: makes the site installable and keeps a basic offline copy.
-const CACHE = 'bloom-stem-v3';
+const CACHE = 'bloom-stem-v4';
 const CORE = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png', './icon-maskable-512.png', './apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
