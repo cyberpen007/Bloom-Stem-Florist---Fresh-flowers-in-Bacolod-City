@@ -1,9 +1,9 @@
-name: Keep Supabase Active
+ name: Keep Supabase Active
 
 on:
   schedule:
-    - cron: '0 0 * * 1,4'   # Every Monday and Thursday at midnight UTC
-  workflow_dispatch:         # Lets you also run it manually
+    - cron: '0 0 * * *'   # Every day at midnight UTC
+  workflow_dispatch:       # Lets you also run it manually
 
 jobs:
   ping-database:
@@ -13,6 +13,6 @@ jobs:
         env:
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
         run: |
-          curl -s -X GET "https://aqithhkqgmaonmrlylob.supabase.co/rest/v1/site_state?select=key&limit=1" \
+          curl -f -sS -X GET "https://aqithhkqgmaonmrlylob.supabase.co/rest/v1/site_state?select=key&limit=1" \
             -H "apikey: $SUPABASE_KEY" \
             -H "Authorization: Bearer $SUPABASE_KEY"
